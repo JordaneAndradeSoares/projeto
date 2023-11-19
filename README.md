@@ -1,1 +1,1 @@
-# projeto
+Esse projeto é sobre a criação de um jogo meio educativo 
