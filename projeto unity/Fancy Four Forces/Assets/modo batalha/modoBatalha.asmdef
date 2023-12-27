@@ -1,7 +1,10 @@
 {
     "name": "modoBatalha",
     "rootNamespace": "modoBatalha",
-    "references": [],
+    "references": [
+        "GUID:9c17b87f23bb2e447a44c6a5cdfcbfbe",
+        "GUID:f34886323a1cb9d41a523f8e2ac9b1ac"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

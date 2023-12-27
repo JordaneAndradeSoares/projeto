@@ -30,6 +30,6 @@ namespace Buffers
         public float TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero ;
 
         public GameObject modelo_3D;
-        public Image iconeMiniatura;
+        public Texture iconeMiniatura;
     }
 }
