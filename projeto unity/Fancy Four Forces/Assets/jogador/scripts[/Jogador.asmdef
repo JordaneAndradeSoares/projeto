@@ -1,0 +1,16 @@
+{
+    "name": "Jogador",
+    "rootNamespace": "jogador",
+    "references": [
+        "GUID:9c17b87f23bb2e447a44c6a5cdfcbfbe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
