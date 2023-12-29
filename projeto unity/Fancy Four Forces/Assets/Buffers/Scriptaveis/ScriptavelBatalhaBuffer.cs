@@ -7,7 +7,7 @@ namespace Buffers
     [CreateAssetMenu(fileName = "BatalhaBuffer", menuName = "Buffers/batalhaBuffer", order = 1)]
     public class ScriptavelBatalhaBuffer : ScriptableObject
     {
-        public List<ScriptavelBuffer> aliados;
-        public List<ScriptavelBuffer> inimigos;
+        public List<ScriptavelKernel> aliados;
+        public List<ScriptavelKernel> inimigos;
     }
 }

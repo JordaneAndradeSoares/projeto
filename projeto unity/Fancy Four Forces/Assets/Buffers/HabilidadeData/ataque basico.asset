@@ -10,22 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
-  m_Name: NovaHabilidade
+  m_Name: ataque basico
   m_EditorClassIdentifier: 
-  NomeHabilidade: 
-  EfeitosHabilidades: []
-  temp:
-    ForcaDaNatureza: 0
-    TipoDeHabilidade: 0
-    Aplicacao: 0
-    CustoDeHabilidade: 0
-    EficaciaHabilidade: 0
-    TipoDeBuffDebuff: 0
-  ForcaDaNatureza: 0
-  TipoDeHabilidade: 0
-  Aplicacao: 0
-  tipoDeBuffDebuff: 0
-  CustoDeHabilidade: 0
-  EficaciaHabilidade: 0
-  pagina: 0
-  criandoHabilidade: 0
+  NomeHabilidade: Ataque Basico
+  ForcaDaNatureza: 4
+  CustoDeHabilidade: 0.276
+  EficaciaHabilidade: 0.297
+  Buff_debuff: 0
+  direcaoDebuffBuff: 0
+  Fileira: 0
+  global: 0
