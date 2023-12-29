@@ -15,10 +15,11 @@ namespace Buffers
         public float Velocidade;
         public float AtaqueEspecial ;
         public float DefesaEspecial ;
-        public float AtaqueBasico ;
+        public float AtaqueFisico ;
         public float DefesaFisica ;
         public float RecargaDeEnergiaDePontoZero ;
         public float CapacidadeDeEnergiaDePontoZero ;
+        public float ModificadorDeAtaqueBasico;
 
         public float TaxaDeCrescimentoDaVidaMaxima ;
         public float TaxaDeCrescimentoDaVelocidade ; 
@@ -28,6 +29,7 @@ namespace Buffers
         public float TaxaDeCrescimentoDaDefesaFisica ;
         public float TaxaDeCrescimentoDaRecargaDeEnergiaDePontoZero ;
         public float TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero ;
+        public float TaxaDeCrescimentoDoModificadorDeAtaqueBasico;
 
         public GameObject modelo_3D;
         public Texture iconeMiniatura;
