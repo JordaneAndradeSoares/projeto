@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
-  m_Name: NovaHabilidade
+  m_Name: 4. ataque nuclear
   m_EditorClassIdentifier: 
-  NomeHabilidade: 
-  EfeitosHabilidades: []
+  NomeHabilidade: Ataque nuclear
+  EfeitosHabilidades:
+  - ForcaDaNatureza: 1
+    TipoDeHabilidade: 0
+    Aplicacao: 0
+    CustoDeHabilidade: 10
+    EficaciaHabilidade: 1.5
+    TipoDeBuffDebuff: 0
   temp:
     ForcaDaNatureza: 0
     TipoDeHabilidade: 0
@@ -21,11 +27,11 @@ MonoBehaviour:
     CustoDeHabilidade: 0
     EficaciaHabilidade: 0
     TipoDeBuffDebuff: 0
-  ForcaDaNatureza: 0
+  ForcaDaNatureza: 1
   TipoDeHabilidade: 0
   Aplicacao: 0
   tipoDeBuffDebuff: 0
-  CustoDeHabilidade: 0
-  EficaciaHabilidade: 0
+  CustoDeHabilidade: 10
+  EficaciaHabilidade: 1.5
   pagina: 0
   criandoHabilidade: 0
