@@ -30,8 +30,7 @@ namespace Buffers
         public float TaxaDeCrescimentoDaRecargaDeEnergiaDePontoZero ;
         public float TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero ;
         public float TaxaDeCrescimentoDoModificadorDeAtaqueBasico;
-
-````
+        
         public ScriptavelBuffer[] evolucao;
         public bool criaturaNoturna;
 
