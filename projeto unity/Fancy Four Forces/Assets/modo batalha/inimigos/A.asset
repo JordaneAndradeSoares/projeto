@@ -15,5 +15,5 @@ MonoBehaviour:
   bufferData: {fileID: 11400000, guid: b919629930c0cb14b9bb93a38a07a119, type: 2}
   level: 5
   habilidades:
-  - {fileID: 11400000, guid: 56f17b7ef058cc8428c05b56b696f662, type: 2}
-  ataqueBasico: {fileID: 11400000, guid: e5ebba88325866045bd40a9c6dd25d8e, type: 2}
+  - {fileID: 11400000, guid: a148c73faebf9384baca482f5d72c1d5, type: 2}
+  ataqueBasico: {fileID: 11400000, guid: 97feb70edd38fd84782bc0d0b1bae0e5, type: 2}
