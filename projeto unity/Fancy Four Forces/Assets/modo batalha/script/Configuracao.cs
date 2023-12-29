@@ -17,7 +17,7 @@ namespace modoBatalha
         public Transform aliados, inimigos,seta;
     
         public float espasamentoentreSi;
-
+        public GameObject prefabVida;
 
         public ScriptavelBatalhaBuffer dataBatalha;
 
@@ -25,12 +25,15 @@ namespace modoBatalha
         public List<buffer_s> inimigosL = new List<buffer_s>();
 
         public List<buffer_s> ordemBatalha = new List<buffer_s>();
-       
+        public GerenciadorDeBatalha gbatalha;
+
         [System.Serializable]
         public class buffer_s {
             public GameObject obj;
             public Vector3 local;
-            public ScriptavelBuffer data;
+            public Kernel data;
+            public bool npc;
+            public GerenciadorAttVida gvd;
             public buffer_s()
             {
                 local = Vector3.zero;
@@ -39,21 +42,51 @@ namespace modoBatalha
         }
         private void Start()
         {
-            if(dataBatalha)
+            setaAliada = 0; setaInimiga = 0;
+            if (dataBatalha)
             {
                 List<buffer_s> tempList = new List<buffer_s>();
               
                 for (int x= 0; x < dataBatalha.aliados.Count;x++)
                 {
-                   aliadosL[x].obj = Instantiate(dataBatalha.aliados[x].modelo_3D, aliados);
-                    aliadosL[x].data = dataBatalha.aliados[x];
+                   
+                    if (dataBatalha.aliados[x].bufferData == null)
+                        continue;
+                    aliadosL[x].data = new Kernel(dataBatalha.aliados[x].bufferData);
+                    aliadosL[x].obj = Instantiate(dataBatalha.aliados[x].bufferData.modelo_3D, aliados);
+                    
+                    aliadosL[x].data.habilidades = (dataBatalha.aliados[x].habilidades);
+                    aliadosL[x].data.ataqueBasico = dataBatalha.aliados[x].ataqueBasico;
+
+                    GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
+                    gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
+                    aliadosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
+                 
+                    //  temp.att(  dataBatalha.aliados[x].retorno());
+                   
                     tempList.Add(aliadosL[x]);
                 }
-
                 for (int x = 0; x < dataBatalha.inimigos.Count; x++)
                 {
-                    inimigosL[x].obj = Instantiate(dataBatalha.inimigos[x].modelo_3D, inimigos);
-                    inimigosL[x].data = dataBatalha.inimigos[x];
+                 
+                    if (dataBatalha.inimigos[x].bufferData == null)
+                        continue;
+                    inimigosL[x].data = new Kernel(dataBatalha.inimigos[x].bufferData);
+                    inimigosL[x].obj = Instantiate(dataBatalha.inimigos[x].bufferData.modelo_3D, inimigos);
+
+                    inimigosL[x].data.habilidades = (dataBatalha.inimigos[x].habilidades);
+                    inimigosL[x].data.ataqueBasico = dataBatalha.inimigos[x].ataqueBasico;
+
+                    GameObject gvd_ = Instantiate(prefabVida, inimigosL[x].obj.transform);
+                    gvd_.transform.position = inimigosL[x].obj.transform.position + Vector3.up;
+                    inimigosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
+                    inimigosL[x].npc = true;
+
+
+                   
+                  //  temp_.att(dataBatalha.inimigos[x].retorno());
+                   
+
                     tempList.Add(inimigosL[x]);
                 }
 
@@ -64,7 +97,7 @@ namespace modoBatalha
                     int largestIndex = i;
                     for (int j = 0; j < i; j++)
                     {
-                        if (tempList[largestIndex].data.Velocidade < tempList[j].data.Velocidade)
+                        if (tempList[largestIndex].data.bufferData.Velocidade < tempList[j].data.bufferData.Velocidade)
                         {
                             largestIndex = j;
                         }
@@ -75,6 +108,7 @@ namespace modoBatalha
                     tempList[i] = tempList[largestIndex];
                     tempList[largestIndex] = temp;
                 }
+
 
 
                 ordemBatalha.AddRange(tempList);
@@ -92,6 +126,8 @@ namespace modoBatalha
                     a.obj.transform.position = a.local;
                 }
 
+
+                gbatalha.iniciar(ordemBatalha);
             }
         }
 
@@ -163,9 +199,28 @@ namespace modoBatalha
             if (x < 0 && aliador_inimigo > 0)
                 aliador_inimigo = -1;
         }
+        private void attvida()
+        {
+            foreach(var a in aliadosL)
+            {
+                if (a.obj == null)
+                    continue;
+                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.bufferData.VidaMaxima),
+                    a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
+            }
+
+            foreach (var a in inimigosL)
+            {
+                if (a.obj == null)
+                    continue;
+                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.bufferData.VidaMaxima),
+                    a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
+            }
+        }
         private void Update()
         {
-            moverseta();
+      //      moverseta();
+      //      attvida();
         }
 
     }

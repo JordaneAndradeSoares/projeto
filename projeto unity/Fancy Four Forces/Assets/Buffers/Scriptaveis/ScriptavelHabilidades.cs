@@ -10,41 +10,65 @@ namespace Buffers
     public class ScriptavelHabilidades : ScriptableObject
     {
         public string NomeHabilidade;
-        public tiposNatureza ForcaDaNatureza;
-        [Range(0f, 1f)]
+
+        public List<habilidade_inf> EfeitosHabilidades = new List<habilidade_inf>();
+
+        public habilidade_inf temp = new habilidade_inf();
+
+        public tiposNatureza ForcaDaNatureza;     
+        public tipoDeHabilidade TipoDeHabilidade;
+        public ativacoes Aplicacao;
+        public TipoDeBuffDebuff tipoDeBuffDebuff;
+
+        
         public float CustoDeHabilidade;
-        [Tooltip("Por exemplo: o quanto de dano sera causado, o quanto de defesa sera dado ao aliado, ou o quando de debuff sera dado ao inimigo")]
-        [Range(0f, 1f)]
+       
         public float EficaciaHabilidade;
 
-        public bool Buff_debuff;
-        public int  direcaoDebuffBuff;
-        [Tooltip("o efeito sera aplicado em toda a fileira")]
-        public bool Fileira;
-        [Tooltip("o efeito sera aplicado em todos")]
-        public bool global;
+        public int pagina = 0;
 
+        public bool criandoHabilidade;
+    }
+    [System.Serializable]
+    public class habilidade_inf {
+        public tiposNatureza ForcaDaNatureza;
+        [Tooltip("o que a habilidade faz ? dano, buff , debuff")]
+        public tipoDeHabilidade TipoDeHabilidade;
+        [Tooltip("A forma que o efeito sera aplicado no alvo")]
+        public ativacoes Aplicacao;
+
+     
+        public float CustoDeHabilidade;
+        [Tooltip("Por exemplo: o quanto de dano sera causado, o quanto de defesa sera dado ao aliado, ou o quando de debuff sera dado ao inimigo")]
+       
+        public float EficaciaHabilidade;
+        public TipoDeBuffDebuff TipoDeBuffDebuff;
 
     }
 
+
 }
+
+
 [CustomEditor(typeof(ScriptavelHabilidades))]
 public class editorScriptavelHabilidade : Editor {
-    public SerializedProperty NomeHabilidade, EficaciaHabilidade, ForcaDaNatureza, CustoDeHabilidade, Buff_aliado, Debuff_inimigo, Fileira, global;
 
+    public SerializedProperty EfeitosHabilidades , criandoHabilidade, NomeHabilidade;
+
+    public SerializedProperty ForcaDaNatureza , TipoDeHabilidade, Aplicacao, tipoDeBuffDebuff, CustoDeHabilidade, EficaciaHabilidade;
     private void OnEnable()
     {
         NomeHabilidade = serializedObject.FindProperty("NomeHabilidade");
+        EfeitosHabilidades = serializedObject.FindProperty("EfeitosHabilidades");
+
+        criandoHabilidade = serializedObject.FindProperty("criandoHabilidade");
+
         ForcaDaNatureza = serializedObject.FindProperty("ForcaDaNatureza");
+        TipoDeHabilidade = serializedObject.FindProperty("TipoDeHabilidade");
+        Aplicacao = serializedObject.FindProperty("Aplicacao");
+        tipoDeBuffDebuff = serializedObject.FindProperty("tipoDeBuffDebuff");
         CustoDeHabilidade = serializedObject.FindProperty("CustoDeHabilidade");
         EficaciaHabilidade = serializedObject.FindProperty("EficaciaHabilidade");
-
-        Buff_aliado = serializedObject.FindProperty("Buff_aliado");
-        Debuff_inimigo = serializedObject.FindProperty("Debuff_inimigo");
-
-        Fileira = serializedObject.FindProperty("Fileira");
-        global = serializedObject.FindProperty("global");
-      
 
 
     }
@@ -55,49 +79,87 @@ public class editorScriptavelHabilidade : Editor {
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(NomeHabilidade, new GUIContent("O nome da Habilidade"));
-        EditorGUILayout.PropertyField(ForcaDaNatureza, new GUIContent("O tipo da força usada"));
-        EditorGUILayout.PropertyField(CustoDeHabilidade, new GUIContent("O quanto de energia de ponto zero sera usado"));
-        EditorGUILayout.PropertyField(EficaciaHabilidade, new GUIContent("Este valor representa o o valor que sera aplicado"));
+        EditorGUILayout.PropertyField(EfeitosHabilidades, new GUIContent("O nome da Habilidade"));
 
-        if (GUILayout.Button("A Habilidade tem efeito em fileira ?  ( " + meuScript.Fileira + " )"))
+        if (meuScript.criandoHabilidade == false)
         {
-            meuScript.Fileira = !meuScript.Fileira;
+            if (GUILayout.Button("Adicionar Habilidade"))
+            {
+                meuScript.criandoHabilidade = !meuScript.criandoHabilidade;
+            }
         }
-        if (GUILayout.Button("A Habilidade tem efeito global ?  ?  ( " + meuScript.global + " )"))
+        else
         {
-            meuScript.global = !meuScript.global;
+
+            EditorGUILayout.Space();
+            GUILayout.Label("~ criando efeito ~");
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(ForcaDaNatureza, new GUIContent("O tipo da força da natureza"));
+            EditorGUILayout.PropertyField(Aplicacao, new GUIContent("A forma que ira atingir o seu alvo"));
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(TipoDeHabilidade, new GUIContent("O que a habilidade faz ?"));
+            if (meuScript.TipoDeHabilidade != tipoDeHabilidade.Dano)
+            {
+                EditorGUILayout.PropertyField(tipoDeBuffDebuff, new GUIContent("O que o " + meuScript.TipoDeHabilidade + " vai mudar "));
+
+            }
+            EditorGUILayout.Space();
+
+            EditorGUILayout.PropertyField(CustoDeHabilidade, new GUIContent("Custo da energia de ponto zero"));
+            EditorGUILayout.PropertyField(EficaciaHabilidade, new GUIContent("A forma que ira atingir o seu alvo"));
+
+            EditorGUILayout.Space();
+            EditorGUILayout.Space();
+            if (GUILayout.Button("Finalizar"))
+            {
+                meuScript.criandoHabilidade = false;
+                habilidade_inf temp_ = new habilidade_inf();
+
+                temp_.ForcaDaNatureza = meuScript.ForcaDaNatureza;
+
+                temp_.TipoDeHabilidade = meuScript.TipoDeHabilidade;
+
+                temp_.Aplicacao = meuScript.Aplicacao;
+
+
+                temp_.CustoDeHabilidade = meuScript.CustoDeHabilidade;
+
+                temp_.EficaciaHabilidade = meuScript.EficaciaHabilidade;
+                temp_.TipoDeBuffDebuff = meuScript.tipoDeBuffDebuff;
+
+
+                meuScript.EfeitosHabilidades.Add(temp_);
+
+            }
         }
 
-        if (GUILayout.Button("A habilidade causa buff ?  ( " + (meuScript.direcaoDebuffBuff == 1 || meuScript.direcaoDebuffBuff == 3 ) ))
-        {
-            if (meuScript.direcaoDebuffBuff == 0)
-            {
-                meuScript.direcaoDebuffBuff = 1;
-                meuScript.Buff_debuff = true;
-            }
-            if (meuScript.direcaoDebuffBuff == 1)
-            {
-                meuScript.direcaoDebuffBuff = 0;
-                meuScript.Buff_debuff = false;
-            }
-            if (meuScript.direcaoDebuffBuff == 2)
-            {
-                meuScript.direcaoDebuffBuff = 3;
-            }
-            if (meuScript.direcaoDebuffBuff == 3)
-            {
-                meuScript.direcaoDebuffBuff = 2;
-            }
 
-        }
-        serializedObject.ApplyModifiedProperties();
+
+
+
+            serializedObject.ApplyModifiedProperties();
     }
         }
-
+//forças da natureza
 public enum tiposNatureza
 {
     Gravidade, ForcaForte, ForcaFraca, Eletromagnetismo, nenhum
 }
+// o metodo que vai ser aplicado o efeito
+public enum ativacoes
+{
+    unico,fileira, global
+}
+// o tipo que o efeito é
+public enum tipoDeHabilidade {
+Dano,Buff, Debuff
+}
+// o que o buff/debuff vai alterar
+public enum TipoDeBuffDebuff { 
+    Velocidade,AlterarAtaqueBasico,Escudo,DanoEspecial
+}
+
+
 
 
 

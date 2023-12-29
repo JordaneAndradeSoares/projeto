@@ -3,7 +3,8 @@
     "rootNamespace": "modoBatalha",
     "references": [
         "GUID:9c17b87f23bb2e447a44c6a5cdfcbfbe",
-        "GUID:f34886323a1cb9d41a523f8e2ac9b1ac"
+        "GUID:f34886323a1cb9d41a523f8e2ac9b1ac",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

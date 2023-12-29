@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
-  m_Name: NovaHabilidade 1
+  m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
+  m_Name: C
   m_EditorClassIdentifier: 
-  NomeHabilidade: 
-  ForcaDaNatureza: 0
-  CustoDeHabilidade: 0
-  EficaciaHabilidade: 0
-  Buff_debuff: 0
-  direcaoDebuffBuff: 0
-  Fileira: 0
-  global: 0
+  bufferData: {fileID: 0}
+  level: 0
+  habilidades: []
+  ataqueBasico: {fileID: 0}
