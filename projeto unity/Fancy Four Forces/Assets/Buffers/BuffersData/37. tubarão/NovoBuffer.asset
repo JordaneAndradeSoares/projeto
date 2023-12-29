@@ -32,5 +32,7 @@ MonoBehaviour:
   TaxaDeCrescimentoDaRecargaDeEnergiaDePontoZero: 0.2
   TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero: 0.2
   TaxaDeCrescimentoDoModificadorDeAtaqueBasico: 0.6
+  evolucao: {fileID: 0}
+  criaturaNoturna: 1
   modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}
   iconeMiniatura: {fileID: 2800000, guid: d6b704525fdad474d8d80e2c8de9ca6f, type: 3}
