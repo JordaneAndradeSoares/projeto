@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: 1. cometa
   m_EditorClassIdentifier: 
   NomeHabilidade: Cometa
-  EfeitosHabilidades: []
+  EfeitosHabilidades:
+  - ForcaDaNatureza: 0
+    TipoDeHabilidade: 0
+    Aplicacao: 0
+    CustoDeHabilidade: 10
+    EficaciaHabilidade: 1.5
+    TipoDeBuffDebuff: 3
   temp:
     ForcaDaNatureza: 0
     TipoDeHabilidade: 0
@@ -28,4 +34,4 @@ MonoBehaviour:
   CustoDeHabilidade: 10
   EficaciaHabilidade: 1.5
   pagina: 0
-  criandoHabilidade: 1
+  criandoHabilidade: 0

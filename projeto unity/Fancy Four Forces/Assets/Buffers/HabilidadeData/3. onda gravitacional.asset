@@ -19,7 +19,7 @@ MonoBehaviour:
     Aplicacao: 2
     CustoDeHabilidade: 40
     EficaciaHabilidade: 2
-    TipoDeBuffDebuff: 0
+    TipoDeBuffDebuff: 3
   temp:
     ForcaDaNatureza: 0
     TipoDeHabilidade: 0
