@@ -31,7 +31,8 @@ namespace Buffers
         public float TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero ;
         public float TaxaDeCrescimentoDoModificadorDeAtaqueBasico;
 
-        public ScriptavelBuffer evolucao;
+````
+        public ScriptavelBuffer[] evolucao;
         public bool criaturaNoturna;
 
         public GameObject modelo_3D;
