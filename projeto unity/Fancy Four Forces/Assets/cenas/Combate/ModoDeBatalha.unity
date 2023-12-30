@@ -1654,7 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de583525ad31f3a4986fb87c2ee33c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confg: {fileID: 0}
+  confg: {fileID: 6879502262069380485}
   ordemBatalha: []
   tBug: {fileID: 1465304741}
   botaoHabilidadePrefab: {fileID: 1273751953519683316, guid: d4b78c053ea18734e8d4a89c22c3d404, type: 3}
@@ -1664,3 +1664,15 @@ MonoBehaviour:
   _statusgame: 0
   habilidadesInstanciadas: []
   MolduraTextuaFila: []
+  tempoQueOInimigoPensa: 2
+--- !u!114 &6879502262069380485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+  m_PrefabInstance: {fileID: 6879502262069380481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879502262069380482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2063ab6195cd04d959071d3f26bb7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1273751953519683320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2462621950578021517}
+        m_TargetAssemblyTypeName: modoBatalha.AuxUiHabilidade, modoBatalha
+        m_MethodName: usarHabilidade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1273751953519683322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Habilidade: {fileID: 1273751954635866195}
-  a: {fileID: 0}
-  b: {fileID: 0}
+  GB: {fileID: 0}
+  SH: {fileID: 0}
 --- !u!1 &1273751954635866189
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using static modoBatalha.Configuracao;
 using TMPro;
 using Unity.Plastic.Antlr3.Runtime.Misc;
+using Buffers;
 
 namespace modoBatalha
 {
@@ -26,7 +27,7 @@ namespace modoBatalha
         {
             ordemBatalha.AddRange(a);
             definirQuemJoga();
-         
+            attMOlduraFIla();
 
         }
 
@@ -55,28 +56,55 @@ namespace modoBatalha
                     habilidadesInstanciadas.Add(aux_);
                     AuxUiHabilidade auxH = aux_.GetComponent<AuxUiHabilidade>();
                     auxH.Habilidade.text = a.NomeHabilidade;
+                    auxH.GB = this;
+                    auxH.SH = a;
                 }
 
                 GameObject aux_ATkB = Instantiate(botaoHabilidadePrefab, Fundo_Habilidades.transform);
                 AuxUiHabilidade auxH_ = aux_ATkB.GetComponent<AuxUiHabilidade>();
                 auxH_.Habilidade.text = aux.data.ataqueBasico.NomeHabilidade;
+                auxH_.GB = this;
+                auxH_.SH = aux.data.ataqueBasico;
                 habilidadesInstanciadas.Add(aux_ATkB);
             }
         }
+        public void usandoHabilidade(ScriptavelHabilidades a)
+        {
+            Debug.Log("usou a habilidade " + a.NomeHabilidade);
+
+
+
+            proximo();
+        }
+        private void proximo()
+        {
+            buffer_s temp = ordemBatalha[0];
+            ordemBatalha.Remove(temp);
+            ordemBatalha.Add(temp);
+            definirQuemJoga();
+            attMOlduraFIla();
+        }
         private void ocultarHabilidades()
         {
-            foreach(var a in habilidadesInstanciadas)
+            buffer_s aux = ordemBatalha[0];
+            if (aux != ultimobuffer)
             {
-                Destroy(a);
+
+                ultimobuffer = aux;
+                foreach (var a in habilidadesInstanciadas)
+                {
+                    Destroy(a);
+                }
+                habilidadesInstanciadas.Clear();
+             
             }
-            habilidadesInstanciadas.Clear();
         }
 
         private void attMOlduraFIla()
         {
-            foreach(var a in MolduraTextuaFila)
+           for(int a =0; a < MolduraTextuaFila.Count; a++)
             {
-                Destroy(a);
+                Destroy(MolduraTextuaFila[a]);
             }
             MolduraTextuaFila.Clear();
 
@@ -88,6 +116,20 @@ namespace modoBatalha
                 ac.foto_.texture = a.data.bufferData.iconeMiniatura;
                 MolduraTextuaFila.Add(ab);
             }
+
+        }
+
+        public float tempoQueOInimigoPensa=2;
+        float auxT=0;
+        public void inimigoAgir()
+        {
+            if (auxT > tempoQueOInimigoPensa)
+            {
+                auxT = 0 ;
+                Debug.Log("inimigo fez algo ?");
+                proximo();
+            }
+            else { auxT += Time.deltaTime; }
 
         }
 
@@ -110,7 +152,10 @@ namespace modoBatalha
                     tBug.text = "maquina joga";
 
                     ocultarHabilidades();
-                
+
+                    inimigoAgir();
+
+
                 }
 
             }
