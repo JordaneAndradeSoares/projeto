@@ -94,7 +94,7 @@ public class editorScriptavelHabilidade : Editor {
             EditorGUILayout.Space();
             GUILayout.Label("~ criando efeito ~");
             EditorGUILayout.Space();
-            EditorGUILayout.PropertyField(ForcaDaNatureza, new GUIContent("O tipo da força da natureza"));
+            EditorGUILayout.PropertyField(ForcaDaNatureza, new GUIContent("O tipo da forï¿½a da natureza"));
             EditorGUILayout.PropertyField(Aplicacao, new GUIContent("A forma que ira atingir o seu alvo"));
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(TipoDeHabilidade, new GUIContent("O que a habilidade faz ?"));
@@ -140,7 +140,7 @@ public class editorScriptavelHabilidade : Editor {
             serializedObject.ApplyModifiedProperties();
     }
         }
-//forças da natureza
+//forï¿½as da natureza
 public enum tiposNatureza
 {
     Gravidade, ForcaForte, ForcaFraca, Eletromagnetismo, nenhum
@@ -150,13 +150,13 @@ public enum ativacoes
 {
     unico,fileira, global
 }
-// o tipo que o efeito é
+// o tipo que o efeito ï¿½
 public enum tipoDeHabilidade {
-Dano,Buff, Debuff
+Dano,Buff,Debuff
 }
 // o que o buff/debuff vai alterar
 public enum TipoDeBuffDebuff { 
-    Velocidade,AlterarAtaqueBasico,Escudo,DanoEspecial
+    Velocidade,DanoFisico,Escudo,DanoEspecial,,Nada
 }
 
 
