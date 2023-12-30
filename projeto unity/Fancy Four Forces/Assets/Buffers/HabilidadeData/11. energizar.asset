@@ -19,6 +19,12 @@ MonoBehaviour:
     Aplicacao: 0
     CustoDeHabilidade: 100
     EficaciaHabilidade: 4
+    TipoDeBuffDebuff: 3
+  - ForcaDaNatureza: 0
+    TipoDeHabilidade: 1
+    Aplicacao: 0
+    CustoDeHabilidade: 100
+    EficaciaHabilidade: 4
     TipoDeBuffDebuff: 1
   temp:
     ForcaDaNatureza: 0
@@ -30,7 +36,7 @@ MonoBehaviour:
   ForcaDaNatureza: 0
   TipoDeHabilidade: 1
   Aplicacao: 0
-  tipoDeBuffDebuff: 3
+  tipoDeBuffDebuff: 1
   CustoDeHabilidade: 100
   EficaciaHabilidade: 4
   pagina: 0
