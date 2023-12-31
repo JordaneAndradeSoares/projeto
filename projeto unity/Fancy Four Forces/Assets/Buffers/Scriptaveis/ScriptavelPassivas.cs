@@ -89,12 +89,12 @@ namespace Buffers
         Intarguetavel
     }
     public enum FormaDeValor
-    {
+    {nenhum,
         AumentarEmX,
         AumentarEmXporcento,
         AumentarEmXporcentoDoValorDeEfeitoAplicadoTotal,
         AumentarEmXporcentoDeVidaFaltante,
-        nenhum
+        
     }
     public enum statusCriatura
     {
@@ -140,7 +140,7 @@ namespace Buffers
                 case 0:
                     EditorGUILayout.Space();
                   
-                    if (GUILayout.Button("Iniciar criação de habilidade "))
+                    if (GUILayout.Button("Iniciar criaÃ§Ã£o de habilidade "))
                     {
                         meuScript.tempCond = new condicionais();
                     
@@ -155,7 +155,7 @@ namespace Buffers
                         break;
                 case 1:
                     EditorGUILayout.Space();
-                    GUILayout.Label("Condição de ativação  " + meuScript.tempCond.condicaoDeAtivacao);
+                    GUILayout.Label("CondiÃ§Ã£o de ativaÃ§Ã£o  " + meuScript.tempCond.condicaoDeAtivacao);
                   
 
                     if (meuScript.tempCond.condicaoDeAtivacao != condicao.Nenhum)
@@ -171,7 +171,7 @@ namespace Buffers
                                 }
                                 EditorGUILayout.Space();
 
-                                GUILayout.Label("A condição pede um Tipo de Habilide especifico, qual seria o tipo de habilidade ?");
+                                GUILayout.Label("A condiÃ§Ã£o pede um Tipo de Habilide especifico, qual seria o tipo de habilidade ?");
 
                                
 
@@ -182,7 +182,7 @@ namespace Buffers
                                         meuScript.cond_ += 1; }
                                     if (GUILayout.Button("Cancelar"))
                                     { meuScript.cond_ -= 1; }
-                                    if (GUILayout.Button("Adicionar mais uma condição"))
+                                    if (GUILayout.Button("Adicionar mais uma condiÃ§Ã£o"))
                                     {
                                         meuScript.CondicoesDeAtivacao.Add(meuScript.tempCond);
                                         meuScript.tempCond = new condicionais();
@@ -216,7 +216,7 @@ namespace Buffers
 
                                 EditorGUILayout.Space();
                                 
-                                GUILayout.Label("A condição pede uma Habilide especifico, qual seria a habilidade ?");
+                                GUILayout.Label("A condiÃ§Ã£o pede uma Habilide especifico, qual seria a habilidade ?");
                                 EditorGUILayout.Space();
                                 serializedObject.Update();
                                
@@ -232,7 +232,7 @@ namespace Buffers
                                         meuScript.cond_ += 1; }
                                     if (GUILayout.Button("Cancelar"))
                                     { meuScript.cond_ -= 1; }
-                                    if (GUILayout.Button("Adicionar mais uma condição"))
+                                    if (GUILayout.Button("Adicionar mais uma condiÃ§Ã£o"))
                                     {
                                         meuScript.CondicoesDeAtivacao.Add(meuScript.tempCond);
                                         meuScript.tempCond = new condicionais();
@@ -255,7 +255,7 @@ namespace Buffers
 
                                 EditorGUILayout.Space();
 
-                                GUILayout.Label("A condição pede uma Habilide especifico, qual seria a habilidade ?");
+                                GUILayout.Label("A condiÃ§Ã£o pede uma Habilide especifico, qual seria a habilidade ?");
                                 EditorGUILayout.Space();
                                 serializedObject.Update();
 
@@ -271,7 +271,7 @@ namespace Buffers
                                         meuScript.cond_ += 1; }
                                     if (GUILayout.Button("Cancelar"))
                                     { meuScript.cond_ -= 1; }
-                                    if (GUILayout.Button("Adicionar mais uma condição"))
+                                    if (GUILayout.Button("Adicionar mais uma condiÃ§Ã£o"))
                                     {
                                         meuScript.CondicoesDeAtivacao.Add(meuScript.tempCond);
                                         meuScript.tempCond = new condicionais();
@@ -289,7 +289,7 @@ namespace Buffers
                                     meuScript.cond_ += 1; }
                                 if (GUILayout.Button("Cancelar"))
                                 { meuScript.cond_ -= 1; }
-                                if (GUILayout.Button("Adicionar mais uma condição"))
+                                if (GUILayout.Button("Adicionar mais uma condiÃ§Ã£o"))
                                 {
                                     meuScript.CondicoesDeAtivacao.Add(meuScript.tempCond);
                                     meuScript.tempCond = new condicionais();
@@ -304,7 +304,7 @@ namespace Buffers
                     else
                     {
                         EditorGUILayout.Space();
-                        GUILayout.Label(" Qual a condição para que o efeito inicie ?");
+                        GUILayout.Label(" Qual a condiÃ§Ã£o para que o efeito inicie ?");
                         foreach (condicao a in Enum.GetValues(typeof(condicao)))
                         {
                             if (a == condicao.Nenhum)
@@ -330,7 +330,7 @@ namespace Buffers
                 case 2:
                     serializedObject.Update();
                   
-                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("Condições de ativação "));
+                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("CondiÃ§Ãµes de ativaÃ§Ã£o "));
                     serializedObject.ApplyModifiedProperties();
                     if (GUILayout.Button(" !! Reiniciar !! "))
                     {
@@ -536,7 +536,7 @@ namespace Buffers
                     EditorGUILayout.Space();
                     serializedObject.Update();
 
-                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("Condições de ativação "));
+                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("CondiÃ§Ãµes de ativaÃ§Ã£o "));
                     EditorGUILayout.PropertyField(EfeitosAplicaveis, new GUIContent("Efeitos "));
                     serializedObject.ApplyModifiedProperties();
                     EditorGUILayout.Space();
@@ -610,9 +610,9 @@ namespace Buffers
                     EditorGUILayout.Space();
                     serializedObject.Update();
 
-                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("Condições de ativação "));
+                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("CondiÃ§Ãµes de ativaÃ§Ã£o "));
                     EditorGUILayout.PropertyField(EfeitosAplicaveis, new GUIContent("Efeitos "));
-                    EditorGUILayout.PropertyField(DuracaoDoEfeito, new GUIContent("A duração da passiva "));
+                    EditorGUILayout.PropertyField(DuracaoDoEfeito, new GUIContent("A duraÃ§Ã£o da passiva "));
                     
                     serializedObject.ApplyModifiedProperties();
 
@@ -650,9 +650,9 @@ namespace Buffers
                     EditorGUILayout.Space();
                     serializedObject.Update();
 
-                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("Condições de ativação "));
+                    EditorGUILayout.PropertyField(CondicoesDeAtivacao, new GUIContent("CondiÃ§Ãµes de ativaÃ§Ã£o "));
                     EditorGUILayout.PropertyField(EfeitosAplicaveis, new GUIContent("Efeitos "));
-                    EditorGUILayout.PropertyField(DuracaoDoEfeito, new GUIContent("A duração da passiva "));
+                    EditorGUILayout.PropertyField(DuracaoDoEfeito, new GUIContent("A duraÃ§Ã£o da passiva "));
                     EditorGUILayout.PropertyField(alvo, new GUIContent("O alvo do efeito da passiva "));
 
                     serializedObject.ApplyModifiedProperties();
