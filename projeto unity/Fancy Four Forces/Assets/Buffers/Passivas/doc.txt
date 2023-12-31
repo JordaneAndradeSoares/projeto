@@ -1,0 +1,29 @@
+Condição de ativação:
+    1. existir : só de o buffer o efeito estara ativo em sua vez no turno ( ex: Vento iônico  : Reforço).
+         iniciarPartida : no inicio de turno o efeito sera inicioado ( somente no 1° turno do usuario)
+         UsarHabilidade 
+         UsarTipoDeHabilidade : quando usar um tipo de natureza
+         receberHabilidade
+         ACadaTurno : ela sera "contada" mesmo se não for no turno do seu usuario
+    1.2 caso a condição dependa de um tipo de habilidade ou de uma habilidade tera que adicionar qual delas devem ser.
+Efeitos:
+    1.    Nenhum
+          BonusDeStatus : Vai modificar os valores de status de um buffer (Pode ser usado valores negativos!!)
+          CausarDano :
+          GanharEscudo :
+          ModificarEfeitoDaCondição : vai modificar Condição>valores( ex: modificar o quanto vai ser dado/recebido  de um escudo)
+          BonusDeTipoDehabilidade : vai aumentar os valores para habilidades do mesmo tipo
+          GanharVida :
+          Intarguetavel : incapaz se ser selecionado na luta.
+
+    1.2.     Caso o efeito dependa sera necesario selecionar um/a  habilidade, qual status vai ser alterado ou o tipo de Natureza.
+        
+ DuracaoDoEfeito:
+      1.    turno: a condição de ativação sera testada a cada X turnos.
+            semDuracao: a condição de ativação sempre sera testada.
+
+ TiposDeAlvo:
+      1.    EmSiMesmo:
+            Flexivel: sera aplicado no mesmo alvo da condição (ex: se voce dár o escudo, o efeito da passiva ira pra quem voce deu o escudo, caso voce tenha botato o escudo em si mesmo o efeito ira pra voce)
+            Fileira,
+            Global

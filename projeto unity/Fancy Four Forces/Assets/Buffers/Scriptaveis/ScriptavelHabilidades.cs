@@ -156,7 +156,7 @@ Dano,Buff,Debuff
 }
 // o que o buff/debuff vai alterar
 public enum TipoDeBuffDebuff { 
-    Velocidade,DanoFisico,Escudo,DanoEspecial,,Nada
+    Velocidade,DanoFisico,Escudo,DanoEspecial,Nada
 }
 
 

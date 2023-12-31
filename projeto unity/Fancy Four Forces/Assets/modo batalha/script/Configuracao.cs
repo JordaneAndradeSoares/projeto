@@ -100,8 +100,7 @@ namespace modoBatalha
                         if (tempList[largestIndex].data.bufferData.Velocidade < tempList[j].data.bufferData.Velocidade)
                         {
                             largestIndex = j;
-                        }
-                    }
+                        }                    }
 
                     // Troca o elemento em i com o maior elemento encontrado.
                     buffer_s temp = tempList[i];
