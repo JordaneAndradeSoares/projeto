@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76d5f481f4fea854f9fa0f7576061411, type: 3}
+  m_Name: 3. Atrair
+  m_EditorClassIdentifier: 
+  NomeDaPassiva: 
+  CondicoesDeAtivacao:
+  - condicaoDeAtivacao: 4
+    CondicaoAtivacaoTipoDeHabilidade: 0
+    CondicaoUsarHabilidade_ReceberHabilidade: {fileID: 0}
+  - condicaoDeAtivacao: 4
+    CondicaoAtivacaoTipoDeHabilidade: 0
+    CondicaoUsarHabilidade_ReceberHabilidade: {fileID: 0}
+  - condicaoDeAtivacao: 4
+    CondicaoAtivacaoTipoDeHabilidade: 0
+    CondicaoUsarHabilidade_ReceberHabilidade: {fileID: 0}
+  - condicaoDeAtivacao: 4
+    CondicaoAtivacaoTipoDeHabilidade: 0
+    CondicaoUsarHabilidade_ReceberHabilidade: {fileID: 0}
+  EfeitosAplicaveis:
+  - TipoDeEfeito: 3
+    tipoDeHabilidadeEmModificarEfeitoDaCondicao: {fileID: 0}
+    TipoDeStatusEmBonusDeStatus: 0
+    tipoNatureza: 0
+    valor:
+      formato: 0
+      quantidade: 0.1
+  - TipoDeEfeito: 3
+    tipoDeHabilidadeEmModificarEfeitoDaCondicao: {fileID: 0}
+    TipoDeStatusEmBonusDeStatus: 0
+    tipoNatureza: 0
+    valor:
+      formato: 0
+      quantidade: 0.1
+  - TipoDeEfeito: 3
+    tipoDeHabilidadeEmModificarEfeitoDaCondicao: {fileID: 0}
+    TipoDeStatusEmBonusDeStatus: 0
+    tipoNatureza: 0
+    valor:
+      formato: 0
+      quantidade: 0
+  DuracaoDoEfeito:
+    FormatoDaDuracao: 1
+    quantidade: 3
+  alvo: 1
+  cond_: 5
+  tempCond:
+    condicaoDeAtivacao: 4
+    CondicaoAtivacaoTipoDeHabilidade: 0
+    CondicaoUsarHabilidade_ReceberHabilidade: {fileID: 0}
+  tempEfeit:
+    TipoDeEfeito: 3
+    tipoDeHabilidadeEmModificarEfeitoDaCondicao: {fileID: 0}
+    TipoDeStatusEmBonusDeStatus: 0
+    tipoNatureza: 0
+    valor:
+      formato: 0
+      quantidade: 0
+  tempHabilidade: {fileID: 0}
+  quantidade_: 0
+  Tempduracao_:
+    FormatoDaDuracao: 1
+    quantidade: 3
