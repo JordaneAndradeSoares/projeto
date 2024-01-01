@@ -88,56 +88,7 @@ namespace modoBatalha
             confg.vertical(x);
             confg.moverseta();
         }
-        public void usandoHabilidade()
-        {
-            
-            if (flag1 == false) {
-                // habilidade
-                if(habilidadeUsada.SH != null) {
-                    int dir = 0;
-                    switch (habilidadeUsada.SH._Efeito)
-                    {
-                        
-                        case (Efeito.Dano):
-                            dir = 1;       
-                    
-                            break;
-
-                        default:
-                            dir = -1;
-                            break;
-                    }
-
-                    switch (habilidadeUsada.SH._Alvo) {
-                        case (Alvo.Unico):
-                            usarSeta(1);
-                            break;
-                        case (Alvo.Global):
-
-                            break;
-                    
-                    }
-
-
-}                // selecionar os alvos
-                //alvo unico
-                //inimigo
-                confg.vertical(1);
-                confg.moverseta();
-            }
-            else
-            {
-                if (alvos_.Count > 0)
-                {
-                    foreach (var a in alvos_)
-                    {
-                        aplicarHabilidadeEmAlvo(a);
-                    }
-                }
-                proximo();
-            }
-           
-        }
+  
         public void escolidoAlvo(buffer_s a)
         {
             flag1 = true;
@@ -175,6 +126,76 @@ namespace modoBatalha
                 }
                     }
             a.data.vida -= 1;
+        }
+        public void usandoHabilidade()
+        {
+            //escolher alvo
+            if (flag1 == false)
+            {
+                // habilidade 
+                if (habilidadeUsada.SH != null)
+                {
+                    int dir = 0;
+                    switch (habilidadeUsada.SH._Efeito)
+                    {
+
+                        case (Efeito.Dano):
+                            dir = 1;
+
+                            break;
+
+                        default:
+                            dir = -1;
+                            break;
+                    }
+
+                    switch (habilidadeUsada.SH._Alvo)
+                    {
+                        case (Alvo.Unico):
+                            usarSeta(1);
+                           // confg.vertical(1);
+                          //  confg.moverseta();
+                            break;
+                        case (Alvo.Global):
+
+                            if(dir > 1)
+                            {
+                                alvos_.AddRange(confg.inimigosL);
+                            }
+                            else
+                            {
+                                alvos_.AddRange(confg.aliadosL);
+                            }
+                            flag1 = true;
+
+                            break;
+
+                    }
+
+                }
+                // atk basico
+                else
+                {
+                    usarSeta(-1);
+                //    confg.vertical(1);
+               //     confg.moverseta();
+                }               
+               
+             
+            }
+            // aplicar efeito
+            else
+            {
+                if (alvos_.Count > 0)
+                {
+                    foreach (var a in alvos_)
+                    {
+                        aplicarHabilidadeEmAlvo(a);
+                    }
+                }
+                proximo();
+            }
+
         }
         private void proximo()
         {

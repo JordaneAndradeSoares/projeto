@@ -20,17 +20,26 @@ namespace Buffers
         [Space()]
         [Tooltip("somente para efeitos de mudar status")]
         public StatusAAlterar ___StatusAAlterar;
+        
+        [Space()]
+        [Tooltip(" Somente para habilidades que duram em turnos")]
+        [Range(0, 100)]
+        public int ___DuracaoDeTurno;
         [Space()]
         [Space()]
         [Tooltip("caso seja alterar status pode botar o valor chegio")]
         [Range(0f,3f)]
         public float porcentagemDoEfeito;
+        
 
-        [Range(0f, 999f)]
+        [Range(0, 999)]
         public int GastoDeHabilidade;
+
+
+    
     }
     public enum TipoDeAtaque { Nenhum, Corte , Esmagamento , Perfurante }
-    public enum Efeito { Nenhum,Dano,MudarStatus}
+    public enum Efeito { Nenhum,Dano,MudarStatus,Escudo}
     public enum StatusAAlterar
     {
         Nenhum,Velocidade

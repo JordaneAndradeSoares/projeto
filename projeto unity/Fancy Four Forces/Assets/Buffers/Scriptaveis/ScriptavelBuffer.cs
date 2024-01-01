@@ -27,8 +27,10 @@ namespace Buffers
         public float TaxaDeCrescimentoDaEstamina;
 
         public ScriptavelAtaqueBasico AtaqueBasico;
+        public TipoDeAtaque TipoDeEfetividade;
 
-        public ScriptavelBuffer[] evolucao;
+        public bool evolui;
+
         public bool criaturaNoturna;
 
         public GameObject modelo_3D;
