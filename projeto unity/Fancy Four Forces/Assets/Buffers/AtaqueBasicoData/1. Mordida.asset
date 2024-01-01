@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3398ceda03418fa40aa09b73ef7e5841, type: 3}
   m_Name: 1. Mordida
   m_EditorClassIdentifier: 
-  NomeAtaqueBasico: 
+  NomeAtaqueBasico: Mordida
   _Hits: 1
-  _TipoDeAtaque: 0
-  porcentagemDoEfeito: 0
+  ValorDeRecarga: 20
+  _TipoDeAtaque: 2
+  porcentagemDoEfeito: 0.5

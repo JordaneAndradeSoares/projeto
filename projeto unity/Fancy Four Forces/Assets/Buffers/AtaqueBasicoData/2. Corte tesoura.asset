@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3398ceda03418fa40aa09b73ef7e5841, type: 3}
   m_Name: 2. Corte tesoura
   m_EditorClassIdentifier: 
-  NomeAtaqueBasico: 
-  _Hits: 1
-  _TipoDeAtaque: 0
-  porcentagemDoEfeito: 0
+  NomeAtaqueBasico: Corte Tesoura
+  _Hits: 2
+  ValorDeRecarga: 10
+  _TipoDeAtaque: 1
+  porcentagemDoEfeito: 0.25

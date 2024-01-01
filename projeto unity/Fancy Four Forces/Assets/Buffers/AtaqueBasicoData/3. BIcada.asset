@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NomeAtaqueBasico: 
   _Hits: 1
-  _TipoDeAtaque: 0
-  porcentagemDoEfeito: 0
+  ValorDeRecarga: 10
+  _TipoDeAtaque: 3
+  porcentagemDoEfeito: 0.6
