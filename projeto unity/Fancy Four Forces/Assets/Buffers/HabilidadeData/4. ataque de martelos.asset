@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
-  m_Name: NovaHabilidade
+  m_Name: 4. ataque de martelos
   m_EditorClassIdentifier: 
-  NomeHabilidade: exemplo
+  NomeHabilidade: 
   HabilidadeAvancada: 0
-  _TipoDeAtaque: 1
-  _Efeito: 1
-  _Alvo: 1
-  porcentagemDoEfeito: 1.5
+  _TipoDeAtaque: 0
+  _Efeito: 0
+  _Alvo: 0
+  porcentagemDoEfeito: 0
