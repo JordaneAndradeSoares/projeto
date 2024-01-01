@@ -15,6 +15,7 @@ MonoBehaviour:
   NomeHabilidade: 
   HabilidadeAvancada: 0
   _TipoDeAtaque: 0
-  _Efeito: 0
-  _Alvo: 0
+  _Efeito: 2
+  _Alvo: 1
   porcentagemDoEfeito: 0
+  GastoDeHabilidade: 0

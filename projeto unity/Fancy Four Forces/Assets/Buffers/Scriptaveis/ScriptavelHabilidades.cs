@@ -19,8 +19,8 @@ namespace Buffers
         [Range(0f,3f)]
         public float porcentagemDoEfeito;
 
-        [Range(0f, 999f)]
-        public int GastoDeHabilidade
+        [Range(0f,999f)]
+        public int GastoDeHabilidade;
     }
     public enum TipoDeAtaque { Nenhum, Corte , Esmagamento , Perfurante }
     public enum Efeito { Nenhum,Dano,MudarStatus}
