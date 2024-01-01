@@ -16,19 +16,16 @@ MonoBehaviour:
   Numero: 1
   VidaMaxima: 1
   Velocidade: 11
-  AtaqueEspecial: 11
-  DefesaEspecial: 1
-  AtaqueBasico: 1
+  AtaqueFisico: 0
   DefesaFisica: 1
-  RecargaDeEnergiaDePontoZero: 1
-  CapacidadeDeEnergiaDePontoZero: 1
+  Estamina: 0
   TaxaDeCrescimentoDaVidaMaxima: 1
   TaxaDeCrescimentoDaVelocidade: 1
-  TaxaDeCrescimentoDoAtaqueEspecial: 1
-  TaxaDeCrescimentoDaDefesaEspecial: 1
   TaxaDeCrescimentoDoAtaqueBasico: 1
   TaxaDeCrescimentoDaDefesaFisica: 1
-  TaxaDeCrescimentoDaRecargaDeEnergiaDePontoZero: 1
-  TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero: 1
+  TaxaDeCrescimentoDaEstamina: 0
+  AtaqueBasico: {fileID: 11400000, guid: e0a141597df7da94aa46dd49e60b6eb4, type: 2}
+  evolucao: []
+  criaturaNoturna: 0
   modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}
   iconeMiniatura: {fileID: 2800000, guid: 9d6c00b86fc73cd48909cf2b1e0239e8, type: 3}

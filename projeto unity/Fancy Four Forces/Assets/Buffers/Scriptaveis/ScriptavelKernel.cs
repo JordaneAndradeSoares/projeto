@@ -11,15 +11,20 @@ namespace Buffers
     {
         public ScriptavelBuffer bufferData;
         public int level;
+        public float vida, vida_maxima;
         public List<ScriptavelHabilidades> habilidades;
-        public ScriptavelHabilidades ataqueBasico;
+       
 
         public void iniciar(Kernel a)
         {
             bufferData = a.bufferData;
           level = a.level;
+            vida = a.vida;
+            vida_maxima = a.vida_maxima;
+
+            habilidades.Clear();
        habilidades.AddRange(a.habilidades);
-            ataqueBasico = a.ataqueBasico ;
+           
     }
      
 

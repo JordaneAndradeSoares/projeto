@@ -12,10 +12,10 @@ namespace modoBatalha
         public TextMeshProUGUI Habilidade;
         public GerenciadorDeBatalha GB;
         public ScriptavelHabilidades SH;
-
+        public ScriptavelAtaqueBasico SAB;
         public void usarHabilidade()
         {
-            GB.EscolheuHabilidade_(SH);
+            GB.EscolheuHabilidade_(this);
         }
     }
 }

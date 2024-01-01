@@ -5,6 +5,7 @@ using static modoBatalha.Configuracao;
 using TMPro;
 using Unity.Plastic.Antlr3.Runtime.Misc;
 using Buffers;
+using Unity.VisualScripting.YamlDotNet.Core;
 
 namespace modoBatalha
 {
@@ -60,16 +61,17 @@ namespace modoBatalha
 
                 GameObject aux_ATkB = Instantiate(botaoHabilidadePrefab, Fundo_Habilidades.transform);
                 AuxUiHabilidade auxH_ = aux_ATkB.GetComponent<AuxUiHabilidade>();
-                auxH_.Habilidade.text = aux.data.ataqueBasico.NomeHabilidade;
+                auxH_.Habilidade.text = aux.data.bufferData.AtaqueBasico.NomeAtaqueBasico;
                 auxH_.GB = this;
-                auxH_.SH = aux.data.ataqueBasico;
+                auxH_.SH = null;
+                auxH_.SAB = aux.data.bufferData.AtaqueBasico;
                 habilidadesInstanciadas.Add(aux_ATkB);
             }
         }
 
         buffer_s ultimobuffer = new buffer_s();
-        ScriptavelHabilidades habilidadeUsada;
-        public void EscolheuHabilidade_(ScriptavelHabilidades a)
+        AuxUiHabilidade habilidadeUsada;
+        public void EscolheuHabilidade_(AuxUiHabilidade a)
         {
             habilidadeUsada = a;
 
@@ -77,20 +79,102 @@ namespace modoBatalha
           //  proximo();
         }
         public List<buffer_s> alvos_ = new List<buffer_s>();
+        bool flag1 = false;
+
+
+        // 1 = inimigo ; -1 = aliado
+        public void usarSeta(int x)
+        {
+            confg.vertical(x);
+            confg.moverseta();
+        }
         public void usandoHabilidade()
         {
-          
-            if (alvos_.Count > 0)
-            {
-                foreach(var a in alvos_)
-                {
-                    aplicarHabilidadeEmAlvo(a);
-                }
-            }
-        }
-        public void aplicarHabilidadeEmAlvo(buffer_s a)
-        {
+            
+            if (flag1 == false) {
+                // habilidade
+                if(habilidadeUsada.SH != null) {
+                    int dir = 0;
+                    switch (habilidadeUsada.SH._Efeito)
+                    {
+                        
+                        case (Efeito.Dano):
+                            dir = 1;       
+                    
+                            break;
 
+                        default:
+                            dir = -1;
+                            break;
+                    }
+
+                    switch (habilidadeUsada.SH._Alvo) {
+                        case (Alvo.Unico):
+                            usarSeta(1);
+                            break;
+                        case (Alvo.Global):
+
+                            break;
+                    
+                    }
+
+
+}                // selecionar os alvos
+                //alvo unico
+                //inimigo
+                confg.vertical(1);
+                confg.moverseta();
+            }
+            else
+            {
+                if (alvos_.Count > 0)
+                {
+                    foreach (var a in alvos_)
+                    {
+                        aplicarHabilidadeEmAlvo(a);
+                    }
+                }
+                proximo();
+            }
+           
+        }
+        public void escolidoAlvo(buffer_s a)
+        {
+            flag1 = true;
+            alvos_.Add(a);
+        }
+        /*
+         ultimobuffer = quem esta usando a habilidade
+        habilidadeUsada = habilidade que esta sendo apricada no alvo
+
+        a = alvo;
+         */
+        public void aplicarHabilidadeEmAlvo(buffer_s a)
+        {// habilidade
+            if(habilidadeUsada.SH != null) {
+                switch (habilidadeUsada.SH._Efeito)
+                {
+                    case(Efeito.Dano):
+                        a.diminuirVida(ultimobuffer.danoBruto(habilidadeUsada.SH));
+                        break;
+                    case (Efeito.MudarStatus):
+
+                        switch (habilidadeUsada.SH.___StatusAAlterar)
+                        {
+                            case StatusAAlterar.Velocidade:
+                                a.modificarStatus(habilidadeUsada.SH.___StatusAAlterar, habilidadeUsada.SH.porcentagemDoEfeito);
+                                break;
+
+                            default:
+
+                                break;
+                        }
+
+                        break;
+
+                }
+                    }
+            a.data.vida -= 1;
         }
         private void proximo()
         {
@@ -99,6 +183,10 @@ namespace modoBatalha
             ordemBatalha.Add(temp);
             definirQuemJoga();
             attMOlduraFIla();
+
+            alvos_.Clear();
+            habilidadeUsada = null;
+            flag1 = false;
         }
         private void ocultarHabilidades()
         {
