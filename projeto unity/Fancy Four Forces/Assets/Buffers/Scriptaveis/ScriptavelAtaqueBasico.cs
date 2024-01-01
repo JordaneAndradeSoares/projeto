@@ -11,6 +11,8 @@ namespace Buffers
         public string NomeAtaqueBasico;
 
         public int _Hits = 1;
+        public int ValorDeRecarga = 0;
+
         public TipoDeAtaque _TipoDeAtaque;
 
 
