@@ -26,6 +26,7 @@ namespace modoBatalha
 
         public List<buffer_s> ordemBatalha = new List<buffer_s>();
         public GerenciadorDeBatalha gbatalha;
+      
 
         [System.Serializable]
         public class buffer_s {
@@ -38,6 +39,41 @@ namespace modoBatalha
             {
                 local = Vector3.zero;
                 obj = null;
+            }
+
+            public float defesaFinal()
+            {
+                return (data.bufferData.DefesaFisica * (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level));
+            }
+            public float danoBruto(ScriptavelHabilidades hbl)
+            {
+                float temp = 0;
+
+                // dano normal
+                temp = hbl.porcentagemDoEfeito * data.bufferData.AtaqueFisico;
+                // bonus de sinergia
+
+                if(hbl._TipoDeAtaque == data.bufferData.AtaqueBasico._TipoDeAtaque)
+                {
+                    temp *= 1.2f;
+                }
+
+                return temp;
+            }
+            public void diminuirVida(float danoBruto)
+            {
+                float temp = danoBruto - defesaFinal();
+                if(temp > 0)
+                {
+                    data.vida -= temp;
+                }
+            }
+
+            public void modificarStatus(StatusAAlterar t, float valor)
+            {
+                switch (t) { case StatusAAlterar.Velocidade:
+                     //   data.vida
+                        break; }
             }
         }
         private void Start()
@@ -52,14 +88,10 @@ namespace modoBatalha
                    
                     if (dataBatalha.aliados[x].bufferData == null)
                         continue;
-                    aliadosL[x].data = new Kernel(dataBatalha.aliados[x].bufferData);
+                    aliadosL[x].data = new Kernel(dataBatalha.aliados[x]);
+
                     aliadosL[x].obj = Instantiate(dataBatalha.aliados[x].bufferData.modelo_3D, aliados);
                     
-                    aliadosL[x].data.habilidades = (dataBatalha.aliados[x].habilidades);
-                    aliadosL[x].data.ataqueBasico = dataBatalha.aliados[x].ataqueBasico;
-                    aliadosL[x].data.vida = dataBatalha.aliados[x].bufferData.VidaMaxima *
-                        (dataBatalha.aliados[x].bufferData.TaxaDeCrescimentoDaVidaMaxima * aliadosL[x].data.level);
-                    aliadosL[x].data.vida_maxima = aliadosL[x].data.vida;
 
                     GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
@@ -74,11 +106,10 @@ namespace modoBatalha
                  
                     if (dataBatalha.inimigos[x].bufferData == null)
                         continue;
-                    inimigosL[x].data = new Kernel(dataBatalha.inimigos[x].bufferData);
+                    inimigosL[x].data = new Kernel(dataBatalha.inimigos[x]);
                     inimigosL[x].obj = Instantiate(dataBatalha.inimigos[x].bufferData.modelo_3D, inimigos);
 
-                    inimigosL[x].data.habilidades = (dataBatalha.inimigos[x].habilidades);
-                    inimigosL[x].data.ataqueBasico = dataBatalha.inimigos[x].ataqueBasico;
+                  
 
                     GameObject gvd_ = Instantiate(prefabVida, inimigosL[x].obj.transform);
                     gvd_.transform.position = inimigosL[x].obj.transform.position + Vector3.up;
@@ -100,7 +131,9 @@ namespace modoBatalha
                     int largestIndex = i;
                     for (int j = 0; j < i; j++)
                     {
-                        if (tempList[largestIndex].data.bufferData.Velocidade < tempList[j].data.bufferData.Velocidade)
+                        if (tempList[largestIndex].data.bufferData.Velocidade * (tempList[largestIndex].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[largestIndex].data.level)
+                            <
+                            tempList[j].data.bufferData.Velocidade *(tempList[j].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[j].data.level))
                         {
                             largestIndex = j;
                         }                    }
@@ -143,23 +176,26 @@ namespace modoBatalha
                 horizontal(1);
             }
 
-            if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.paraEsquerda))
-            {
-                vertical(-1);
-            }
-            if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.paraDireita))
-            {
-                vertical(1);
-            }
+         
 
             if (aliador_inimigo < 0)
             {
                 seta.localPosition = aliadosL[setaAliada].local + (Vector3.up * 2);
+                if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
+                {
+                    gbatalha.escolidoAlvo(aliadosL[setaAliada]);
+                }
             }
             else
             {
                 seta.localPosition = inimigosL[setaInimiga].local + (Vector3.up * 2);
+                if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
+                {
+                    gbatalha.escolidoAlvo(inimigosL[setaInimiga]);
+                }
             }
+
+           
 
             }
         private void horizontal(int x)
@@ -170,7 +206,7 @@ namespace modoBatalha
                 if (setaAliada + x < 4 && setaAliada + x > -1)
                    
                 {
-                    if (aliadosL[setaAliada+x].data != null)
+                    if (aliadosL[setaAliada+x].data.bufferData != null)
                     {
                         setaAliada += x;
                     }
@@ -183,7 +219,7 @@ namespace modoBatalha
             {
                 if (setaInimiga +x < 4 && setaInimiga + x >-1)
                 {
-                    if (inimigosL[setaInimiga +x].data != null)
+                    if (inimigosL[setaInimiga +x].data.bufferData != null)
                     {
                         setaInimiga +=x;
                     }
@@ -194,7 +230,7 @@ namespace modoBatalha
               
             }
         }
-        private void vertical(int x)
+        public void vertical(int x)
         {
             if (x > 0 && aliador_inimigo < 0)
                 aliador_inimigo = 1;
@@ -222,7 +258,7 @@ namespace modoBatalha
         private void Update()
         {
       //      moverseta();
-      //      attvida();
+            attvida();
         }
 
     }

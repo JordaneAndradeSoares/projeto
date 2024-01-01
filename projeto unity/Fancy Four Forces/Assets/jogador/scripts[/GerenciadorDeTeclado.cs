@@ -10,6 +10,8 @@ namespace jogador
 
         public KeyCode paraFrente, paraTras, paraEsquerda, paraDireita, paraPular;
 
+        //somente em combate
+        public KeyCode confirmar;
         // fora de modo combate
         public KeyCode atacar;
 
