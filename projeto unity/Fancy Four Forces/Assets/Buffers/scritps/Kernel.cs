@@ -9,7 +9,7 @@ namespace Buffers
     {
         public ScriptavelBuffer bufferData;
         public int level;
-        public float vida;
+        public float vida,vida_maxima;
         public List<ScriptavelHabilidades> habilidades = new List<ScriptavelHabilidades>();
         public ScriptavelHabilidades ataqueBasico;
 

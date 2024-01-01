@@ -40,8 +40,6 @@ namespace modoBatalha
 
         public List<GameObject> MolduraTextuaFila = new List<GameObject>();
 
-        buffer_s ultimobuffer = new buffer_s();
-
         private void mostrarHabilidades()
         {
 
@@ -68,13 +66,31 @@ namespace modoBatalha
                 habilidadesInstanciadas.Add(aux_ATkB);
             }
         }
-        public void usandoHabilidade(ScriptavelHabilidades a)
+
+        buffer_s ultimobuffer = new buffer_s();
+        ScriptavelHabilidades habilidadeUsada;
+        public void EscolheuHabilidade_(ScriptavelHabilidades a)
         {
-            Debug.Log("usou a habilidade " + a.NomeHabilidade);
+            habilidadeUsada = a;
 
 
+          //  proximo();
+        }
+        public List<buffer_s> alvos_ = new List<buffer_s>();
+        public void usandoHabilidade()
+        {
+          
+            if (alvos_.Count > 0)
+            {
+                foreach(var a in alvos_)
+                {
+                    aplicarHabilidadeEmAlvo(a);
+                }
+            }
+        }
+        public void aplicarHabilidadeEmAlvo(buffer_s a)
+        {
 
-            proximo();
         }
         private void proximo()
         {
@@ -135,10 +151,7 @@ namespace modoBatalha
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                attMOlduraFIla();
-            }
+           
             if (ordemBatalha.Count >0)
             {
                 if(_statusgame == statusGame.player)
@@ -146,6 +159,10 @@ namespace modoBatalha
                     tBug.text = "jogador joga";
 
                     mostrarHabilidades();
+                if(habilidadeUsada!= null)
+                    {
+                        usandoHabilidade();
+                    }
                 }
                 else
                 {

@@ -13,25 +13,20 @@ namespace Buffers
 
         public float VidaMaxima;
         public float Velocidade;
-        public float AtaqueEspecial ;
-        public float DefesaEspecial ;
-        public float AtaqueFisico ;
-        public float DefesaFisica ;
-        public float RecargaDeEnergiaDePontoZero ;
-        public float CapacidadeDeEnergiaDePontoZero ;
-        public float ModificadorDeAtaqueBasico;
+
+        public float AtaqueFisico;
+        public float DefesaFisica;
+        public float Estamina;
+
 
         public float TaxaDeCrescimentoDaVidaMaxima ;
-        public float TaxaDeCrescimentoDaVelocidade ; 
-        public float TaxaDeCrescimentoDoAtaqueEspecial ;
-        public float TaxaDeCrescimentoDaDefesaEspecial ;
-        public float TaxaDeCrescimentoDoAtaqueBasico ;
-        public float TaxaDeCrescimentoDaDefesaFisica ;
-        public float TaxaDeCrescimentoDaRecargaDeEnergiaDePontoZero ;
-        public float TaxaDeCrescimentoDaCapacidadeDeEnergiaDePontoZero ;
-        public float TaxaDeCrescimentoDoModificadorDeAtaqueBasico;
+        public float TaxaDeCrescimentoDaVelocidade ;
 
+        public float TaxaDeCrescimentoDoAtaqueBasico;
+        public float TaxaDeCrescimentoDaDefesaFisica;
+        public float TaxaDeCrescimentoDaEstamina;
 
+        public ScriptavelAtaqueBasico AtaqueBasico;
 
         public ScriptavelBuffer[] evolucao;
         public bool criaturaNoturna;

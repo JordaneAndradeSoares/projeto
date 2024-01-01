@@ -15,7 +15,7 @@ namespace modoBatalha
 
         public void usarHabilidade()
         {
-            GB.usandoHabilidade(SH);
+            GB.EscolheuHabilidade_(SH);
         }
     }
 }

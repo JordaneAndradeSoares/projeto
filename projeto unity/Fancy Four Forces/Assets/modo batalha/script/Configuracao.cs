@@ -57,11 +57,14 @@ namespace modoBatalha
                     
                     aliadosL[x].data.habilidades = (dataBatalha.aliados[x].habilidades);
                     aliadosL[x].data.ataqueBasico = dataBatalha.aliados[x].ataqueBasico;
+                    aliadosL[x].data.vida = dataBatalha.aliados[x].bufferData.VidaMaxima *
+                        (dataBatalha.aliados[x].bufferData.TaxaDeCrescimentoDaVidaMaxima * aliadosL[x].data.level);
+                    aliadosL[x].data.vida_maxima = aliadosL[x].data.vida;
 
                     GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
                     aliadosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
-                 
+                    
                     //  temp.att(  dataBatalha.aliados[x].retorno());
                    
                     tempList.Add(aliadosL[x]);
