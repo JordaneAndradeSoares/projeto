@@ -268,7 +268,7 @@ namespace modoBatalha
                             {
 
 
-                                float danofinal = habilidadeUsada.SAB.porcentagemDoEfeito * (1+ ultimobuffer.data.level * ultimobuffer.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
+                                float danofinal = habilidadeUsada.SAB.porcentagemDoEfeito *ultimobuffer.data.bufferData.AtaqueFisico* (1+ ultimobuffer.data.level * ultimobuffer.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
 
 
                             switch (a.data.bufferData.TipoDeEfetividade)
@@ -494,12 +494,69 @@ namespace modoBatalha
             if (alvos_.Count <= 0)
                 Debug.Log("nenhum alvo foi escolido");
         }
-        public void usarHabilidadeNoAlvo()
+        public void InimigousarHabilidadeNoAlvo()
         {
-            foreach(var a in alvos_)
+            if (habilidadeUsada.SH != null)
             {
-                aplicarHabilidadeEmAlvo(a);
+                foreach (var a in alvos_)
+                {
+                    aplicarHabilidadeEmAlvo(a);
+                }
             }
+            else
+            {
+                foreach (var a in alvos_)
+                {
+
+                    for (int x = 0; x < habilidadeUsada.SAB._Hits; x++)
+                    {
+
+
+                        float danofinal = habilidadeUsada.SAB.porcentagemDoEfeito * ultimobuffer.data.bufferData.AtaqueFisico * (1 + ultimobuffer.data.level * ultimobuffer.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
+
+
+                        switch (a.data.bufferData.TipoDeEfetividade)
+                        {
+                            case Efetividade.blindado:
+                                switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                            case Efetividade.liso:
+                                switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                        }
+
+                        a.diminuirVida(danofinal);
+                    }
+                }
+                EnergiaAtualInimiga += habilidadeUsada.SAB.ValorDeRecarga;
+                if (EnergiaAtualInimiga > confg.totalDeEnergiaInimiga)
+                {
+                    EnergiaAtualInimiga = confg.totalDeEnergiaInimiga;
+                }
+            }
+
         }
         public void inimigoAgir()
         {
@@ -511,7 +568,7 @@ namespace modoBatalha
 
                     inimigoEscolherHabilidade();
                     inimigoEscolherAlvo();
-                    usarHabilidadeNoAlvo();
+                InimigousarHabilidadeNoAlvo();
                     proximo();
                     Debug.Log("foi ?");
               

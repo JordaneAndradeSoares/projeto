@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
   m_Name: A
   m_EditorClassIdentifier: 
-  bufferData: {fileID: 11400000, guid: 036d776801bb2ea498346b220207f41c, type: 2}
-  level: 2
+  bufferData: {fileID: 11400000, guid: cc4a605bf4b6abf47b3c651d6fce04f0, type: 2}
+  level: 200
   vida: 0
   vida_maxima: 0
   habilidades:

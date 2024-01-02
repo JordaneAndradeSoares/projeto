@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: A
   m_EditorClassIdentifier: 
   bufferData: {fileID: 11400000, guid: d78f8af19278816458cbfaf676ab1095, type: 2}
-  level: 5
+  level: 1
   vida: 0
   vida_maxima: 0
   habilidades:
+  - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
   - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
