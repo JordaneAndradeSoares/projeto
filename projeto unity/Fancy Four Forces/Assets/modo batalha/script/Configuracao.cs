@@ -7,7 +7,7 @@ using static modoBatalha.Configuracao;
 using static UnityEngine.GraphicsBuffer;
 using Buffers;
 using System.Net.NetworkInformation;
-using jogador;
+using ValoresGlobais;
 using UnityEngine.UI;
 using TMPro;
 using Codice.Client.BaseCommands;
