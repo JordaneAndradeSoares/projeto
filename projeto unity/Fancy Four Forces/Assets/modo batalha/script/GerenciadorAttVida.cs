@@ -12,7 +12,7 @@ namespace modoBatalha
     {
         public RawImage vidaPerdida;
         public LookAtConstraint LookAtConstraint;
-
+        public TextMeshProUGUI nome;
 
         private void Start()
         {

@@ -10,8 +10,12 @@ namespace Buffers
         public ScriptavelBuffer bufferData;
         public int level;
         public float vida,vida_maxima;
+        
+
+
         public List<ScriptavelHabilidades> habilidades = new List<ScriptavelHabilidades>();
        
+        
 
         // falta as passivas
 
@@ -19,8 +23,8 @@ namespace Buffers
         {
        bufferData = SK.bufferData;
             level = SK.level ;
-            vida = bufferData.VidaMaxima * (bufferData.TaxaDeCrescimentoDaVidaMaxima * level);
-            vida_maxima = vida;
+            vida = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
+            vida_maxima = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
             habilidades = SK.habilidades;
     }
        

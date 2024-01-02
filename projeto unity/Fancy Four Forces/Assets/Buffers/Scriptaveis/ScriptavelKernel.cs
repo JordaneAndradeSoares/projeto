@@ -9,6 +9,7 @@ namespace Buffers
 
     public class ScriptavelKernel : ScriptableObject
     {
+        public Kernel origem;
         public ScriptavelBuffer bufferData;
         public int level;
         public float vida, vida_maxima;

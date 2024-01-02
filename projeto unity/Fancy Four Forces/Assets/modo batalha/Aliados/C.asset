@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bufferData: {fileID: 0}
   level: 0
-  habilidades: []
-  ataqueBasico: {fileID: 0}
+  vida: 0
+  vida_maxima: 0
+  habilidades:
+  - {fileID: 11400000, guid: eafa27fbed4b00a4f9d52aee2ffa0b33, type: 2}

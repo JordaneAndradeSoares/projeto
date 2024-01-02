@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3398ceda03418fa40aa09b73ef7e5841, type: 3}
-  m_Name: 3. BIcada
+  m_Name: zAtaqueBasicoExemplo
   m_EditorClassIdentifier: 
-  NomeAtaqueBasico: BIcada
+  NomeAtaqueBasico: zAtaqueBasicoExemplo
   _Hits: 1
   ValorDeRecarga: 10
-  _TipoDeAtaque: 3
-  porcentagemDoEfeito: 0.6
+  _TipoDeAtaque: 1
+  porcentagemDoEfeito: 1.28

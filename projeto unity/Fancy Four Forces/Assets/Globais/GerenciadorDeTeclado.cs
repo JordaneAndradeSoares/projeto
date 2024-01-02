@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
-namespace jogador
+namespace ValoresGlobais
 {
     public class GerenciadorDeTeclado : MonoBehaviour
     {
@@ -12,9 +12,9 @@ namespace jogador
 
         //somente em combate
         public KeyCode confirmar;
-        // fora de modo combate
-        public KeyCode atacar;
-
+        // MUNDO ABERTO
+        public KeyCode atacar , abrirEquipe;
+        
         public static GerenciadorDeTeclado instanc;
         private void Start()
         {

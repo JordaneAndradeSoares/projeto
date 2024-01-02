@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Buffers;
+using ValoresGlobais;
+using UnityEngine.SceneManagement;
+using modoBatalha;
 
 namespace jogador
 {
@@ -96,36 +99,10 @@ namespace jogador
 
         }
         public GerenciadorBuffers bufferAlvo;
-        public void detectarInimigo()
-        {
-           RaycastHit[] hits = Physics.BoxCastAll(olharPara.transform.position,
-               tamanho, olharPara.transform.position - transform.position,Quaternion.identity,distancia,camadaInimigo);
-
-            if(hits.Length > 0)
-            {
-
-                GerenciadorBuffers gb = null;
-
-                foreach(var a in hits)
-                {
-                    if(a.collider.GetComponent<GerenciadorBuffers>() != null)
-                    {
-                        gb = a.collider.GetComponent<GerenciadorBuffers>();
-                        break;
-                    }
-                }
-                if(gb != null)
-                {
-                    bufferAlvo = gb;
-                }
-
-            }
         
-        }
         public void iniciarCombate()
         {
-<<<<<<< Updated upstream
-=======
+
             EntrarEmBatalha.instanc.inicarBatalhaComVantagem(bufferAlvo);
         }
        
@@ -134,7 +111,9 @@ namespace jogador
 
         public GameObject prefabMolduraInventario;
         public GameObject FundoInventarioInventario;
+
         public GameObject abrirefecharInventario;
+
         public List<GameObject> molduras = new List<GameObject>();
         public void abrirEquipe()
         {
@@ -159,15 +138,17 @@ namespace jogador
 
                 molduras.Clear();
             }
->>>>>>> Stashed changes
+
 
             abrirefecharInventario.SetActive(flagEquipe);
 
+
         }
+
         void Update()
         {
             movimentar();
-            detectarInimigo();
+          
 
             if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.atacar))
             {
@@ -177,10 +158,26 @@ namespace jogador
                 }
             }
 
+            if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.abrirEquipe))
+            {
+                abrirEquipe();
+            }
+          //  tirarDoInventarioOsQueEstiveremEquipados();
+
         }
         public Vector3 tamanho;
         public float distancia;
         public LayerMask camadaInimigo;
+
+        public void tirarDoInventarioOsQueEstiveremEquipados()
+        {
+            foreach(var a in EntrarEmBatalha.instanc.equipes.aliados)
+            {
+               
+               Destroy( molduras.Find(x => x.GetComponent<auxUIInventario>().dados == a.origem));
+            }
+            molduras.RemoveAll(x => x == null);
+        }
     }
 
     [CustomEditor(typeof(ControleDeMovimento))]
