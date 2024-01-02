@@ -124,6 +124,44 @@ namespace jogador
         }
         public void iniciarCombate()
         {
+<<<<<<< Updated upstream
+=======
+            EntrarEmBatalha.instanc.inicarBatalhaComVantagem(bufferAlvo);
+        }
+       
+        bool flagEquipe;
+        public ScriptavelInventario inventario;
+
+        public GameObject prefabMolduraInventario;
+        public GameObject FundoInventarioInventario;
+        public GameObject abrirefecharInventario;
+        public List<GameObject> molduras = new List<GameObject>();
+        public void abrirEquipe()
+        {
+            flagEquipe = !flagEquipe;
+            if (flagEquipe)
+            {
+                foreach(var a in inventario.Inventario)
+                {
+
+                    
+                    GameObject b = Instantiate(prefabMolduraInventario, FundoInventarioInventario.transform);
+                    b.GetComponent<auxUIInventario>().iniciar(a);
+                    molduras.Add(b);
+                }
+            }
+            else
+            {
+                foreach(var a in molduras)
+                {
+                    Destroy(a);
+                }
+
+                molduras.Clear();
+            }
+>>>>>>> Stashed changes
+
+            abrirefecharInventario.SetActive(flagEquipe);
 
         }
         void Update()
