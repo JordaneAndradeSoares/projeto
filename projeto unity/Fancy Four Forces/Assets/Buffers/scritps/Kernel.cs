@@ -19,8 +19,8 @@ namespace Buffers
         {
        bufferData = SK.bufferData;
             level = SK.level ;
-            vida = bufferData.VidaMaxima * (bufferData.TaxaDeCrescimentoDaVidaMaxima * level);
-            vida_maxima = vida;
+            vida = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
+            vida_maxima = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
             habilidades = SK.habilidades;
     }
        

@@ -12,20 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7523b627dbf6b59489a2604e7215f958, type: 3}
   m_Name: BufferB
   m_EditorClassIdentifier: 
-  Nome: nome Exemplo
+  Nome: inimigo
   Numero: 1
-  VidaMaxima: 1
+  VidaMaxima: 100
   Velocidade: 11
-  AtaqueFisico: 0
+  AtaqueFisico: 5
   DefesaFisica: 1
-  Estamina: 0
+  Estamina: 40
   TaxaDeCrescimentoDaVidaMaxima: 1
   TaxaDeCrescimentoDaVelocidade: 1
   TaxaDeCrescimentoDoAtaqueBasico: 1
   TaxaDeCrescimentoDaDefesaFisica: 1
-  TaxaDeCrescimentoDaEstamina: 0
-  AtaqueBasico: {fileID: 11400000, guid: e0a141597df7da94aa46dd49e60b6eb4, type: 2}
-  evolucao: []
+  TaxaDeCrescimentoDaEstamina: 1
+  AtaqueBasico: {fileID: 11400000, guid: 1318f5d130d462542881acfa51397552, type: 2}
+  TipoDeEfetividade: 0
+  evolui: 0
   criaturaNoturna: 0
   modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}
   iconeMiniatura: {fileID: 2800000, guid: 9d6c00b86fc73cd48909cf2b1e0239e8, type: 3}

@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
-  m_Name: C
+  m_Script: {fileID: 11500000, guid: 3398ceda03418fa40aa09b73ef7e5841, type: 3}
+  m_Name: zAtaqueBasicoExemplo 1
   m_EditorClassIdentifier: 
-  bufferData: {fileID: 0}
-  level: 0
-  vida: 0
-  vida_maxima: 0
-  habilidades:
-  - {fileID: 11400000, guid: eafa27fbed4b00a4f9d52aee2ffa0b33, type: 2}
+  NomeAtaqueBasico: zAtaqueBasicoExemplo
+  _Hits: 1
+  ValorDeRecarga: 10
+  _TipoDeAtaque: 1
+  porcentagemDoEfeito: 1.28

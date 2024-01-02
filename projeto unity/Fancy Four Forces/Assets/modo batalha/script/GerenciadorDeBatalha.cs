@@ -125,7 +125,8 @@ namespace modoBatalha
 
                 }
                     }
-            a.data.vida -= 1;
+           
+           
         }
         public void usandoHabilidade()
         {
@@ -176,7 +177,7 @@ namespace modoBatalha
                 // atk basico
                 else
                 {
-                    usarSeta(-1);
+                    usarSeta(1);
                 //    confg.vertical(1);
                //     confg.moverseta();
                 }               
@@ -251,7 +252,7 @@ namespace modoBatalha
             if (auxT > tempoQueOInimigoPensa)
             {
                 auxT = 0 ;
-                Debug.Log("inimigo fez algo ?");
+              //  Debug.Log("inimigo fez algo ?");
                 proximo();
             }
             else { auxT += Time.deltaTime; }

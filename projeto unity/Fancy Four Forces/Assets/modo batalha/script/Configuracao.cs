@@ -17,7 +17,7 @@ namespace modoBatalha
         public Transform aliados, inimigos,seta;
     
         public float espasamentoentreSi;
-        public GameObject prefabVida;
+        public GameObject prefabVida,prefabNome;
 
         public ScriptavelBatalhaBuffer dataBatalha;
 
@@ -26,7 +26,19 @@ namespace modoBatalha
 
         public List<buffer_s> ordemBatalha = new List<buffer_s>();
         public GerenciadorDeBatalha gbatalha;
-      
+        [Space()]
+        public RectTransform UI_CapacidadeMaxima,UI_valor_1, UI_valor_2;
+        public float UI_tamanhoX_energiaMaxima;
+
+        // aliados
+        public float totalDeEnergiaAliada;
+        public float EnergiaAtualAliada;
+        
+        // inimigos
+        
+        public float totalDeEnergiaInimiga;
+        public float EnergiaAtualInimiga;
+
 
         [System.Serializable]
         public class buffer_s {
@@ -43,19 +55,26 @@ namespace modoBatalha
 
             public float defesaFinal()
             {
-                return (data.bufferData.DefesaFisica * (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level));
+                Debug.Log("calculo da defesa");
+                Debug.Log("defesa fisica = " +data.bufferData.DefesaFisica +" "+
+                    "taxa de crescimento vezes o lvl = " + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)+
+                    "  resultado  = "+ (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)))
+
+                    );
+                return (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)));
             }
             public float danoBruto(ScriptavelHabilidades hbl)
             {
                 float temp = 0;
 
                 // dano normal
-                temp = hbl.porcentagemDoEfeito * data.bufferData.AtaqueFisico;
+           
+                temp = hbl.porcentagemDoEfeito *(1 + (data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico));
                 // bonus de sinergia
-
-                if(hbl._TipoDeAtaque == data.bufferData.AtaqueBasico._TipoDeAtaque)
+//                Debug.Log("calculo do dano bruto");                Debug.Log("porcentagemDoEfeito = " + hbl.porcentagemDoEfeito + " " +                    "taxa de crescimento vezes o lvl = " + ((data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)) +                    "  resultado  = " + temp);
+                if (hbl._TipoDeAtaque == data.bufferData.AtaqueBasico._TipoDeAtaque)
                 {
-                    temp *= 1.2f;
+                 //   temp *= 1.2f;
                 }
 
                 return temp;
@@ -63,8 +82,12 @@ namespace modoBatalha
             public void diminuirVida(float danoBruto)
             {
                 float temp = danoBruto - defesaFinal();
+              
+              
                 if(temp > 0)
                 {
+
+               //     Debug.Log("dano aplicado: " + temp + "foi perdido " + (temp/data.vida_maxima)+"%  da vida");
                     data.vida -= temp;
                 }
             }
@@ -96,8 +119,12 @@ namespace modoBatalha
                     GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
                     aliadosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
+
+                    GameObject nome__ = Instantiate(prefabNome, aliadosL[x].obj.transform);
+                    nome__.transform.position = aliadosL[x].obj.transform.position + Vector3.up * 2;
+                    nome__.GetComponent<GerenciadorAttVida>().nome.text = "" +
+                        aliadosL[x].data.bufferData.Nome + " [ Lvl." + aliadosL[x].data.level + "]";
                     
-                    //  temp.att(  dataBatalha.aliados[x].retorno());
                    
                     tempList.Add(aliadosL[x]);
                 }
@@ -116,10 +143,14 @@ namespace modoBatalha
                     inimigosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
                     inimigosL[x].npc = true;
 
+                    GameObject nome__ = Instantiate(prefabNome, inimigosL[x].obj.transform);
+                    nome__.transform.position = inimigosL[x].obj.transform.position + Vector3.up * 2;
+                    nome__.GetComponent<GerenciadorAttVida>().nome.text = "" +
+                        inimigosL[x].data.bufferData.Nome + " [Lvl." + inimigosL[x].data.level + "]";
 
-                   
-                  //  temp_.att(dataBatalha.inimigos[x].retorno());
-                   
+
+                    //  temp_.att(dataBatalha.inimigos[x].retorno());
+
 
                     tempList.Add(inimigosL[x]);
                 }
@@ -131,9 +162,9 @@ namespace modoBatalha
                     int largestIndex = i;
                     for (int j = 0; j < i; j++)
                     {
-                        if (tempList[largestIndex].data.bufferData.Velocidade * (tempList[largestIndex].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[largestIndex].data.level)
+                        if (tempList[largestIndex].data.bufferData.Velocidade * (1 + (tempList[largestIndex].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[largestIndex].data.level))
                             <
-                            tempList[j].data.bufferData.Velocidade *(tempList[j].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[j].data.level))
+                            tempList[j].data.bufferData.Velocidade *(1 + ( tempList[j].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[j].data.level)))
                         {
                             largestIndex = j;
                         }                    }
@@ -163,10 +194,22 @@ namespace modoBatalha
 
 
                 gbatalha.iniciar(ordemBatalha);
+
+
+                Vector3 tempTVLM = UI_CapacidadeMaxima.sizeDelta;
+                UI_valor_2.sizeDelta = tempTVLM;
+                UI_tamanhoX_energiaMaxima = tempTVLM.x;
+
+                attEnergia();
+
+                EnergiaAtualAliada = totalDeEnergiaAliada;
+                EnergiaAtualInimiga = totalDeEnergiaInimiga;
+
             }
         }
 
         public int setaAliada = 0, setaInimiga = 0,aliador_inimigo =-10;
+
         public void moverseta()
         {
             if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.paraFrente)){
@@ -239,26 +282,43 @@ namespace modoBatalha
         }
         private void attvida()
         {
-            foreach(var a in aliadosL)
+            foreach(var a in gbatalha.ordemBatalha)
             {
                 if (a.obj == null)
                     continue;
-                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.bufferData.VidaMaxima),
+                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.vida_maxima
+                    ),
                     a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
             }
 
+        }
+        private void attEnergia()
+        {
+            float total_A = 0;
+            float total_I = 0;
+
+            foreach(var a in aliadosL)
+            {
+                if (a.data.bufferData == null)
+                    continue;
+                total_A += a.data.bufferData.Estamina * (1+(a.data.bufferData.TaxaDeCrescimentoDaEstamina * a.data.level));
+            }
+            totalDeEnergiaAliada = total_A;
+
             foreach (var a in inimigosL)
             {
-                if (a.obj == null)
+                if (a.data.bufferData == null)
                     continue;
-                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.bufferData.VidaMaxima),
-                    a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
+                total_I += a.data.bufferData.Estamina * (1+( a.data.bufferData.TaxaDeCrescimentoDaEstamina * a.data.level));
             }
+            totalDeEnergiaInimiga = total_I;
+
         }
         private void Update()
         {
       //      moverseta();
             attvida();
+            attEnergia();
         }
 
     }

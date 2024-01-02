@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
   m_Name: B
   m_EditorClassIdentifier: 
-  bufferData: {fileID: 0}
-  level: 0
-  habilidades: []
-  ataqueBasico: {fileID: 0}
+  bufferData: {fileID: 11400000, guid: a5776e510f0e2af41aec85feead267ab, type: 2}
+  level: 1
+  vida: 0
+  vida_maxima: 0
+  habilidades:
+  - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
