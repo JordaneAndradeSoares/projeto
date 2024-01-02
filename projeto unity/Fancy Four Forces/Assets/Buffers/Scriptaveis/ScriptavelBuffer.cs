@@ -36,6 +36,10 @@ namespace Buffers
         public GameObject modelo_3D;
         public Texture iconeMiniatura;
     }
+<<<<<<< Updated upstream
 
     public enum Efetividade {liso, blindado}
+=======
+    
+>>>>>>> Stashed changes
 }

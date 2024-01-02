@@ -49,11 +49,15 @@ namespace modoBatalha
 
         private void mostrarHabilidades()
         {
-
+           
             buffer_s aux = ordemBatalha[0];
             if (aux != ultimobuffer)
             {
-
+                foreach(var a in habilidadesInstanciadas)
+                {
+                    Destroy(a);
+                }
+                habilidadesInstanciadas.Clear();
                 ultimobuffer = aux;
                 foreach (var a in aux.data.habilidades)
                 {
@@ -113,9 +117,11 @@ namespace modoBatalha
          */
         public void aplicarHabilidadeEmAlvo(buffer_s a)
         {// habilidade
-            if(habilidadeUsada.SH != null) {
+            if (habilidadeUsada.SH != null)
+            {
                 switch (habilidadeUsada.SH._Efeito)
                 {
+<<<<<<< Updated upstream
                     case(Efeito.Dano):
 
                         float danofinal = ultimobuffer.danoBruto(habilidadeUsada.SH);
@@ -153,6 +159,10 @@ namespace modoBatalha
                         }
                         
                         a.diminuirVida(danofinal);
+=======
+                    case (Efeito.Dano):
+                        a.diminuirVida(ultimobuffer.danoBruto(habilidadeUsada.SH));
+>>>>>>> Stashed changes
                         break;
                     case (Efeito.MudarStatus):
 
@@ -169,6 +179,7 @@ namespace modoBatalha
 
                         break;
                     case (Efeito.Escudo):
+<<<<<<< Updated upstream
 
                         a.darEscudo(habilidadeUsada.SH, ultimobuffer);
                         break;
@@ -180,6 +191,21 @@ namespace modoBatalha
             
            
            
+=======
+                        a.receberEscudo(habilidadeUsada.SH, ultimobuffer.data);
+                        break;
+
+                }
+            }
+            else
+            {
+                for (int x = 0; x < habilidadeUsada.SAB._Hits; x++)
+                {
+                    a.diminuirVida(ultimobuffer.danoBruto(habilidadeUsada.SAB));
+                }
+            }
+          
+>>>>>>> Stashed changes
         }
         public void usandoHabilidade()
         {
@@ -207,8 +233,7 @@ namespace modoBatalha
                     {
                         case (Alvo.Unico):
                             usarSeta(1);
-                           // confg.vertical(1);
-                          //  confg.moverseta();
+                     
                             break;
                         case (Alvo.Global):
 
@@ -231,8 +256,12 @@ namespace modoBatalha
                 else
                 {
                     usarSeta(1);
+<<<<<<< Updated upstream
                 //    confg.vertical(1);
                //     confg.moverseta();
+=======
+           
+>>>>>>> Stashed changes
                 }               
                
              
@@ -330,6 +359,22 @@ namespace modoBatalha
             alvos_.Clear();
             habilidadeUsada = null;
             flag1 = false;
+
+
+            // degress de turnos
+
+            foreach (var a in ordemBatalha)
+            {
+                foreach (var b in a.data.escudos)
+                {
+                    b.turnos -= 1;
+                }
+                if (a.data.escudos.Count > 0)
+                {
+                    a.data.escudos.RemoveAll(x => x.turnos <= 0);
+                }
+            }
+
         }
         private void ocultarHabilidades()
         {
@@ -616,6 +661,7 @@ namespace modoBatalha
                 Debug.Log((confg.aliadosL.Count == 0 ? "inimigo " : "aliado ")+ "  Venceu !!");
             }
 
+<<<<<<< Updated upstream
             foreach(var a  in ordemBatalha)
             {
                 if (a.data.vida <= 0)
@@ -636,6 +682,9 @@ namespace modoBatalha
             confg.inimigosL.RemoveAll(x => x.obj == null);
             confg.aliadosL.RemoveAll(x => x.obj == null);
 
+=======
+           
+>>>>>>> Stashed changes
         }
     }
     public enum statusGame

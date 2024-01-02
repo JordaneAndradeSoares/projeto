@@ -17,14 +17,23 @@ MonoBehaviour:
   VidaMaxima: 100
   Velocidade: 11
   AtaqueFisico: 1
+<<<<<<< Updated upstream:projeto unity/Fancy Four Forces/Assets/modo batalha/Aliados/BufferA.asset
   DefesaFisica: 12
   Estamina: 555
+=======
+  DefesaFisica: 1
+  Estamina: 1
+>>>>>>> Stashed changes:projeto unity/Fancy Four Forces/Assets/Buffers/BuffersData/exemplo/BufferA.asset
   TaxaDeCrescimentoDaVidaMaxima: 1
   TaxaDeCrescimentoDaVelocidade: 1
   TaxaDeCrescimentoDoAtaqueBasico: 1
   TaxaDeCrescimentoDaDefesaFisica: 1
   TaxaDeCrescimentoDaEstamina: 1
+<<<<<<< Updated upstream:projeto unity/Fancy Four Forces/Assets/modo batalha/Aliados/BufferA.asset
   AtaqueBasico: {fileID: 11400000, guid: 1318f5d130d462542881acfa51397552, type: 2}
+=======
+  AtaqueBasico: {fileID: 11400000, guid: e0a141597df7da94aa46dd49e60b6eb4, type: 2}
+>>>>>>> Stashed changes:projeto unity/Fancy Four Forces/Assets/Buffers/BuffersData/exemplo/BufferA.asset
   TipoDeEfetividade: 0
   evolui: 0
   criaturaNoturna: 0

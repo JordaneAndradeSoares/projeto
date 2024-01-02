@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a06427adf3412343995c65edb426cc9, type: 3}
   m_Name: NovoInventario
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:projeto unity/Fancy Four Forces/Assets/jogador/dados de jogador/NovoInventario.asset
   Inventario: []
+=======
+  BufferData: {fileID: 11400000, guid: eedb4dba6addb88438b3a51441818674, type: 2}
+  Origens:
+  - {fileID: 11400000, guid: 6d6870f576c21ee43baa64666d913b3a, type: 2}
+>>>>>>> Stashed changes:projeto unity/Fancy Four Forces/Assets/Buffers/Evolucoes/exemplo/auxiliar.asset

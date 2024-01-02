@@ -614,7 +614,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 24.699997, y: 308.7}
+=======
+  m_AnchoredPosition: {x: 24, y: 309}
+>>>>>>> Stashed changes
   m_SizeDelta: {x: 220.63, y: 116.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779739554
@@ -1475,11 +1479,16 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: -0.52
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
+<<<<<<< Updated upstream
   orthographic: 1
   orthographic size: 7.7
+=======
+  orthographic: 0
+  orthographic size: 6.64
+>>>>>>> Stashed changes
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1642,6 +1651,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6879502262069380483}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+<<<<<<< Updated upstream
       propertyPath: UI_valor_1
       value: 
       objectReference: {fileID: 1911149537}
@@ -1670,6 +1680,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+=======
+>>>>>>> Stashed changes
       propertyPath: inimigosL.Array.data[0].local.y
       value: 0
       objectReference: {fileID: 0}
@@ -1685,6 +1697,7 @@ PrefabInstance:
       propertyPath: inimigosL.Array.data[3].local.y
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
     - target: {fileID: 6879502262702894934, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18
@@ -1693,6 +1706,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -4.84
       objectReference: {fileID: 0}
+=======
+>>>>>>> Stashed changes
     - target: {fileID: 6879502263202922806, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1780,6 +1795,7 @@ MonoBehaviour:
   _statusgame: 0
   habilidadesInstanciadas: []
   MolduraTextuaFila: []
+<<<<<<< Updated upstream
   ultimobuffer:
     obj: {fileID: 0}
     local: {x: 0, y: 0, z: 0}
@@ -1796,6 +1812,8 @@ MonoBehaviour:
     id_: 0
     velocidade: 0
   habilidadeUsada: {fileID: 0}
+=======
+>>>>>>> Stashed changes
   alvos_: []
   tempoQueOInimigoPensa: 2
 --- !u!114 &6879502262069380485 stripped

@@ -167,42 +167,92 @@ MonoBehaviour:
   seta: {fileID: 6879502262626313915}
   espasamentoentreSi: 2.22
   prefabVida: {fileID: 9067356206087991562, guid: 690b3f21d3fefa9428e77289cff010a3, type: 3}
+  prefabNome: {fileID: 9067356206087991562, guid: b42bda3d2210ab943853edcee852cdbd, type: 3}
   dataBatalha: {fileID: 11400000, guid: 82909d8224f909043b8c5c942dd1eca8, type: 2}
   aliadosL:
   - obj: {fileID: 0}
     local: {x: 0, y: 0, z: -6.91}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 2.22, y: 0, z: -6.91}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 4.44, y: 0, z: -6.91}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 6.66, y: 0, z: -6.91}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   inimigosL:
   - obj: {fileID: 0}
     local: {x: 0, y: 0.93, z: -1}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 2.22, y: 0.93, z: -1}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 4.44, y: 0.93, z: -1}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   - obj: {fileID: 0}
     local: {x: 6.66, y: 0.93, z: -1}
-    data: {fileID: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
     gvd: {fileID: 0}
   ordemBatalha: []
+  gbatalha: {fileID: 0}
   setaAliada: 1
   setaInimiga: 0
   aliador_inimigo: -1
