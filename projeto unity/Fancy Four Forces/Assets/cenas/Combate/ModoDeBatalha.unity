@@ -1634,6 +1634,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1734727284}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+      propertyPath: prefabNome
+      value: 
+      objectReference: {fileID: 9067356206087991562, guid: f7f1c03d6805a2347a51dcb5bcfdbdc0, type: 3}
+    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: UI_CapacidadeMaxima
       value: 
       objectReference: {fileID: 989285338}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
   m_Name: 4. ataque de martelo
   m_EditorClassIdentifier: 
-  NomeHabilidade: 
+  NomeHabilidade: ataque de martelo
   HabilidadeAvancada: 0
   _TipoDeAtaque: 2
   _Efeito: 1

@@ -32,13 +32,12 @@ namespace modoBatalha
 
         // aliados
         public float totalDeEnergiaAliada;
-        public float EnergiaAtualAliada;
+       
         
         // inimigos
         
         public float totalDeEnergiaInimiga;
-        public float EnergiaAtualInimiga;
-
+       
 
         [System.Serializable]
         public class buffer_s {
@@ -55,12 +54,13 @@ namespace modoBatalha
 
             public float defesaFinal()
             {
-                Debug.Log("calculo da defesa");
-                Debug.Log("defesa fisica = " +data.bufferData.DefesaFisica +" "+
+                /*
+                Debug.Log("calculo da defesa");                Debug.Log("defesa fisica = " +data.bufferData.DefesaFisica +" "+
                     "taxa de crescimento vezes o lvl = " + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)+
                     "  resultado  = "+ (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)))
 
                     );
+*/
                 return (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)));
             }
             public float danoBruto(ScriptavelHabilidades hbl)
@@ -74,13 +74,16 @@ namespace modoBatalha
 //                Debug.Log("calculo do dano bruto");                Debug.Log("porcentagemDoEfeito = " + hbl.porcentagemDoEfeito + " " +                    "taxa de crescimento vezes o lvl = " + ((data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)) +                    "  resultado  = " + temp);
                 if (hbl._TipoDeAtaque == data.bufferData.AtaqueBasico._TipoDeAtaque)
                 {
-                 //   temp *= 1.2f;
+                    temp *= 1.2f;
                 }
 
                 return temp;
             }
             public void diminuirVida(float danoBruto)
             {
+
+               
+
                 float temp = danoBruto - defesaFinal();
               
               
@@ -202,8 +205,8 @@ namespace modoBatalha
 
                 attEnergia();
 
-                EnergiaAtualAliada = totalDeEnergiaAliada;
-                EnergiaAtualInimiga = totalDeEnergiaInimiga;
+                gbatalha.EnergiaAtualAliada = totalDeEnergiaAliada;
+                gbatalha.EnergiaAtualInimiga = totalDeEnergiaInimiga;
 
             }
         }
@@ -314,11 +317,18 @@ namespace modoBatalha
             totalDeEnergiaInimiga = total_I;
 
         }
+        private void mostrarEnergia()
+        {
+            Vector3 aa = UI_valor_1.anchoredPosition;
+            aa.x = (gbatalha.EnergiaAtualAliada / totalDeEnergiaAliada) * UI_tamanhoX_energiaMaxima;
+            UI_valor_1.anchoredPosition = aa;
+        }
         private void Update()
         {
       //      moverseta();
             attvida();
             attEnergia();
+            mostrarEnergia();
         }
 
     }

@@ -23,7 +23,12 @@ namespace modoBatalha
 
         public GameObject MolduraPrefab;
         public GameObject ListaHorizontalGO;
-     
+
+
+
+
+        public float EnergiaAtualInimiga;
+        public float EnergiaAtualAliada;
         public void iniciar(List<buffer_s> a )
         {
             ordemBatalha.AddRange(a);
@@ -51,6 +56,8 @@ namespace modoBatalha
                 ultimobuffer = aux;
                 foreach (var a in aux.data.habilidades)
                 {
+                    if (EnergiaAtualAliada < a.GastoDeHabilidade)
+                        continue;
                     GameObject aux_ = Instantiate(botaoHabilidadePrefab, Fundo_Habilidades.transform);
                     habilidadesInstanciadas.Add(aux_);
                     AuxUiHabilidade auxH = aux_.GetComponent<AuxUiHabilidade>();
@@ -106,7 +113,42 @@ namespace modoBatalha
                 switch (habilidadeUsada.SH._Efeito)
                 {
                     case(Efeito.Dano):
-                        a.diminuirVida(ultimobuffer.danoBruto(habilidadeUsada.SH));
+
+                        float danofinal = ultimobuffer.danoBruto(habilidadeUsada.SH);
+
+                        switch (a.data.bufferData.TipoDeEfetividade)
+                        {
+                            case Efetividade.blindado:
+                                switch (habilidadeUsada.SH._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                            case Efetividade.liso:
+                                switch (habilidadeUsada.SH._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                        }
+                        
+                        a.diminuirVida(danofinal);
                         break;
                     case (Efeito.MudarStatus):
 
@@ -125,6 +167,7 @@ namespace modoBatalha
 
                 }
                     }
+            
            
            
         }
@@ -193,6 +236,25 @@ namespace modoBatalha
                     {
                         aplicarHabilidadeEmAlvo(a);
                     }
+
+                    if(habilidadeUsada.SH != null)
+                    {
+                        EnergiaAtualAliada -= habilidadeUsada.SH.GastoDeHabilidade;
+                    if(EnergiaAtualAliada < 0)
+                        {
+                            EnergiaAtualAliada = 0;
+                        }
+                    }
+                    else
+                    {
+                        EnergiaAtualAliada += habilidadeUsada.SAB.ValorDeRecarga;
+                        if(EnergiaAtualAliada > confg.totalDeEnergiaAliada)
+                        {
+                            EnergiaAtualAliada = confg.totalDeEnergiaAliada;
+                        }
+
+                    }
+
                 }
                 proximo();
             }
