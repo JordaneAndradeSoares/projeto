@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
   m_Name: 5. casca
   m_EditorClassIdentifier: 
-  NomeHabilidade: Casca
+  NomeHabilidade: 
   HabilidadeAvancada: 0
-  _TipoDeAtaque: 2
-  _Efeito: 3
-  _Alvo: 1
-  ___StatusAAlterar: 0
-  ___DuracaoDeTurno: 3
-  porcentagemDoEfeito: 2
-  GastoDeHabilidade: 20
+  _TipoDeAtaque: 0
+  _Efeito: 0
+  _Alvo: 0
+  porcentagemDoEfeito: 0

@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: 2. ataque de espada
   m_EditorClassIdentifier: 
   NomeHabilidade: Ataque de espada
-  HabilidadeAvancada: 0
+  HabilidadeAvancada: 1
   _TipoDeAtaque: 1
   _Efeito: 1
   _Alvo: 1
-  ___StatusAAlterar: 0
-  ___DuracaoDeTurno: 0
   porcentagemDoEfeito: 1.5
   GastoDeHabilidade: 10

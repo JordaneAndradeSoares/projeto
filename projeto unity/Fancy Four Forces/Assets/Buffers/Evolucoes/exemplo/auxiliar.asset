@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
-  m_Name: 1. ataque de espadas
+  m_Script: {fileID: 11500000, guid: a6d46bb56a26d8a41b20c084d1fde05a, type: 3}
+  m_Name: auxiliar
   m_EditorClassIdentifier: 
-  NomeHabilidade: Ataque de espadas
-  HabilidadeAvancada: 0
-  _TipoDeAtaque: 1
-  _Efeito: 1
-  _Alvo: 2
-  porcentagemDoEfeito: 2
-  GastoDeHabilidade: 20
+  BufferData: {fileID: 0}
+  Origens: []

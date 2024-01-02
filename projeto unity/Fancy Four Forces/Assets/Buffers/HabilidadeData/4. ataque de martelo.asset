@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NomeHabilidade: 
   HabilidadeAvancada: 0
-  _TipoDeAtaque: 2
-  _Efeito: 1
-  _Alvo: 1
-  ___StatusAAlterar: 0
-  ___DuracaoDeTurno: 0
-  porcentagemDoEfeito: 1.5
-  GastoDeHabilidade: 10
+  _TipoDeAtaque: 0
+  _Efeito: 0
+  _Alvo: 0
+  porcentagemDoEfeito: 0

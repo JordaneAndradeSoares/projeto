@@ -27,7 +27,7 @@ namespace Buffers
         public float TaxaDeCrescimentoDaEstamina;
 
         public ScriptavelAtaqueBasico AtaqueBasico;
-        public Efetividade TipoDeEfetividade;
+        public TipoDeAtaque TipoDeEfetividade;
 
         public bool evolui;
 
@@ -36,6 +36,4 @@ namespace Buffers
         public GameObject modelo_3D;
         public Texture iconeMiniatura;
     }
-
-    public enum Efetividade {liso, blindado}
 }
