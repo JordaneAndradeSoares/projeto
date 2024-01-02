@@ -17,5 +17,7 @@ MonoBehaviour:
   _TipoDeAtaque: 2
   _Efeito: 1
   _Alvo: 2
-  porcentagemDoEfeito: 3
-  GastoDeHabilidade: 0
+  ___StatusAAlterar: 0
+  ___DuracaoDeTurno: 0
+  porcentagemDoEfeito: 2
+  GastoDeHabilidade: 20

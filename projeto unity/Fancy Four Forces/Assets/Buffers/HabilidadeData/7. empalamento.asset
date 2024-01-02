@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ad47f84f88768e4a9e928c2f26e4c2b, type: 3}
   m_Name: 7. empalamento
   m_EditorClassIdentifier: 
-  NomeHabilidade: exemplo
+  NomeHabilidade: Empalamento
   HabilidadeAvancada: 0
-  _TipoDeAtaque: 1
+  _TipoDeAtaque: 3
   _Efeito: 1
   _Alvo: 1
+  ___StatusAAlterar: 0
+  ___DuracaoDeTurno: 0
   porcentagemDoEfeito: 1.5
+  GastoDeHabilidade: 10
