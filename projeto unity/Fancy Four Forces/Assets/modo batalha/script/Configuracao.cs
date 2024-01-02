@@ -9,6 +9,7 @@ using Buffers;
 using System.Net.NetworkInformation;
 using jogador;
 using UnityEngine.UI;
+using TMPro;
 
 namespace modoBatalha
 {
@@ -37,7 +38,8 @@ namespace modoBatalha
         // inimigos
         
         public float totalDeEnergiaInimiga;
-       
+
+        
 
         [System.Serializable]
         public class buffer_s {
@@ -51,16 +53,19 @@ namespace modoBatalha
                 local = Vector3.zero;
                 obj = null;
             }
+            public List<escudo> LEscudos = new List<escudo>();
+            public class escudo { public float vidaEscudo; public int turnos; }
 
             public float defesaFinal()
             {
-                /*
+               /*
                 Debug.Log("calculo da defesa");                Debug.Log("defesa fisica = " +data.bufferData.DefesaFisica +" "+
                     "taxa de crescimento vezes o lvl = " + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)+
                     "  resultado  = "+ (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)))
 
                     );
-*/
+
+                */
                 return (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level)));
             }
             public float danoBruto(ScriptavelHabilidades hbl)
@@ -71,7 +76,7 @@ namespace modoBatalha
            
                 temp = hbl.porcentagemDoEfeito *(1 + (data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico));
                 // bonus de sinergia
-//                Debug.Log("calculo do dano bruto");                Debug.Log("porcentagemDoEfeito = " + hbl.porcentagemDoEfeito + " " +                    "taxa de crescimento vezes o lvl = " + ((data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)) +                    "  resultado  = " + temp);
+        //      Debug.Log("calculo do dano bruto");                Debug.Log("porcentagemDoEfeito = " + hbl.porcentagemDoEfeito + " " +                    "taxa de crescimento vezes o lvl = " + ((data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)) +                    "  resultado  = " + temp);
                 if (hbl._TipoDeAtaque == data.bufferData.AtaqueBasico._TipoDeAtaque)
                 {
                     temp *= 1.2f;
@@ -79,19 +84,48 @@ namespace modoBatalha
 
                 return temp;
             }
+           
             public void diminuirVida(float danoBruto)
             {
-
+                
                
 
                 float temp = danoBruto - defesaFinal();
-              
-              
+
+             
                 if(temp > 0)
                 {
 
-               //     Debug.Log("dano aplicado: " + temp + "foi perdido " + (temp/data.vida_maxima)+"%  da vida");
+                    //   Debug.Log("dano aplicado: " + temp + "foi perdido " + (temp/data.vida_maxima)+"%  da vida");
+
+                    foreach (var a in LEscudos)
+                    {
+                        if (a.vidaEscudo > temp)
+                        {
+                            a.vidaEscudo -= temp;
+                            temp = 0;
+                            break;
+                        }
+                        else
+                        {
+
+                            temp -= a.vidaEscudo;
+                            a.vidaEscudo = 0;
+                        }
+
+                        if (temp <= 0)
+                        {
+                            temp = 0;
+                            break;
+                        }
+                    }
+                    LEscudos.RemoveAll(x => x.vidaEscudo == 0);
+
                     data.vida -= temp;
+                }
+                else
+                {
+                //    Debug.Log("não foi aplicado dano, o FINAL foi de " + temp);
                 }
             }
 
@@ -100,6 +134,13 @@ namespace modoBatalha
                 switch (t) { case StatusAAlterar.Velocidade:
                      //   data.vida
                         break; }
+            }
+            public void darEscudo(ScriptavelHabilidades a,buffer_s origem)
+            {
+                escudo temp = new escudo();
+                temp.turnos = a.___DuracaoDeTurno;
+                temp.vidaEscudo = a.porcentagemDoEfeito * (1 + origem.data.level * origem.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
+                LEscudos.Add(temp);
             }
         }
         private void Start()
