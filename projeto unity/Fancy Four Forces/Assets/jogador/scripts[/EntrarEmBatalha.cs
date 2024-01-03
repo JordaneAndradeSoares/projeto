@@ -81,6 +81,7 @@ namespace jogador
         {
             if(EntrarEmBatalha.instanc == null) { EntrarEmBatalha.instanc = this; }
         }
+     
         public  void inicarBatalhaComVantagem(GerenciadorBuffers a)
         {
             SceneManager.LoadScene("ModoDeBatalha");

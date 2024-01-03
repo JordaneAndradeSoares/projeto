@@ -675,7 +675,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919528237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -683,8 +683,8 @@ Transform:
   - {fileID: 1774714927}
   - {fileID: 1404128705}
   - {fileID: 498292570}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 6879502262069380486}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &989285337
 GameObject:
@@ -798,15 +798,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217120368}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543564867}
   - {fileID: 2180400}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 6879502262069380486}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1217120370
 MonoBehaviour:
@@ -1085,6 +1085,7 @@ MonoBehaviour:
   paraPular: 32
   confirmar: 102
   atacar: 323
+  abrirEquipe: 0
 --- !u!4 &1476426620
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,13 +1093,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1476426618}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.44, y: 0.051769316, z: -5.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 6879502262069380486}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539687504
 GameObject:
@@ -1621,26 +1622,6 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 1774714927}
-    - target: {fileID: 5114104020396652533, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.2022828
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114104020396652533, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.59573036
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114104020396652533, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.6775557
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114104020396652533, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.38092706
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: gbatalha
-      value: 
-      objectReference: {fileID: 6879502262069380483}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: UI_valor_1
       value: 
@@ -1650,52 +1631,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1734727284}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: prefabNome
-      value: 
-      objectReference: {fileID: 9067356206087991562, guid: f7f1c03d6805a2347a51dcb5bcfdbdc0, type: 3}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: AlturaNomes
-      value: 0.57
+      propertyPath: setaAliada
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: UI_CapacidadeMaxima
       value: 
       objectReference: {fileID: 989285338}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: aliadosL.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: inimigosL.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: inimigosL.Array.data[0].local.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: inimigosL.Array.data[1].local.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: inimigosL.Array.data[2].local.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: inimigosL.Array.data[3].local.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502262702894934, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502262702894934, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.84
-      objectReference: {fileID: 0}
+    - target: {fileID: 6879502262069380483, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+      propertyPath: tBug
+      value: 
+      objectReference: {fileID: 1465304741}
+    - target: {fileID: 6879502262069380483, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+      propertyPath: Fundo_Habilidades
+      value: 
+      objectReference: {fileID: 1836828403}
+    - target: {fileID: 6879502262069380483, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+      propertyPath: ListaHorizontalGO
+      value: 
+      objectReference: {fileID: 1734407295}
     - target: {fileID: 6879502263202922806, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6879502263202922806, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1741,71 +1698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Batalha
       objectReference: {fileID: 0}
-    - target: {fileID: 6879502263278477393, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879502263278477393, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.05
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
---- !u!1 &6879502262069380482 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6879502261405813596, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
+--- !u!4 &6879502262069380486 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6879502261405813598, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
   m_PrefabInstance: {fileID: 6879502262069380481}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6879502262069380483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879502262069380482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de583525ad31f3a4986fb87c2ee33c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  confg: {fileID: 6879502262069380485}
-  ordemBatalha: []
-  tBug: {fileID: 1465304741}
-  botaoHabilidadePrefab: {fileID: 1273751953519683316, guid: d4b78c053ea18734e8d4a89c22c3d404, type: 3}
-  Fundo_Habilidades: {fileID: 1836828403}
-  MolduraPrefab: {fileID: 6283128618199036479, guid: d94f24fcd234fb8479a4983d98a436d4, type: 3}
-  ListaHorizontalGO: {fileID: 1734407295}
-  EnergiaAtualInimiga: 0
-  EnergiaAtualAliada: 0
-  _statusgame: 0
-  habilidadesInstanciadas: []
-  MolduraTextuaFila: []
-  ultimobuffer:
-    obj: {fileID: 0}
-    local: {x: 0, y: 0, z: 0}
-    data:
-      bufferData: {fileID: 0}
-      level: 0
-      vida: 0
-      vida_maxima: 0
-      habilidades: []
-    npc: 0
-    gvd: {fileID: 0}
-    nome_: {fileID: 0}
-    ruido: 0
-    id_: 0
-    velocidade: 0
-  habilidadeUsada: {fileID: 0}
-  alvos_: []
-  tempoQueOInimigoPensa: 2
---- !u!114 &6879502262069380485 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6879502261405813599, guid: 397bed18fb14e6d4aa9399a19bb8e5a3, type: 3}
-  m_PrefabInstance: {fileID: 6879502262069380481}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6879502262069380482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a2063ab6195cd04d959071d3f26bb7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

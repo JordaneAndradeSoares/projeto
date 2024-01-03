@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
   m_Name: B
   m_EditorClassIdentifier: 
-  bufferData: {fileID: 11400000, guid: 3b4272799cf49554c98a05e990ba658a, type: 2}
+  origem:
+    bufferData: {fileID: 0}
+    level: 0
+    vida: 0
+    vida_maxima: 0
+    habilidades: []
+  bufferData: {fileID: 11400000, guid: 6bdb62f81518ca548b8a80af76d6144e, type: 2}
   level: 2
   vida: 0
   vida_maxima: 0
   habilidades:
-  - {fileID: 11400000, guid: eafa27fbed4b00a4f9d52aee2ffa0b33, type: 2}
+  - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
