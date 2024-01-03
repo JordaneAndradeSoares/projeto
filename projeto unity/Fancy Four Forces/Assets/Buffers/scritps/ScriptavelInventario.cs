@@ -1,9 +1,9 @@
-using Buffers;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace jogador
+namespace Buffers
 {
     [CreateAssetMenu(fileName = "NovoInventario", menuName = "Jogador/NovoInventario", order = 1)]
     public class ScriptavelInventario : ScriptableObject

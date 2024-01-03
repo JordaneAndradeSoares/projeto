@@ -18,7 +18,15 @@ namespace Buffers
 
             for (int x = 1; x < 4; x++)
             {
-                equipes.inimigos[x].bufferData = bd.BufferData[Random.Range(0,bd.BufferData.Count)];
+                float rng = Random.Range(0f,1f);
+                int indc =(int)( bd.BufferData.Count * rng);
+                if(indc > bd.BufferData.Count)
+                    indc = bd.BufferData.Count-1;
+
+                if (indc < 0)
+                    indc = 0;
+                Debug.Log("rng  = " + rng + "    " + bd.BufferData[indc]);
+                equipes.inimigos[x].bufferData = bd.BufferData[indc];
                 equipes.inimigos[x].level = Random.Range(1, 20);
 
             }

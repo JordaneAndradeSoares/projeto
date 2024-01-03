@@ -72,8 +72,9 @@ namespace jogador
                 origemEquipado.iconeTextura.texture = origemInventadoSelecionado.dados.bufferData.iconeMiniatura;
 
                 adicionarAEquipe(true, origemInventadoSelecionado.dados, origemEquipado.slot);
-
+                Debug.Log("foi colocado o " + origemInventadoSelecionado.dados.bufferData.Nome + " no slot " + origemEquipado.slot);
                 origemInventadoSelecionado = null; origemEquipado = null;
+             
             }
         }
 
@@ -82,8 +83,28 @@ namespace jogador
             if(EntrarEmBatalha.instanc == null) { EntrarEmBatalha.instanc = this; }
         }
      
-        public  void inicarBatalhaComVantagem(GerenciadorBuffers a)
+        public  void inicarBatalhaComVantagem(GerenciadorBuffers bd)
         {
+
+            equipes.inimigos[0].bufferData = bd.bufferData;
+            equipes.inimigos[0].level = Random.Range(1, 20);
+
+            for (int x = 1; x < 4; x++)
+            {
+                float rng = Random.Range(0f, 1f);
+                int indc = (int)(bd.b.BufferData.Count * rng);
+                if (indc > bd.b.BufferData.Count)
+                    indc = bd.b.BufferData.Count - 1;
+
+                if (indc < 0)
+                    indc = 0;
+                Debug.Log("rng  = " + rng + "    " + bd.b.BufferData[indc]);
+                equipes.inimigos[x].bufferData = bd.b.BufferData[indc];
+                equipes.inimigos[x].level = Random.Range(1, 20);
+
+            }
+
+
             SceneManager.LoadScene("ModoDeBatalha");
 
         }

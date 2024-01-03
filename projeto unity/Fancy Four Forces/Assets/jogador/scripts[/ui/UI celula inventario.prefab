@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6124883999448784839}
   - component: {fileID: 1485119799482643142}
   m_Layer: 5
-  m_Name: Criatura 1
+  m_Name: UI celula inventario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -147,28 +147,31 @@ namespace modoBatalha
                 {
 
                   Debug.Log("dano aplicado: " + temp + "foi perdido " + ((temp/data.vida_maxima))+"%  da vida");
-
-                    foreach (var a in LEscudos)
+                    try
                     {
-                        if (a.vidaEscudo > temp)
+                        foreach (var a in LEscudos)
                         {
-                            a.vidaEscudo -= temp;
-                            temp = 0;
-                            break;
-                        }
-                        else
-                        {
+                            if (a.vidaEscudo > temp)
+                            {
+                                a.vidaEscudo -= temp;
+                                temp = 0;
+                                break;
+                            }
+                            else
+                            {
 
-                            temp -= a.vidaEscudo;
-                            a.vidaEscudo = 0;
-                        }
+                                temp -= a.vidaEscudo;
+                                a.vidaEscudo = 0;
+                            }
 
-                        if (temp <= 0)
-                        {
-                            temp = 0;
-                            break;
+                            if (temp <= 0)
+                            {
+                                temp = 0;
+                                break;
+                            }
                         }
                     }
+                    catch { }
                     LEscudos.RemoveAll(x => x.vidaEscudo == 0);
 
                     data.vida -= temp;
@@ -390,6 +393,8 @@ namespace modoBatalha
 
             if (aliador_inimigo < 0)
             {
+                if (setaAliada > aliadosL.Count - 1)
+                    setaAliada = 0;
                 seta.localPosition = aliadosL[setaAliada].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
@@ -398,6 +403,8 @@ namespace modoBatalha
             }
             else
             {
+                if (setaInimiga > inimigosL.Count - 1)
+                    setaInimiga = 0;
                 seta.localPosition = inimigosL[setaInimiga].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
@@ -414,11 +421,17 @@ namespace modoBatalha
             if (aliador_inimigo < 0)
             {
                 if (setaAliada +x < aliadosL.Count && setaAliada + x > -1)
-
                 {
-                    if (aliadosL[setaAliada + x].data.bufferData != null)
+                    try
                     {
-                        setaAliada += x;
+                        if (aliadosL[setaAliada + x].data.bufferData != null)
+                        {
+                            setaAliada += x;
+                        }
+                    }
+                    catch
+                    {
+                        setaAliada = 0;
                     }
 
                 }
@@ -434,10 +447,14 @@ namespace modoBatalha
             {
                 if (setaInimiga + x < inimigosL.Count && setaInimiga + x > -1)
                 {
-                    if (inimigosL[setaInimiga + x].data.bufferData != null)
+                    try
                     {
-                        setaInimiga += x;
+                        if (inimigosL[setaInimiga + x].data.bufferData != null)
+                        {
+                            setaInimiga += x;
+                        }
                     }
+                    catch { setaInimiga = 0; }
 
                 }
                 else
@@ -452,6 +469,7 @@ namespace modoBatalha
         }
         public void vertical(int x)
         {
+           
             if (x > 0 && aliador_inimigo < 0)
                 aliador_inimigo = 1;
             if (x < 0 && aliador_inimigo > 0)

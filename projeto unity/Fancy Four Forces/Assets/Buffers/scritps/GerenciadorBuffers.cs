@@ -30,7 +30,7 @@ namespace Buffers
         {
             agente.destination = dtC.alvo;
 
-            return agente.remainingDistance <=1;
+            return agente.remainingDistance <=2;
         }
         public void iniciabatalha()
         {

@@ -7,6 +7,7 @@ using Unity.Plastic.Antlr3.Runtime.Misc;
 using Buffers;
 using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 namespace modoBatalha
 {
@@ -53,6 +54,11 @@ namespace modoBatalha
             buffer_s aux = ordemBatalha[0];
             if (aux != ultimobuffer)
             {
+                foreach (var a in habilidadesInstanciadas)
+                {
+                    Destroy(a);
+                }
+                habilidadesInstanciadas.Clear();
 
                 ultimobuffer = aux;
                 foreach (var a in aux.data.habilidades)
@@ -386,7 +392,7 @@ namespace modoBatalha
             habilidadeUsada = new AuxUiHabilidade();
             habilidadeUsada.GB = this;
 
-            if(Random.Range(0,maxh+2) > maxh)
+            if(Random.Range(0,maxh+2) > maxh || maxh == 0)
             {
                 //atk basico
 
@@ -395,7 +401,8 @@ namespace modoBatalha
             else
             {
                 //habilidade
-                prob = 1 / maxh;
+                
+                prob = 1/ maxh ;
 
 
                 foreach (var a in ultimobuffer.data.habilidades)
@@ -578,7 +585,7 @@ namespace modoBatalha
         }
 
         private void Update()
-        {/*
+        {
             if (confg.aliadosL.Count > 0 && confg.inimigosL.Count >0)
             {
 
@@ -614,6 +621,30 @@ namespace modoBatalha
             else
             {
                 Debug.Log((confg.aliadosL.Count == 0 ? "inimigo " : "aliado ")+ "  Venceu !!");
+          
+                if(confg.aliadosL.Count == 0)
+                {
+                    SceneManager.LoadScene("SampleScene");
+                    // voltar para a tela anterior
+                }
+                else
+                {
+                    foreach (var a in confg.dataBatalha.inimigos)
+                    {
+
+                        inventario.Inventario.Add(new Kernel(a));
+                        Debug.Log("Buffer " + a.bufferData.Nome + "  foi adicionado no inventario");
+                    }
+
+          
+
+                
+
+                    SceneManager.LoadScene("SampleScene");
+
+
+                }
+             
             }
 
             foreach(var a  in ordemBatalha)
@@ -633,13 +664,16 @@ namespace modoBatalha
                 }
             }
 
-            */
-         //   ordemBatalha.RemoveAll(x => x.obj == null);
-           // confg.inimigosL.RemoveAll(x => x.obj == null);
-            // confg.aliadosL.RemoveAll(x => x.obj == null);
+          
+           ordemBatalha.RemoveAll(x => x.obj == null);
+            confg.inimigosL.RemoveAll(x => x.obj == null);
+            confg.aliadosL.RemoveAll(x => x.obj == null);
 
         }
+
+        public ScriptavelInventario inventario;
     }
+    
     public enum statusGame
     {
         player,maquina,carregando

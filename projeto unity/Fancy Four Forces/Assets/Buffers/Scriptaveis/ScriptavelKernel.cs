@@ -27,6 +27,10 @@ namespace Buffers
        habilidades.AddRange(a.habilidades);
            
     }
+        public Kernel RKernel()
+        {
+            return origem;
+        }
      
 
     }
