@@ -294,7 +294,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5643772742335672639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,4 +345,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaPerdida: {fileID: 0}
   LookAtConstraint: {fileID: 4530691981449829376}
+  nome: {fileID: 6987674537106654376}
   txt: {fileID: 6987674537106654376}

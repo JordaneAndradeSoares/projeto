@@ -10,11 +10,7 @@ namespace Buffers
         public ScriptavelBuffer bufferData;
         public int level;
         public float vida,vida_maxima;
-<<<<<<< Updated upstream
-        
 
-
-=======
         public List<escudo> escudos = new List<escudo>();
        
         public class escudo
@@ -31,7 +27,7 @@ namespace Buffers
                 this.turnos = turnos;
             }
         }
->>>>>>> Stashed changes
+
         public List<ScriptavelHabilidades> habilidades = new List<ScriptavelHabilidades>();
        
         

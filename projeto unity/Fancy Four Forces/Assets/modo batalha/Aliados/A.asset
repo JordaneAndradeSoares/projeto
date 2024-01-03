@@ -10,21 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
-  m_Name: A
+  m_Name: a
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-  bufferData: {fileID: 11400000, guid: cc4a605bf4b6abf47b3c651d6fce04f0, type: 2}
-  level: 200
-  vida: 0
-  vida_maxima: 0
-  habilidades:
-  - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
-=======
-  bufferData: {fileID: 11400000, guid: 82d65aeb6c28a0a46b7e491cce0708b6, type: 2}
+  bufferData: {fileID: 11400000, guid: 3b4272799cf49554c98a05e990ba658a, type: 2}
   level: 2
   vida: 0
   vida_maxima: 0
   habilidades:
-  - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
-  - {fileID: 11400000, guid: 8294acfa6979b9041833bbc2622a1294, type: 2}
->>>>>>> Stashed changes
+  - {fileID: 11400000, guid: eafa27fbed4b00a4f9d52aee2ffa0b33, type: 2}

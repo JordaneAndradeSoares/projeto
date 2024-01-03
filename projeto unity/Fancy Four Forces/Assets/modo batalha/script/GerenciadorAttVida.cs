@@ -12,13 +12,12 @@ namespace modoBatalha
     {
         public RawImage vidaPerdida;
         public LookAtConstraint LookAtConstraint;
-<<<<<<< Updated upstream
+
         public TextMeshProUGUI nome;
 
-=======
 
         public TextMeshProUGUI txt;
->>>>>>> Stashed changes
+
         private void Start()
         {
             ConstraintSource a = LookAtConstraint.GetSource(0);

@@ -346,3 +346,4 @@ MonoBehaviour:
   vidaPerdida: {fileID: 0}
   LookAtConstraint: {fileID: 4530691981449829376}
   nome: {fileID: 6108690005674885463}
+  txt: {fileID: 6108690005674885463}

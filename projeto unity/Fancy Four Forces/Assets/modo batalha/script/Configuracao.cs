@@ -17,19 +17,17 @@ namespace modoBatalha
 {
     public class Configuracao : MonoBehaviour
     {
-<<<<<<< Updated upstream
+ 
    
         public Transform aliados, inimigos, seta;
 
         public float espasamentoentreSi,AlturaNomes;
         public GameObject prefabVida, prefabNome;
-=======
-        public Transform aliados, inimigos,seta;
+ 
+       
     
-        public float espasamentoentreSi;
-        public GameObject prefabVida;
-        public GameObject prefabNome;
->>>>>>> Stashed changes
+       
+ 
 
         public ScriptavelBatalhaBuffer dataBatalha;
 
@@ -60,17 +58,14 @@ namespace modoBatalha
             public Kernel data;
             public bool npc;
             public GerenciadorAttVida gvd;
-<<<<<<< Updated upstream
+ 
             public GameObject nome_;
             public float ruido;
             public int id_;
 
             public float velocidade;
             public buffer_s(int id, float ruido_)
-=======
-            
-            public buffer_s()
->>>>>>> Stashed changes
+ 
             {
                 local = Vector3.zero;
                 obj = null;
@@ -84,7 +79,7 @@ namespace modoBatalha
            
             public float defesaFinal()
             {
-<<<<<<< Updated upstream
+ 
                
                  Debug.Log("calculo da defesa");     
                 Debug.Log("defesa fisica = " +data.bufferData.DefesaFisica +" "+
@@ -95,7 +90,7 @@ namespace modoBatalha
 
                 
                 return (data.bufferData.DefesaFisica * (1 + (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level))) + ruido;
-=======
+ 
                 
                     return (data.bufferData.DefesaFisica * (data.bufferData.TaxaDeCrescimentoDaDefesaFisica * data.level));
               
@@ -105,7 +100,7 @@ namespace modoBatalha
                 data.escudos.Add(new Kernel.escudo(origem, hbl.porcentagemDoEfeito *
                     (origem.bufferData.AtaqueFisico *(origem.bufferData.TaxaDeCrescimentoDoAtaqueBasico * 
                     origem.level) ),hbl.___DuracaoDeTurno));
->>>>>>> Stashed changes
+ 
             }
             public float danoBruto(ScriptavelHabilidades hbl)
             {
@@ -125,9 +120,10 @@ namespace modoBatalha
                 "  resultado  = " + temp);
                 return temp+ruido;
             }
-<<<<<<< Updated upstream
+ 
 
-=======
+
+
             public float danoBruto(ScriptavelAtaqueBasico atkbscl)
             {
                 float temp = 0;
@@ -137,14 +133,14 @@ namespace modoBatalha
              
                 return temp;
             }
->>>>>>> Stashed changes
+ 
             public void diminuirVida(float danoBruto)
             {
 
 
 
                 float temp = danoBruto - defesaFinal();
-<<<<<<< Updated upstream
+
 
 
                 if (temp > 0)
@@ -183,7 +179,7 @@ namespace modoBatalha
                 {
                     Debug.Log("não foi aplicado dano, o FINAL foi de " + temp);
                 }
-=======
+
                 if (temp > 0)
                 {
                     if (data.escudos.Count == 0)
@@ -212,7 +208,7 @@ namespace modoBatalha
 
                     }
                 } 
->>>>>>> Stashed changes
+
             }
 
             public void modificarStatus(StatusAAlterar t, float valor)
@@ -255,7 +251,7 @@ namespace modoBatalha
                     GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
                     aliadosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
-<<<<<<< Updated upstream
+
                         
                     GameObject nome__ = Instantiate(prefabNome, aliadosL[x].obj.transform);
                     nome__.transform.position = aliadosL[x].obj.transform.position + Vector3.up * 2*((dataBatalha.aliados.Count-x) * AlturaNomes);
@@ -264,14 +260,10 @@ namespace modoBatalha
 
                     aliadosL[x].nome_ = nome__;
 
-=======
 
-                    GameObject nom = Instantiate(prefabNome, aliadosL[x].obj.transform);
-                    nom.transform.position = aliadosL[x].obj.transform.position + Vector3.up * 2;
-                    nom.GetComponent<GerenciadorAttVida>().txt.text = ""+aliadosL[x].data.bufferData.Nome + "   [Lvl."+ aliadosL[x].data.level+"]";
-                    //  temp.att(  dataBatalha.aliados[x].retorno());
+
                    
->>>>>>> Stashed changes
+
                     tempList.Add(aliadosL[x]);
                 }
                 for (int x = 0; x < dataBatalha.inimigos.Count; x++)
@@ -289,19 +281,14 @@ namespace modoBatalha
                     inimigosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
                     inimigosL[x].npc = true;
 
-<<<<<<< Updated upstream
+
                     GameObject nome__ = Instantiate(prefabNome, inimigosL[x].obj.transform);
                     nome__.transform.position = inimigosL[x].obj.transform.position + Vector3.up * 2;
                     nome__.GetComponent<GerenciadorAttVida>().nome.text = "" +
                         inimigosL[x].data.bufferData.Nome + " [Lvl." + inimigosL[x].data.level + "]";
                     inimigosL[x].nome_ = nome__;
-=======
-                    GameObject nom = Instantiate(prefabNome, inimigosL[x].obj.transform);
-                    nom.transform.position = inimigosL[x].obj.transform.position + Vector3.up * 2;
-                    nom.GetComponent<GerenciadorAttVida>().txt.text = "" + inimigosL[x].data.bufferData.Nome + "   [Lvl." + aliadosL[x].data.level + "]";
 
 
->>>>>>> Stashed changes
 
                     //  temp_.att(dataBatalha.inimigos[x].retorno());
 
@@ -472,15 +459,15 @@ namespace modoBatalha
         }
         private void attvida()
         {
-<<<<<<< Updated upstream
-=======
+ 
+ 
           
->>>>>>> Stashed changes
+ 
             foreach (var a in gbatalha.ordemBatalha)
             {
                 if (a.obj == null)
                     continue;
-<<<<<<< Updated upstream
+ 
                 a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.vida_maxima
                     ),
                     a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
@@ -541,10 +528,9 @@ namespace modoBatalha
                 }
                 catch { }
 
-=======
-                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.vida_maxima),
-                    a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
->>>>>>> Stashed changes
+ 
+              
+ 
             }
         }
         private void Update()
