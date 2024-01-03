@@ -18,7 +18,7 @@ MonoBehaviour:
   Velocidade: 30
   AtaqueFisico: 12
   DefesaFisica: 10
-  Estamina: 0
+  Estamina: 10
   TaxaDeCrescimentoDaVidaMaxima: 0.3
   TaxaDeCrescimentoDaVelocidade: 0.2
   TaxaDeCrescimentoDoAtaqueBasico: 0.2

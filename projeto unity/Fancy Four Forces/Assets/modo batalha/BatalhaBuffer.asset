@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: BatalhaBuffer
   m_EditorClassIdentifier: 
   aliados:
-  - {fileID: 11400000, guid: 6f18d43f40a9b6642bc671f1e99744fd, type: 2}
+  - {fileID: 11400000, guid: e4ba11789f65cec46aedf86f30c93f80, type: 2}
   - {fileID: 11400000, guid: 2a537e798d8f5d64192d8624834739e5, type: 2}
   - {fileID: 11400000, guid: 14e8caffe8a89554e9d4cda2764f18f3, type: 2}
   - {fileID: 11400000, guid: d9c670c7555a40e4caa4a324978c09b7, type: 2}
   inimigos:
-  - {fileID: 11400000, guid: b93d40c446a46564db0791b9ad1d9e08, type: 2}
-  - {fileID: 11400000, guid: 5dbbed266810e01458e0189967efc9b8, type: 2}
+  - {fileID: 11400000, guid: f51181ddd5e19f441b30dc63fdfc5faf, type: 2}
+  - {fileID: 11400000, guid: 9da9c6ad40ca7ff44b7d16b3f0d4a470, type: 2}
   - {fileID: 11400000, guid: 5dd6411a4a6773d49b130fc2c95edc56, type: 2}
   - {fileID: 11400000, guid: 9341378f2268e6e44941d16e23a722f4, type: 2}

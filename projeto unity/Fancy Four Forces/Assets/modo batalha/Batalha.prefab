@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760397123812176955}
-  m_LocalRotation: {x: 0.5708431, y: 0.6560001, z: 0.41729847, w: 0.26393965}
+  m_LocalRotation: {x: 0.59573036, y: 0.6775557, z: 0.38092706, w: 0.2022828}
   m_LocalPosition: {x: 0.08, y: 2.72, z: -0.13}
   m_LocalScale: {x: 1.7955, y: 1.7955, z: 1.7955}
   m_ConstrainProportionsScale: 0
@@ -128,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6879502261405813598}
   - component: {fileID: 6879502261405813599}
+  - component: {fileID: 6879502262069380483}
   m_Layer: 0
   m_Name: gerenciador
   m_TagString: Untagged
@@ -166,46 +167,65 @@ MonoBehaviour:
   inimigos: {fileID: 6879502263278477393}
   seta: {fileID: 6879502262626313915}
   espasamentoentreSi: 2.22
+  AlturaNomes: 0.57
   prefabVida: {fileID: 9067356206087991562, guid: 690b3f21d3fefa9428e77289cff010a3, type: 3}
+  prefabNome: {fileID: 9067356206087991562, guid: f7f1c03d6805a2347a51dcb5bcfdbdc0, type: 3}
   dataBatalha: {fileID: 11400000, guid: 82909d8224f909043b8c5c942dd1eca8, type: 2}
-  aliadosL:
-  - obj: {fileID: 0}
-    local: {x: 0, y: 0, z: -6.91}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 2.22, y: 0, z: -6.91}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 4.44, y: 0, z: -6.91}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 6.66, y: 0, z: -6.91}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  inimigosL:
-  - obj: {fileID: 0}
-    local: {x: 0, y: 0.93, z: -1}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 2.22, y: 0.93, z: -1}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 4.44, y: 0.93, z: -1}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
-  - obj: {fileID: 0}
-    local: {x: 6.66, y: 0.93, z: -1}
-    data: {fileID: 0}
-    gvd: {fileID: 0}
+  aliadosL: []
+  inimigosL: []
   ordemBatalha: []
+  gbatalha: {fileID: 6879502262069380483}
+  UI_CapacidadeMaxima: {fileID: 0}
+  UI_valor_1: {fileID: 0}
+  UI_valor_2: {fileID: 0}
+  UI_tamanhoX_energiaMaxima: 0
+  totalDeEnergiaAliada: 0
+  totalDeEnergiaInimiga: 0
   setaAliada: 1
   setaInimiga: 0
   aliador_inimigo: -1
+--- !u!114 &6879502262069380483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6879502261405813596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de583525ad31f3a4986fb87c2ee33c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  confg: {fileID: 6879502261405813599}
+  ordemBatalha: []
+  tBug: {fileID: 0}
+  botaoHabilidadePrefab: {fileID: 1273751953519683316, guid: d4b78c053ea18734e8d4a89c22c3d404, type: 3}
+  Fundo_Habilidades: {fileID: 0}
+  MolduraPrefab: {fileID: 6283128618199036479, guid: d94f24fcd234fb8479a4983d98a436d4, type: 3}
+  ListaHorizontalGO: {fileID: 0}
+  EnergiaAtualInimiga: 0
+  EnergiaAtualAliada: 0
+  _statusgame: 0
+  habilidadesInstanciadas: []
+  MolduraTextuaFila: []
+  ultimobuffer:
+    obj: {fileID: 0}
+    local: {x: 0, y: 0, z: 0}
+    data:
+      bufferData: {fileID: 0}
+      level: 0
+      vida: 0
+      vida_maxima: 0
+      habilidades: []
+    npc: 0
+    gvd: {fileID: 0}
+    nome_: {fileID: 0}
+    ruido: 0
+    id_: 0
+    velocidade: 0
+  habilidadeUsada: {fileID: 0}
+  alvos_: []
+  tempoQueOInimigoPensa: 2
 --- !u!1 &6879502262626313912
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6879502262702894935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.91}
+  m_LocalPosition: {x: 0.18, y: 0, z: -4.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6879502263278477390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0.03, y: 0, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

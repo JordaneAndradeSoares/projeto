@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3398ceda03418fa40aa09b73ef7e5841, type: 3}
   m_Name: 3. BIcada
   m_EditorClassIdentifier: 
-  NomeAtaqueBasico: 
+  NomeAtaqueBasico: BIcada
   _Hits: 1
   ValorDeRecarga: 10
   _TipoDeAtaque: 3

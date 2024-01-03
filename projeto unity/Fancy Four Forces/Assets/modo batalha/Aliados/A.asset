@@ -10,9 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02b0ef872ff112946a150306e4109ba8, type: 3}
-  m_Name: A
+  m_Name: a
   m_EditorClassIdentifier: 
-  bufferData: {fileID: 11400000, guid: 0387c6e2c0f4848458e28a58c61a3acd, type: 2}
+  origem:
+    bufferData: {fileID: 0}
+    level: 0
+    vida: 0
+    vida_maxima: 0
+    habilidades: []
+  bufferData: {fileID: 11400000, guid: bf0a16547a2a2b54db9ac8baaa0dc460, type: 2}
   level: 2
+  vida: 0
+  vida_maxima: 0
   habilidades:
-  - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
+  - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}

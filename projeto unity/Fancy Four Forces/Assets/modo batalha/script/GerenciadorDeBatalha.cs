@@ -6,6 +6,7 @@ using TMPro;
 using Unity.Plastic.Antlr3.Runtime.Misc;
 using Buffers;
 using Unity.VisualScripting.YamlDotNet.Core;
+using UnityEngine.UIElements;
 
 namespace modoBatalha
 {
@@ -23,7 +24,12 @@ namespace modoBatalha
 
         public GameObject MolduraPrefab;
         public GameObject ListaHorizontalGO;
-     
+
+
+
+
+        public float EnergiaAtualInimiga;
+        public float EnergiaAtualAliada;
         public void iniciar(List<buffer_s> a )
         {
             ordemBatalha.AddRange(a);
@@ -51,6 +57,8 @@ namespace modoBatalha
                 ultimobuffer = aux;
                 foreach (var a in aux.data.habilidades)
                 {
+                    if (EnergiaAtualAliada < a.GastoDeHabilidade)
+                        continue;
                     GameObject aux_ = Instantiate(botaoHabilidadePrefab, Fundo_Habilidades.transform);
                     habilidadesInstanciadas.Add(aux_);
                     AuxUiHabilidade auxH = aux_.GetComponent<AuxUiHabilidade>();
@@ -68,13 +76,16 @@ namespace modoBatalha
                 habilidadesInstanciadas.Add(aux_ATkB);
             }
         }
-
-        buffer_s ultimobuffer = new buffer_s();
-        AuxUiHabilidade habilidadeUsada;
+        [Space()]
+        [Space()]
+        public buffer_s ultimobuffer = new buffer_s(-1,-1);
+        public AuxUiHabilidade habilidadeUsada;
+     
         public void EscolheuHabilidade_(AuxUiHabilidade a)
         {
+            habilidadeUsada = null;
             habilidadeUsada = a;
-
+            Debug.Log("clikou");
 
           //  proximo();
         }
@@ -106,7 +117,42 @@ namespace modoBatalha
                 switch (habilidadeUsada.SH._Efeito)
                 {
                     case(Efeito.Dano):
-                        a.diminuirVida(ultimobuffer.danoBruto(habilidadeUsada.SH));
+
+                        float danofinal = ultimobuffer.danoBruto(habilidadeUsada.SH);
+
+                        switch (a.data.bufferData.TipoDeEfetividade)
+                        {
+                            case Efetividade.blindado:
+                                switch (habilidadeUsada.SH._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                            case Efetividade.liso:
+                                switch (habilidadeUsada.SH._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                        }
+                        
+                        a.diminuirVida(danofinal);
                         break;
                     case (Efeito.MudarStatus):
 
@@ -122,10 +168,18 @@ namespace modoBatalha
                         }
 
                         break;
+                    case (Efeito.Escudo):
+
+                        a.darEscudo(habilidadeUsada.SH, ultimobuffer);
+                        break;
+
 
                 }
-                    }
-            a.data.vida -= 1;
+            }
+          
+            
+           
+           
         }
         public void usandoHabilidade()
         {
@@ -176,7 +230,7 @@ namespace modoBatalha
                 // atk basico
                 else
                 {
-                    usarSeta(-1);
+                    usarSeta(1);
                 //    confg.vertical(1);
                //     confg.moverseta();
                 }               
@@ -188,10 +242,78 @@ namespace modoBatalha
             {
                 if (alvos_.Count > 0)
                 {
-                    foreach (var a in alvos_)
+
+                   
+
+                    if(habilidadeUsada.SH != null)
                     {
-                        aplicarHabilidadeEmAlvo(a);
+                        foreach (var a in alvos_)
+                        {
+                            aplicarHabilidadeEmAlvo(a);
+                        }
+
+                        EnergiaAtualAliada -= habilidadeUsada.SH.GastoDeHabilidade;
+                    if(EnergiaAtualAliada < 0)
+                        {
+                            EnergiaAtualAliada = 0;
+                        }
                     }
+                    else
+                    {
+
+                        foreach (var a in alvos_)
+                        {
+
+                            for (int x = 0; x < habilidadeUsada.SAB._Hits; x++)
+                            {
+
+
+                                float danofinal = habilidadeUsada.SAB.porcentagemDoEfeito *ultimobuffer.data.bufferData.AtaqueFisico* (1+ ultimobuffer.data.level * ultimobuffer.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
+
+
+                            switch (a.data.bufferData.TipoDeEfetividade)
+                                {
+                                    case Efetividade.blindado:
+                                        switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                        {
+                                            case TipoDeAtaque.Esmagamento:
+                                                danofinal *= 2;
+                                                break;
+                                            case TipoDeAtaque.Corte:
+                                                danofinal /= 2;
+                                                break;
+                                            case TipoDeAtaque.Perfurante:
+
+                                                break;
+                                        }
+                                        break;
+                                    case Efetividade.liso:
+                                        switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                        {
+                                            case TipoDeAtaque.Esmagamento:
+                                                danofinal /= 2;
+                                                break;
+                                            case TipoDeAtaque.Corte:
+                                                danofinal *= 2;
+                                                break;
+                                            case TipoDeAtaque.Perfurante:
+
+                                                break;
+                                        }
+                                        break;
+                                }
+
+                                a.diminuirVida(danofinal);
+                            }
+                        }
+                        EnergiaAtualAliada += habilidadeUsada.SAB.ValorDeRecarga;
+                        if(EnergiaAtualAliada > confg.totalDeEnergiaAliada)
+                        {
+                            EnergiaAtualAliada = confg.totalDeEnergiaAliada;
+                        }
+
+                    }
+
                 }
                 proximo();
             }
@@ -246,49 +368,276 @@ namespace modoBatalha
 
         public float tempoQueOInimigoPensa=2;
         float auxT=0;
+
+        public void inimigoEscolherHabilidade()
+        {
+
+            int indc = 0;
+            int maxh = 0;
+            float prob = 0;
+
+            foreach(var a in ultimobuffer.data.habilidades)
+            {
+                if(a.GastoDeHabilidade < EnergiaAtualInimiga)
+                {
+                    maxh++;
+                }
+            }
+            habilidadeUsada = new AuxUiHabilidade();
+            habilidadeUsada.GB = this;
+
+            if(Random.Range(0,maxh+2) > maxh)
+            {
+                //atk basico
+
+                habilidadeUsada.SAB = ultimobuffer.data.bufferData.AtaqueBasico;
+            }
+            else
+            {
+                //habilidade
+                prob = 1 / maxh;
+
+
+                foreach (var a in ultimobuffer.data.habilidades)
+                {
+                    if (a.GastoDeHabilidade < EnergiaAtualInimiga)
+                    {
+                        if (Random.Range(0f, 1f) > prob)
+                        {
+                            habilidadeUsada.SH = a;
+                            break;
+                        }
+                        
+                    }
+                }
+                if(habilidadeUsada.SH == null)
+                {
+                    foreach (var a in ultimobuffer.data.habilidades)
+                    {
+                        if (a.GastoDeHabilidade < EnergiaAtualInimiga)
+                        {
+                           
+                                habilidadeUsada.SH = a;
+                                break;
+                           
+
+                        }
+                    }
+                }
+
+            }
+
+
+          
+        }
+        public void inimigoEscolherAlvo()
+        {
+           if(habilidadeUsada.SH != null)
+            {
+                switch (habilidadeUsada.SH._Efeito) {
+                    case Efeito.Dano:
+                        switch (habilidadeUsada.SH._Alvo)
+                        {
+                            case Alvo.Unico:
+                                int indc = Random.Range(0, confg.aliadosL.Count);
+
+                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == false)[indc]);
+                                break;
+                            case Alvo.Global:
+
+                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == false));
+                                
+                                break;
+                        }
+                        break;
+                    case Efeito.MudarStatus:
+                        switch (habilidadeUsada.SH._Alvo)
+                        {
+                            case Alvo.Unico:
+
+                                int indc = Random.Range(0, confg.inimigosL.Count);
+
+                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == true)[indc]);
+
+                                break;
+                            case Alvo.Global:
+                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == true));
+                                break;
+                        }
+                        break;
+                    case Efeito.Escudo:
+                        switch (habilidadeUsada.SH._Alvo)
+                        {
+                            case Alvo.Unico:
+                                int indc = Random.Range(0, confg.inimigosL.Count);
+
+                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == true)[indc]);
+                                break;
+                            case Alvo.Global:
+                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == true));
+                                break;
+                        }
+                        break;
+                }
+               
+             
+            }
+            else
+            {
+                
+               
+                        int indc = Random.Range(0, confg.aliadosL.Count);
+
+                        alvos_.Add(ordemBatalha.FindAll(x => x.npc == false)[indc]);
+               
+            }
+            if (alvos_.Count <= 0)
+                Debug.Log("nenhum alvo foi escolido");
+        }
+        public void InimigousarHabilidadeNoAlvo()
+        {
+            if (habilidadeUsada.SH != null)
+            {
+                foreach (var a in alvos_)
+                {
+                    aplicarHabilidadeEmAlvo(a);
+                }
+            }
+            else
+            {
+                foreach (var a in alvos_)
+                {
+
+                    for (int x = 0; x < habilidadeUsada.SAB._Hits; x++)
+                    {
+
+
+                        float danofinal = habilidadeUsada.SAB.porcentagemDoEfeito * ultimobuffer.data.bufferData.AtaqueFisico * (1 + ultimobuffer.data.level * ultimobuffer.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico);
+
+
+                        switch (a.data.bufferData.TipoDeEfetividade)
+                        {
+                            case Efetividade.blindado:
+                                switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                            case Efetividade.liso:
+                                switch (habilidadeUsada.SAB._TipoDeAtaque)
+                                {
+                                    case TipoDeAtaque.Esmagamento:
+                                        danofinal /= 2;
+                                        break;
+                                    case TipoDeAtaque.Corte:
+                                        danofinal *= 2;
+                                        break;
+                                    case TipoDeAtaque.Perfurante:
+
+                                        break;
+                                }
+                                break;
+                        }
+
+                        a.diminuirVida(danofinal);
+                    }
+                }
+                EnergiaAtualInimiga += habilidadeUsada.SAB.ValorDeRecarga;
+                if (EnergiaAtualInimiga > confg.totalDeEnergiaInimiga)
+                {
+                    EnergiaAtualInimiga = confg.totalDeEnergiaInimiga;
+                }
+            }
+
+        }
         public void inimigoAgir()
         {
             if (auxT > tempoQueOInimigoPensa)
             {
-                auxT = 0 ;
-                Debug.Log("inimigo fez algo ?");
-                proximo();
+               
+                    ultimobuffer = ordemBatalha[0];
+                    auxT = 0;
+
+                    inimigoEscolherHabilidade();
+                    inimigoEscolherAlvo();
+                InimigousarHabilidadeNoAlvo();
+                    proximo();
+                    Debug.Log("foi ?");
+              
             }
             else { auxT += Time.deltaTime; }
 
         }
 
         private void Update()
-        {
-           
-            if (ordemBatalha.Count >0)
+        {/*
+            if (confg.aliadosL.Count > 0 && confg.inimigosL.Count >0)
             {
-                if(_statusgame == statusGame.player)
-                {
-                    tBug.text = "jogador joga";
 
-                    mostrarHabilidades();
-                if(habilidadeUsada!= null)
+                if (ordemBatalha.Count > 0)
+                {
+                    if (_statusgame == statusGame.player)
                     {
-                        usandoHabilidade();
+                        tBug.text = "jogador joga";
+
+                        mostrarHabilidades();
+                        if (habilidadeUsada != null)
+                        {
+                            usandoHabilidade();
+                        }
                     }
+                    else
+                    {
+                        tBug.text = "maquina joga";
+
+                        ocultarHabilidades();
+
+                        inimigoAgir();
+
+
+                    }
+
                 }
                 else
                 {
-                    tBug.text = "maquina joga";
-
-                    ocultarHabilidades();
-
-                    inimigoAgir();
-
-
+                    tBug.text = " erro";
                 }
-
             }
             else
             {
-                tBug.text = " erro";
+                Debug.Log((confg.aliadosL.Count == 0 ? "inimigo " : "aliado ")+ "  Venceu !!");
             }
+
+            foreach(var a  in ordemBatalha)
+            {
+                if (a.data.vida <= 0)
+                {
+                    Destroy(a.obj);
+                    if (a.npc)
+                    {
+                        confg.inimigosL.RemoveAll(x => x.id_ == a.id_);
+                    }
+                    else
+                    {
+                        confg.aliadosL.RemoveAll(x => x.id_ == a.id_);
+                    }
+                
+                }
+            }
+
+            */
+         //   ordemBatalha.RemoveAll(x => x.obj == null);
+           // confg.inimigosL.RemoveAll(x => x.obj == null);
+            // confg.aliadosL.RemoveAll(x => x.obj == null);
+
         }
     }
     public enum statusGame

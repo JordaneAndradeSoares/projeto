@@ -37,5 +37,7 @@ namespace Buffers
         public Texture iconeMiniatura;
     }
 
+        
     public enum Efetividade {liso, blindado}
+
 }
