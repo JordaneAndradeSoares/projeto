@@ -345,5 +345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaPerdida: {fileID: 0}
   LookAtConstraint: {fileID: 4530691981449829376}
+  Lista_: {fileID: 0}
   nome: {fileID: 6108690005674885463}
   txt: {fileID: 6108690005674885463}
