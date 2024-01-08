@@ -18,6 +18,8 @@ namespace Buffers
             public Kernel origem;
             public float escudo_, escudo_maximo;
             public int turnos;
+            public GameObject Ges; // gerenciador de escudo
+
 
             public escudo(Kernel origem, float escudo_,int turnos)
             {
@@ -25,6 +27,7 @@ namespace Buffers
                 this.escudo_ = escudo_;
                 this.escudo_maximo = escudo_;
                 this.turnos = turnos;
+             
             }
         }
 

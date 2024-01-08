@@ -104,6 +104,8 @@ namespace modoBatalha
         {
             confg.vertical(x);
             confg.moverseta();
+
+            confg.Gseta.definirOrigem(ultimobuffer.obj.transform.position );
         }
   
         public void escolidoAlvo(buffer_s a)
@@ -175,17 +177,14 @@ namespace modoBatalha
 
                         break;
                     case (Efeito.Escudo):
-
-                        a.darEscudo(habilidadeUsada.SH, ultimobuffer);
+                        a.receberEscudo(habilidadeUsada.SH, ultimobuffer.data);
+                      //  a.darEscudo(habilidadeUsada.SH, ultimobuffer);
                         break;
 
 
                 }
             }
           
-            
-           
-           
         }
         public void usandoHabilidade()
         {
@@ -212,7 +211,7 @@ namespace modoBatalha
                     switch (habilidadeUsada.SH._Alvo)
                     {
                         case (Alvo.Unico):
-                            usarSeta(1);
+                            usarSeta(dir);
                            // confg.vertical(1);
                           //  confg.moverseta();
                             break;

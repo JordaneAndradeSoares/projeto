@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 1273751953519683320}
   - component: {fileID: 1273751953519683323}
   - component: {fileID: 1273751953519683322}
+  - component: {fileID: 1780252710531986438}
   - component: {fileID: 2462621950578021517}
+  - component: {fileID: 5898576824353137798}
   m_Layer: 5
   m_Name: habilidades A
   m_TagString: Untagged
@@ -146,6 +148,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &1780252710531986438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273751953519683316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a22f043576591640a2bb69fba681c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabResumo: {fileID: 8994305927163871094, guid: 78eff98ac9a262041b10253698eaa009, type: 3}
+  AUH: {fileID: 2462621950578021517}
+  resumo: {fileID: 0}
 --- !u!114 &2462621950578021517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +178,33 @@ MonoBehaviour:
   Habilidade: {fileID: 1273751954635866195}
   GB: {fileID: 0}
   SH: {fileID: 0}
+  SAB: {fileID: 0}
+--- !u!61 &5898576824353137798
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273751953519683316}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1273751954635866189
 GameObject:
   m_ObjectHideFlags: 0

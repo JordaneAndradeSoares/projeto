@@ -13,6 +13,8 @@ namespace modoBatalha
         public RawImage vidaPerdida;
         public LookAtConstraint LookAtConstraint;
 
+        public RectTransform Lista_;
+
         public TextMeshProUGUI nome;
 
 

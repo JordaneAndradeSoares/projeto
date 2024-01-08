@@ -19,8 +19,9 @@ MonoBehaviour:
     vida_maxima: 0
     habilidades: []
   bufferData: {fileID: 11400000, guid: bf0a16547a2a2b54db9ac8baaa0dc460, type: 2}
-  level: 2
+  level: 99
   vida: 0
   vida_maxima: 0
   habilidades:
   - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+  - {fileID: 11400000, guid: 8294acfa6979b9041833bbc2622a1294, type: 2}

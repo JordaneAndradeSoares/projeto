@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using TMPro;
 using Codice.Client.BaseCommands;
 using PlasticGui.WorkspaceWindow.Items.LockRules;
+using UnityEngine.SceneManagement;
 
 namespace modoBatalha
 {
@@ -22,12 +23,13 @@ namespace modoBatalha
         public Transform aliados, inimigos, seta;
 
         public float espasamentoentreSi,AlturaNomes;
-        public GameObject prefabVida, prefabNome;
- 
-       
-    
-       
- 
+        public GameObject prefabVida, prefabNome,prefabEscudoBarra,prefabBolaDeEscudo,
+            ModeloSeta;
+
+        public MoverSeta Gseta;
+
+
+
 
         public ScriptavelBatalhaBuffer dataBatalha;
 
@@ -57,8 +59,11 @@ namespace modoBatalha
             public Vector3 local;
             public Kernel data;
             public bool npc;
-            public GerenciadorAttVida gvd;
- 
+            public GerenciadorAttVida gvd; //    gerenciador de vida
+           
+
+            public GameObject PreFabBarraDeEscudo;
+
             public GameObject nome_;
             public float ruido;
             public int id_;
@@ -74,8 +79,7 @@ namespace modoBatalha
 
                 id_ = id;
             }
-            public List<escudo> LEscudos = new List<escudo>();
-            public class escudo { public float vidaEscudo; public int turnos; }
+       
            
             public float defesaFinal()
             {
@@ -97,10 +101,15 @@ namespace modoBatalha
             }
             public void receberEscudo(ScriptavelHabilidades hbl,Kernel origem)
             {
+              
+
                 data.escudos.Add(new Kernel.escudo(origem, hbl.porcentagemDoEfeito *
-                    (origem.bufferData.AtaqueFisico *(origem.bufferData.TaxaDeCrescimentoDoAtaqueBasico * 
-                    origem.level) ),hbl.___DuracaoDeTurno));
- 
+                    (origem.bufferData.AtaqueFisico * (origem.bufferData.TaxaDeCrescimentoDoAtaqueBasico *
+                    origem.level)), hbl.___DuracaoDeTurno));
+                GameObject temp_ = Instantiate(PreFabBarraDeEscudo, this.gvd.GetComponent<GerenciadorAttVida>().Lista_.transform);
+
+                data.escudos[data.escudos.Count - 1].Ges = temp_;
+
             }
             public float danoBruto(ScriptavelHabilidades hbl)
             {
@@ -115,24 +124,10 @@ namespace modoBatalha
                 {
                     temp *= 1.2f;
                 }
-                Debug.Log("calculo do dano bruto"); Debug.Log("porcentagemDoEfeito = " + hbl.porcentagemDoEfeito + " " +
-                "taxa de crescimento vezes o lvl = " + ((data.bufferData.AtaqueFisico * data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)) +
-                "  resultado  = " + temp);
+             
                 return temp+ruido;
             }
  
-
-
-
-            public float danoBruto(ScriptavelAtaqueBasico atkbscl)
-            {
-                float temp = 0;
-
-                // dano normal
-                temp = atkbscl.porcentagemDoEfeito * data.bufferData.AtaqueFisico;
-             
-                return temp;
-            }
  
             public void diminuirVida(float danoBruto)
             {
@@ -149,19 +144,19 @@ namespace modoBatalha
                   Debug.Log("dano aplicado: " + temp + "foi perdido " + ((temp/data.vida_maxima))+"%  da vida");
                     try
                     {
-                        foreach (var a in LEscudos)
+                        foreach (var a in data.escudos)
                         {
-                            if (a.vidaEscudo > temp)
+                            if (a.escudo_ > temp)
                             {
-                                a.vidaEscudo -= temp;
+                                a.escudo_ -= temp;
                                 temp = 0;
                                 break;
                             }
                             else
                             {
 
-                                temp -= a.vidaEscudo;
-                                a.vidaEscudo = 0;
+                                temp -= a.escudo_;
+                                a.escudo_ = 0;
                             }
 
                             if (temp <= 0)
@@ -172,7 +167,14 @@ namespace modoBatalha
                         }
                     }
                     catch { }
-                    LEscudos.RemoveAll(x => x.vidaEscudo == 0);
+                    foreach(var a in data.escudos)
+                    {
+                        if(a.escudo_ <= 0)
+                        {
+                            Destroy(a.Ges);
+                        }
+                    }
+                    data.escudos.RemoveAll(x => x.escudo_ <= 0);
 
                     data.vida -= temp;
                     if (data.vida < 0)
@@ -223,13 +225,7 @@ namespace modoBatalha
                         break;
                 }
             }
-            public void darEscudo(ScriptavelHabilidades a, buffer_s origem)
-            {
-                escudo temp = new escudo();
-                temp.turnos = a.___DuracaoDeTurno;
-                temp.vidaEscudo = a.porcentagemDoEfeito * (1 + origem.data.level * origem.data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)+ruido;
-                LEscudos.Add(temp);
-            }
+          
         }
         private void Start()
         {
@@ -255,11 +251,13 @@ namespace modoBatalha
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
                     aliadosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
 
-                        
+
                     GameObject nome__ = Instantiate(prefabNome, aliadosL[x].obj.transform);
                     nome__.transform.position = aliadosL[x].obj.transform.position + Vector3.up * 2*((dataBatalha.aliados.Count-x) * AlturaNomes);
                     nome__.GetComponent<GerenciadorAttVida>().nome.text = "" +
                         aliadosL[x].data.bufferData.Nome + " [ Lvl." + aliadosL[x].data.level + "]";
+
+                    aliadosL[x].PreFabBarraDeEscudo = prefabEscudoBarra;
 
                     aliadosL[x].nome_ = nome__;
 
@@ -282,6 +280,10 @@ namespace modoBatalha
                     GameObject gvd_ = Instantiate(prefabVida, inimigosL[x].obj.transform);
                     gvd_.transform.position = inimigosL[x].obj.transform.position + Vector3.up;
                     inimigosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
+
+                  
+
+
                     inimigosL[x].npc = true;
 
 
@@ -291,6 +293,7 @@ namespace modoBatalha
                         inimigosL[x].data.bufferData.Nome + " [Lvl." + inimigosL[x].data.level + "]";
                     inimigosL[x].nome_ = nome__;
 
+                    inimigosL[x].PreFabBarraDeEscudo = prefabEscudoBarra;
 
 
                     //  temp_.att(dataBatalha.inimigos[x].retorno());
@@ -380,6 +383,7 @@ namespace modoBatalha
 
         public void moverseta()
         {
+            ModeloSeta.SetActive( true);
             if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.paraFrente))
             {
                 horizontal(-1);
@@ -395,22 +399,25 @@ namespace modoBatalha
             {
                 if (setaAliada > aliadosL.Count - 1)
                     setaAliada = 0;
-                seta.localPosition = aliadosL[setaAliada].obj.transform.position + (Vector3.up * 2);
+                seta.position = aliadosL[setaAliada].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
                     gbatalha.escolidoAlvo(aliadosL[setaAliada]);
+                    ModeloSeta.SetActive (false);
                 }
             }
             else
             {
                 if (setaInimiga > inimigosL.Count - 1)
                     setaInimiga = 0;
-                seta.localPosition = inimigosL[setaInimiga].obj.transform.position + (Vector3.up * 2);
+                seta.position = inimigosL[setaInimiga].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
                     gbatalha.escolidoAlvo(inimigosL[setaInimiga]);
+                    ModeloSeta.SetActive( false);
                 }
             }
+            Gseta.definirDestino(seta.position);
 
 
 
@@ -489,6 +496,18 @@ namespace modoBatalha
                 a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.vida_maxima
                     ),
                     a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
+
+                if(a.data.escudos.Count > 0)
+                {
+                   foreach(var b in a.data.escudos)
+                    {
+                        GerenciadorAttVida ges = b.Ges.GetComponent<GerenciadorAttVida>();
+
+                        ges.vidaPerdida.transform.localPosition = new Vector3((b.escudo_ / b.escudo_maximo
+                  ),
+                  ges.vidaPerdida.transform.localPosition.y, ges.vidaPerdida.transform.localPosition.z);
+                    }
+                }
             }
 
         }
@@ -526,7 +545,7 @@ namespace modoBatalha
             {
                 try
                 {
-                    aliadosL[x].obj.transform.localPosition = aliados.transform.position + (Vector3.right * x * espasamentoentreSi);
+                    aliadosL[x].obj.transform.position = aliados.transform.position + (Vector3.right * x * espasamentoentreSi);
 
                     aliadosL[x].nome_.transform.position = aliadosL[x].obj.transform.position + Vector3.up * 2 + (Vector3.up * (aliadosL.Count - x) * AlturaNomes);
                 }
@@ -539,7 +558,7 @@ namespace modoBatalha
             {
                 try
                 {
-                    inimigosL[x].obj.transform.localPosition = inimigos.transform.position + (Vector3.right * x * espasamentoentreSi);
+                    inimigosL[x].obj.transform.position = inimigos.transform.position + (Vector3.right * x * espasamentoentreSi);
 
 
                     inimigosL[x].nome_.transform.position = (inimigosL[x].obj.transform.position + Vector3.up * 2) + (Vector3.up * (inimigosL.Count - x) * AlturaNomes);
@@ -560,5 +579,24 @@ namespace modoBatalha
             attPosicao();
         }
 
+
+        public float tentarFugir = 30;
+        public void TentarFugir()
+        {
+            if(gbatalha._statusgame == statusGame.player)
+            {
+                bool conseguio = UnityEngine.Random.Range(0, 100) > tentarFugir;
+                if (!conseguio)
+                {
+                    tentarFugir += 8;
+
+                }
+                else
+                {
+                    SceneManager.LoadScene("SampleScene");
+                }
+
+            }
+        }
     }
 }
