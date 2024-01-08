@@ -13,7 +13,7 @@ namespace ValoresGlobais
         //somente em combate
         public KeyCode confirmar;
         // MUNDO ABERTO
-        public KeyCode atacar , abrirEquipe;
+        public KeyCode atacar , abrirEquipe,AbrirMatrizDeDados;
         
         public static GerenciadorDeTeclado instanc;
         private void Start()

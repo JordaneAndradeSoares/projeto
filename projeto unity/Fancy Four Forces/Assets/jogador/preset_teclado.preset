@@ -45,7 +45,19 @@ Preset:
     value: 32
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: confirmar
+    value: 264
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: atacar
     value: 323
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: abrirEquipe
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: AbrirMatrizDeDados
+    value: 114
     objectReference: {fileID: 0}
   m_ExcludedProperties: []

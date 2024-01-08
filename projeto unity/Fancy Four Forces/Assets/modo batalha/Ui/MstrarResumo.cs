@@ -16,23 +16,42 @@ namespace modoBatalha
    
         public void abrir()
         {
-            if (resumo == null)
+            try
             {
-                resumo = Instantiate(prefabResumo,this.transform.parent.transform.parent.transform.parent);
-                resumo.transform.position = this.transform.position;
-                resumo.GetComponent<AuxMostrarResumo>().mostrar(AUH);
+                if (resumo == null)
+                {
+                    resumo = Instantiate(prefabResumo, this.transform.parent.transform.parent.transform.parent);
+                    resumo.transform.position = this.transform.position;
+                    resumo.GetComponent<AuxMostrarResumo>().mostrar(AUH);
 
 
+                }
             }
+            catch { }
+            Debug.Log("aaaaaaa");
           
+        }
+        private void OnDestroy()
+        {
+            try
+            {
+                Destroy(resumo);
+            }
+            catch
+            {
+            }
         }
         public void fechar()
         {
-            if (resumo != null)
+            try
             {
-                Destroy(resumo);
-                resumo = null;
+                if (resumo != null)
+                {
+                    Destroy(resumo);
+                    resumo = null;
+                }
             }
+            catch { }
 
         }
         public void OnPointerEnter(PointerEventData eventData)

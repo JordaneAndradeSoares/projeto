@@ -112,9 +112,13 @@ namespace jogador
         public GameObject prefabMolduraInventario;
         public GameObject FundoInventarioInventario;
 
-        public GameObject abrirefecharInventario;
+        public GameObject abrirefecharInventario,AbrirEFrecharAMD , MostrarModelo3DAmd;
 
-        public List<GameObject> molduras = new List<GameObject>();
+        public GameObject FundoSlotIMatrizDeDados, prefabSlotFundoSlotIMatrizDeDados;
+        public AttMatrizDeDados AMD;
+
+        public List<GameObject> MoldurasGerenciamentoDeEquipe = new List<GameObject>();
+        public List<GameObject> MoldurasMatrizDeDados = new List<GameObject>();
         public void abrirEquipe()
         {
             flagEquipe = !flagEquipe;
@@ -125,24 +129,48 @@ namespace jogador
 
                     
                     GameObject b = Instantiate(prefabMolduraInventario, FundoInventarioInventario.transform);
-                    b.GetComponent<auxUIInventario>().iniciar(a);
-                    molduras.Add(b);
+                    auxUIInventario c = b.GetComponent<auxUIInventario>();
+                    c.iniciar(a);
+
+                    MoldurasGerenciamentoDeEquipe.Add(b);
                 }
             }
             else
             {
-                foreach(var a in molduras)
+                foreach(var a in MoldurasGerenciamentoDeEquipe)
                 {
                     Destroy(a);
                 }
 
-                molduras.Clear();
+                MoldurasGerenciamentoDeEquipe.Clear();
             }
 
 
             abrirefecharInventario.SetActive(flagEquipe);
 
 
+        }
+        public void AbrirAttMatrizDeDados()
+        {
+            AbrirEFrecharAMD.SetActive(!AbrirEFrecharAMD.activeSelf);
+
+            if (AbrirEFrecharAMD.activeSelf)
+            {
+                foreach (var a in inventario.Inventario)
+                {
+                    GameObject b = Instantiate(prefabSlotFundoSlotIMatrizDeDados, FundoSlotIMatrizDeDados.transform);
+                    b.GetComponent<AuxAttMatrizDeDados>().iniciar(a, AMD);
+                    MoldurasMatrizDeDados.Add(b);
+                }
+            }
+            else
+            {
+                foreach(var a in MoldurasMatrizDeDados)
+                {
+                    Destroy(a);
+                }
+                MoldurasMatrizDeDados.Clear();
+            }
         }
 
         void Update()
@@ -162,6 +190,11 @@ namespace jogador
             {
                 abrirEquipe();
             }
+            if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.AbrirMatrizDeDados))
+            {
+                AbrirAttMatrizDeDados();
+            }
+
           //  tirarDoInventarioOsQueEstiveremEquipados();
 
         }
@@ -174,9 +207,9 @@ namespace jogador
             foreach(var a in EntrarEmBatalha.instanc.equipes.aliados)
             {
                
-               Destroy( molduras.Find(x => x.GetComponent<auxUIInventario>().dados == a.origem));
+               Destroy( MoldurasGerenciamentoDeEquipe.Find(x => x.GetComponent<auxUIInventario>().dados == a.origem));
             }
-            molduras.RemoveAll(x => x == null);
+            MoldurasGerenciamentoDeEquipe.RemoveAll(x => x == null);
         }
     }
 
