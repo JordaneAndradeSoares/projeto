@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BufferData: {fileID: 11400000, guid: 99ba6ce063897ea46a621764ddf97ce0, type: 2}
   Origens:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cc4a605bf4b6abf47b3c651d6fce04f0, type: 2}
