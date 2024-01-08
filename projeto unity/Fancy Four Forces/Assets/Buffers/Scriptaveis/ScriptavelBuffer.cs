@@ -28,7 +28,8 @@ namespace Buffers
 
         public ScriptavelAtaqueBasico AtaqueBasico;
         public Efetividade TipoDeEfetividade;
-
+        public List<Biomas_> Biomas;
+        
         public bool evolui;
 
         public bool criaturaNoturna;
@@ -39,5 +40,6 @@ namespace Buffers
 
         
     public enum Efetividade {liso, blindado}
+    public enum Biomas_ { Nenhum,Aquatico,DesertoRochoso,FlorestaDePinheiros,SelvaTropical }
 
 }
