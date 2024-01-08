@@ -26,6 +26,7 @@ MonoBehaviour:
   TaxaDeCrescimentoDaEstamina: 0.1
   AtaqueBasico: {fileID: 11400000, guid: 26b9d8407f224de46b7f8df2d23179bf, type: 2}
   TipoDeEfetividade: 0
+  Biomas: 020000000400000003000000
   evolui: 0
   criaturaNoturna: 0
   modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}

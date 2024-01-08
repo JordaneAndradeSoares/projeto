@@ -40,6 +40,6 @@ namespace Buffers
 
         
     public enum Efetividade {liso, blindado}
-    public enum Biomas_ { Nenhum,Aquatico,DesertoRochoso,FlorestaDePinheiros,SelvaTropical }
+    public enum Biomas_ {Mar, AguaDoce, DesertoRochoso, FlorestaDePinheiros, SelvaTropical}
 
 }
