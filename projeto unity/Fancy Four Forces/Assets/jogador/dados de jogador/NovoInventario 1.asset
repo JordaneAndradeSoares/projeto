@@ -13,43 +13,29 @@ MonoBehaviour:
   m_Name: NovoInventario 1
   m_EditorClassIdentifier: 
   Inventario:
-  - bufferData: {fileID: 11400000, guid: 640b14e4e308ef34580f7943f6146477, type: 2}
-    level: 8
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 22
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: d4f6985ed6ecb61408d6568941164c7a, type: 2}
-    level: 3
+  - bufferData: {fileID: 11400000, guid: c95ff9de0773d214fab8081f69378645, type: 2}
+    level: 9
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: cb98ce34a69179545af8c083a51b7a1c, type: 2}
-    level: 6
+  - bufferData: {fileID: 11400000, guid: b09501abb5ba6584cbdf57d6e7b3a635, type: 2}
+    level: 9
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: 9316497f9ee972749af66af2f40990df, type: 2}
-    level: 42
+  - bufferData: {fileID: 11400000, guid: b8a4e77ae4c5f59429bcf3d28232582d, type: 2}
+    level: 9
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: dfc84626a80f9fb46963fe8d47b168cf, type: 2}
-    level: 75
+  - bufferData: {fileID: 11400000, guid: 1e3da77d24c8e6f4686438f98b20f27b, type: 2}
+    level: 9
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: 9316497f9ee972749af66af2f40990df, type: 2}
-    level: 1
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  - bufferData: {fileID: 11400000, guid: 0f8db4f8aeabeae46baf7aea63976d2c, type: 2}
-    level: 5
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  - bufferData: {fileID: 11400000, guid: 96bcb678f17a31e4392503c7e32c7127, type: 2}
-    level: 3
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
+  PoeiraEstelar: 1000

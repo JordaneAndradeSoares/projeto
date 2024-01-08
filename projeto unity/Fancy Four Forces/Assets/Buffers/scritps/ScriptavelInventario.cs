@@ -10,5 +10,6 @@ namespace Buffers
     {
        
         public List<Kernel> Inventario;
+        public float PoeiraEstelar;
     }
 }

@@ -13,17 +13,18 @@ namespace jogador
         public GameObject prefabResumo;
         public Kernel AUH;
         public GameObject resumo;
-        public bool Carregar;
+     
+        public BotoesAMD Carregar;
 
         public void abrir()
         {
          
             if (resumo == null)
             {
-                resumo = Instantiate(prefabResumo, this.transform.parent);
+
+                resumo = Instantiate(prefabResumo, this.transform.parent.transform.parent.transform.parent);
                 resumo.transform.position = this.transform.position;
                 resumo.GetComponent<AuxPopUpAMD>().mostrar(AUH, Carregar);
-
 
             }
 
@@ -36,7 +37,6 @@ namespace jogador
                 Destroy(resumo);
                 resumo = null;
             }
-            Debug.Log("fechando");
 
         }
         public void OnPointerEnter(PointerEventData eventData)
@@ -51,4 +51,5 @@ namespace jogador
             fechar();
         }
     }
+    public enum BotoesAMD { carregar,descarregar,evoluir}
 }
