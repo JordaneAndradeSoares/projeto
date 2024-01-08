@@ -13,29 +13,9 @@ MonoBehaviour:
   m_Name: NovoInventario 1
   m_EditorClassIdentifier: 
   Inventario:
-  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
-    level: 22
+  - bufferData: {fileID: 11400000, guid: 62610a8a0d4bb1d4c838d03ffca4a300, type: 2}
+    level: 10
     vida: 0
     vida_maxima: 0
     habilidades: []
-  - bufferData: {fileID: 11400000, guid: c95ff9de0773d214fab8081f69378645, type: 2}
-    level: 9
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  - bufferData: {fileID: 11400000, guid: b09501abb5ba6584cbdf57d6e7b3a635, type: 2}
-    level: 9
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  - bufferData: {fileID: 11400000, guid: b8a4e77ae4c5f59429bcf3d28232582d, type: 2}
-    level: 9
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  - bufferData: {fileID: 11400000, guid: 1e3da77d24c8e6f4686438f98b20f27b, type: 2}
-    level: 9
-    vida: 0
-    vida_maxima: 0
-    habilidades: []
-  PoeiraEstelar: 1000
+  PoeiraEstelar: 550

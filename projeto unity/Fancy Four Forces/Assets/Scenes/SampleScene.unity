@@ -1730,6 +1730,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1914521853}
+        m_TargetAssemblyTypeName: jogador.PopUpAMD, Jogador
+        m_MethodName: att
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: jogador.AttMatrizDeDados, Jogador
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1914521853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1965,6 +1989,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2126293921}
         m_TargetAssemblyTypeName: jogador.AttMatrizDeDados, Jogador
         m_MethodName: Sacrificar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1914521853}
+        m_TargetAssemblyTypeName: jogador.PopUpAMD, Jogador
+        m_MethodName: att
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

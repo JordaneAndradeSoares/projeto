@@ -55,7 +55,7 @@ namespace jogador
         {
             if (KernelAtual != null)
             {
-                inventario.PoeiraEstelar += Arredondar(Mathf.Pow(KernelAtual.level, 2) / 2);
+                inventario.PoeiraEstelar +=(KernelAtual.level * 10);
                 inventario.Inventario.Remove(KernelAtual);
                 KernelAtual = null;
                 Debug.Log("sacrificando");
@@ -66,10 +66,14 @@ namespace jogador
         {
             if (KernelAtual != null)
             {
-                if (inventario.PoeiraEstelar > Arredondar(Mathf.Pow(KernelAtual.level, 2)))
+                if (inventario.PoeiraEstelar >= KernelAtual.level * 10)
                 {
-                    inventario.PoeiraEstelar -= Arredondar(Mathf.Pow(KernelAtual.level, 2));
+                    inventario.PoeiraEstelar -= KernelAtual.level * 10;
                     KernelAtual.level++;
+                }
+                else
+                {
+                    Debug.Log(" " + inventario.PoeiraEstelar + " vs " + KernelAtual.level * 10);
                 }
             }
             Debug.Log("carregar");
@@ -89,16 +93,17 @@ namespace jogador
                 MostrarNome.tmp.text = KernelAtual.bufferData.Nome;
                 _KernelEvoluir.SetActive(KernelAtual.bufferData.evolui && KernelAtual.level > 19);
             }
-            MostrarQuantidadeDePoeiraEstelar.tmp.text = "[PE: " + @ArredondarS(inventario.PoeiraEstelar)+ "]";
+            MostrarQuantidadeDePoeiraEstelar.tmp.text = "[PE: " + inventario.PoeiraEstelar+ "]";
     }
         
         public void KernelEvoluir()
         {
             if (KernelAtual != null)
             {
-                if (inventario.PoeiraEstelar > Arredondar(Mathf.Pow(KernelAtual.level, 2)))
+                if (inventario.PoeiraEstelar >= KernelAtual.level * 10)
                 {
-                    inventario.PoeiraEstelar -= Arredondar(Mathf.Pow(KernelAtual.level, 2));
+                    Debug.Log("evoluir gastou " + KernelAtual.level * 10);
+                    inventario.PoeiraEstelar -= KernelAtual.level * 10;
                     KernelAtual.level -= 19;
                     ScriptavelBuffer temp = null;
                     foreach (var ain in CLE.TodasAsEvolucoes)
@@ -115,60 +120,7 @@ namespace jogador
                 attDados();
             }
         }
-        public float Arredondar(float a)
-        {
-
-
-            if (a < 1000)
-            {
-
-                return MathF.Round( a);
-            }
-            else
-            {
-                int resultado = (int)(a / 1000);
-
-
-                if (resultado < 1000)
-                {
-                    return resultado +(a - (resultado * 1000));
-                }
-
-                int milhao = (int)((float)resultado / 1000);
-
-                return milhao + (int)((float)resultado - ((float)milhao * 1000f));
-
-            }
-        }
-        public string ArredondarS(float a)
-        {
-
-          
-            if (a < 1000)
-            {
-                // Arredonda o número para inteiro
-                Int64 resultado = (int)Math.Round(a);
-
-                // Retorna o número arredondado
-                return resultado.ToString();
-            }
-            else
-            {
-                Int64 resultado = (Int64)(a / 1000);
-
-
-                if (resultado < 1000)
-                {
-                    return resultado + "K e" + (int)(a - (resultado * 1000));
-                }
-
-                Int64 milhao = (Int64)((float)resultado / 1000);
-
-                return milhao.ToString() + "M e" + (Int64)((float)resultado - ((float)milhao * 1000f)) + "K";
-
-            }
-        }
-
+      
 
         private void OnDisable()
         {

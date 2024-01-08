@@ -39,6 +39,17 @@ namespace jogador
             }
 
         }
+        public void att()
+        {
+            try
+            {
+                resumo.GetComponent<AuxPopUpAMD>().mostrar(AUH, Carregar);
+            }
+            catch
+            {
+
+            }
+        }
         public void OnPointerEnter(PointerEventData eventData)
         {
             abrir();

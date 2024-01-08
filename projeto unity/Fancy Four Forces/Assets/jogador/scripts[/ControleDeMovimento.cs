@@ -117,6 +117,8 @@ namespace jogador
         public GameObject FundoSlotIMatrizDeDados, prefabSlotFundoSlotIMatrizDeDados;
         public AttMatrizDeDados AMD;
 
+       
+
         public List<GameObject> MoldurasGerenciamentoDeEquipe = new List<GameObject>();
         public List<GameObject> MoldurasMatrizDeDados = new List<GameObject>();
         public void abrirEquipe()
