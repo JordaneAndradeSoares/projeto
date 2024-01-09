@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2185883554467401156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756272960165927337}
+  - component: {fileID: 1133031340626452958}
+  m_Layer: 0
+  m_Name: Gerador De Cidade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1756272960165927337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185883554467401156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 376.95972, y: 165.99345, z: 166.5947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5619497596804025722}
+  - {fileID: 7965627821431314810}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133031340626452958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2185883554467401156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40d39962d707a8408493666cc31b2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ruas: []
+  PontosEmVolta: []
+  todosPontosEmVolta: []
+  pontosInternos: []
+  GuizmosAoRedor: 0
+  GuizmosInterno: 0
+  guizmosLinhasCaminho: 0
+  quantidadeEmVolta: 0
+  quantidadeDePontos: 0
+  distanciaDeCorte: 0
+  pontosINternos: []
+  pontosExternos: []
+  rangeDistPulo: 0
+--- !u!1 &2261388808150282619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8227189031747548643}
+  - component: {fileID: 3902792252947067895}
+  m_Layer: 0
+  m_Name: 'Rua '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8227189031747548643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261388808150282619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7965627821431314810}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3902792252947067895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2261388808150282619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af4ea45eb0f66749898cfd779fe17cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  espessura: 5
+  escala: 5
+  AnguloAgudo: 45
+  dstvgz: 0
+  MostrarRastros: 0
+  DiminuirEmRetas: 2
+  AdicionarPoligonosACadaXDistancia: 5
+  QuantidadeDeAmostragemParaSuavizacaoAutomatica: 30
+  Suavizacao: 0
+  layerDaFloresta:
+    serializedVersion: 2
+    m_Bits: 0
+  lmp: {fileID: 0}
+  RuaFechada: 0
+  pontosdaEstrada: []
+  pontosAuxiliares: []
+  bifurcacaoEntrada: []
+  bifurcacaoSaida: []
+  auxGerenciadorEstradas: {fileID: 0}
+  cor: {r: 0, g: 0, b: 0, a: 0}
+  ordemTrianguo: []
+  mesh: {fileID: 0}
+  gerarMalha: 0
+  entrada:
+    ConecatacoComEste: {fileID: 0}
+    meuIndiceEmQueEstaCOnectado: 0
+    INdiceDeleEmQueEstaConectadoEmMim: 0
+  saida:
+    ConecatacoComEste: {fileID: 0}
+    meuIndiceEmQueEstaCOnectado: 0
+    INdiceDeleEmQueEstaConectadoEmMim: 0
+  conecxoes: []
+--- !u!1 &3823735372898117898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5619497596804025722}
+  m_Layer: 0
+  m_Name: Avenida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5619497596804025722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3823735372898117898}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1756272960165927337}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5265386896726683949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7965627821431314810}
+  m_Layer: 0
+  m_Name: Ruas subjacentes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7965627821431314810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265386896726683949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8227189031747548643}
+  m_Father: {fileID: 1756272960165927337}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
