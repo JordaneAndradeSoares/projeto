@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7523b627dbf6b59489a2604e7215f958, type: 3}
+  m_Name: 17. vespa
+  m_EditorClassIdentifier: 
+  Nome: vespa
+  Numero: 17
+  VidaMaxima: 35
+  Velocidade: 40
+  AtaqueFisico: 24
+  DefesaFisica: 16
+  Estamina: 50
+  TaxaDeCrescimentoDaVidaMaxima: 0.33
+  TaxaDeCrescimentoDaVelocidade: 0.22
+  TaxaDeCrescimentoDoAtaqueBasico: 0.2
+  TaxaDeCrescimentoDaDefesaFisica: 0.2
+  TaxaDeCrescimentoDaEstamina: 0.1
+  AtaqueBasico: {fileID: 11400000, guid: cd9548f85195b9340b0e6770c12c26c7, type: 2}
+  TipoDeEfetividade: 1
+  Biomas: 020000000400000003000000
+  evolui: 1
+  criaturaNoturna: 0
+  modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}
+  iconeMiniatura: {fileID: 2800000, guid: d6b704525fdad474d8d80e2c8de9ca6f, type: 3}
