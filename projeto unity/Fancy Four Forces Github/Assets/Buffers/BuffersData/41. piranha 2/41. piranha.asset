@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7523b627dbf6b59489a2604e7215f958, type: 3}
+  m_Name: 41. piranha
+  m_EditorClassIdentifier: 
+  Nome: piranha
+  Numero: 41
+  VidaMaxima: 30
+  Velocidade: 30
+  AtaqueFisico: 20
+  DefesaFisica: 20
+  Estamina: 10
+  TaxaDeCrescimentoDaVidaMaxima: 0.3
+  TaxaDeCrescimentoDaVelocidade: 0.2
+  TaxaDeCrescimentoDoAtaqueBasico: 0.2
+  TaxaDeCrescimentoDaDefesaFisica: 0.2
+  TaxaDeCrescimentoDaEstamina: 0.1
+  AtaqueBasico: {fileID: 11400000, guid: c497d986f68f4664ba7abb559f2e9a03, type: 2}
+  TipoDeEfetividade: 0
+  evolui: 0
+  criaturaNoturna: 1
+  modelo_3D: {fileID: 8476430384559416321, guid: fd590190e127ec24e9bf9c1f7bbf2854, type: 3}
+  iconeMiniatura: {fileID: 2800000, guid: d6b704525fdad474d8d80e2c8de9ca6f, type: 3}
