@@ -445,9 +445,9 @@ MonoBehaviour:
   blendMode: 0
   opacity: 100
   passIndex: 1
-  minMax: {x: 5.242718, y: 90.00001}
-  minFalloff: 10
-  maxFalloff: 10
+  minMax: {x: 4.368932, y: 90}
+  minFalloff: 8.4
+  maxFalloff: 0.001
 --- !u!1 &1299948421
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,8 +554,8 @@ MonoBehaviour:
   autoRepaint: 0
   terrainListeners: []
   bounds:
-    m_Center: {x: 500, y: 1302, z: 500}
-    m_Extent: {x: 500, y: 1250, z: 500}
+    m_Center: {x: 500, y: 1427, z: 500}
+    m_Extent: {x: 500, y: 1375, z: 500}
   filterShader: {fileID: 4800000, guid: 0f44df78e3d64d9cb2616cac3d84cb77, type: 3}
 --- !u!1 &1516056421
 GameObject:
@@ -717,7 +717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e5713f3d3028ed745ab8f9c6bd0f88c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 101.55
+      value: 102.98
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e5713f3d3028ed745ab8f9c6bd0f88c2, type: 3}
       propertyPath: m_LocalPosition.z
