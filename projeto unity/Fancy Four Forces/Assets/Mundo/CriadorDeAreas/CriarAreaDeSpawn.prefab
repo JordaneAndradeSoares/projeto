@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4232474314626173115}
   - component: {fileID: 709267283633434796}
+  - component: {fileID: -6983042912634872796}
+  - component: {fileID: 8945401690168300490}
   m_Layer: 0
   m_Name: CriarAreaDeSpawn
   m_TagString: Untagged
@@ -44,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c576aeddc0f5154999beccc71d0181d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _criradorDeAreas: {fileID: 0}
+  _criradorDeAreas: {fileID: -6983042912634872796}
   terreno: {fileID: 0}
   _grupoDeCriats: {fileID: 11400000, guid: 9559d18600a43cc45891af741c13c654, type: 2}
   spawns: []
@@ -56,3 +58,37 @@ MonoBehaviour:
   jogador: {fileID: 0}
   qauntidadeMaximaDeCriaturas: 5
   salvar: 0
+--- !u!114 &-6983042912634872796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240175ab0987b7242ab6d0c3a16dcd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PontosFloresta: []
+  ListaVertices: []
+  trl: {fileID: 8945401690168300490}
+  mesh: {fileID: 0}
+  renderMalha: 0
+  concavo: 0
+  ativar_desativar: 0
+--- !u!114 &8945401690168300490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2fe583996eeed46bee1843848e2c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pontos_inicial: []
+  triangulos_: []
+  guizmos: 0

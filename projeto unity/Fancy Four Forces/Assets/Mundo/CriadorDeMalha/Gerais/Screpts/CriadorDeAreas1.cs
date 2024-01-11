@@ -15,10 +15,11 @@ namespace Ageral
         public List<Vector3> PontosFloresta;
         [HideInInspector]
         public List<Vector3> ListaVertices = new List<Vector3>();
+      
 
-       
 
-     
+
+
         public triangulador trl;
         public Mesh mesh;
         [HideInInspector]
@@ -83,6 +84,8 @@ namespace Ageral
         public void triangular()
         {
             ListaVertices = trl.triangular(PontosFloresta);
+
+         
         }
 
 
@@ -170,9 +173,9 @@ namespace Ageral
                 int v2 = (x) + 1;
                 int v3 = (x) + 2;
 
-                ListaVertices.Add(PontosFloresta[v1] );
-                ListaVertices.Add(PontosFloresta[v2] );
-                ListaVertices.Add(PontosFloresta[v3] );
+                ListaVertices.Add(PontosFloresta[v1] - transform.position);
+                ListaVertices.Add(PontosFloresta[v2] - transform.position);
+                ListaVertices.Add(PontosFloresta[v3] - transform.position);
             }
         }
 
@@ -181,11 +184,12 @@ namespace Ageral
     [CustomEditor(typeof(CriadorDeAreas1))]
     public class EditorCriadorDeAreas1 : Editor
     {
-        public SerializedProperty PontosFloresta;
+        public SerializedProperty PontosFloresta, ListaVertices,PontosFloresta_vizu;
           void OnEnable()
         {
 
             PontosFloresta = serializedObject.FindProperty("PontosFloresta");
+            ListaVertices = serializedObject.FindProperty("ListaVertices");
 
             CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
             if (meuScript.trl == null)
@@ -201,6 +205,7 @@ namespace Ageral
        
             serializedObject.Update();
             EditorGUILayout.PropertyField(PontosFloresta, new GUIContent("Pontos adicionados"));
+            EditorGUILayout.PropertyField(ListaVertices, new GUIContent("ListaVertices"));
 
             CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
             EditorGUI.BeginChangeCheck();
@@ -238,14 +243,15 @@ namespace Ageral
         {
             CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
 
+          
             if (meuScript.ativar_desativar)
             {
                 for (int x = 0; x < meuScript.PontosFloresta.Count; x++)
                 {
-                    meuScript.PontosFloresta[x] = Handles.PositionHandle(meuScript.PontosFloresta[x] + meuScript.transform.position, Quaternion.identity) - meuScript.transform.position;
+                    meuScript.PontosFloresta[x] = Handles.PositionHandle(meuScript.PontosFloresta[x], Quaternion.identity) ;
                 }
                 if (meuScript.PontosFloresta.Count > 3)
-                {
+                {   
                     try
                     {
                         Handles.color = Color.red;

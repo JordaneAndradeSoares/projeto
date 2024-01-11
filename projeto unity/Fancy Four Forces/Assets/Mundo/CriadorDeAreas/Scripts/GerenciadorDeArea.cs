@@ -140,7 +140,7 @@ namespace Areas
             ScriptavelBuffer tempbuf = EscolherBuffer();
 
             GameObject tempG = Instantiate(ExemploModelo3D, transform);
-            tempG.transform.position = tempV ;
+          //  tempG.transform.position = tempV ;
 
             GerenciadorBuffers tempGB = tempG.GetComponentInChildren<GerenciadorBuffers>();
             tempGB.bufferData = tempbuf;

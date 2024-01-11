@@ -26,6 +26,68 @@ namespace Buffers
                 probabilidade = b;
             }
         }
+        public void teste()
+        {
+            Debug.Log("a");
+            float NEmedio = 0;
+
+            for(int x = 0; x < BufferData.Count; x++)
+            {
+                NEmedio += BufferData[x].EstagioEvolutivo;
+            }
+            NEmedio /= BufferData.Count;
+            float tempF = 0;
+            for (int x = 0; x < BufferData.Count; x++)
+            {
+                float prob = BufferData[x].EstagioEvolutivo / NEmedio;
+
+               
+                //
+                float diferenca = BufferData[x].EstagioEvolutivo - NEmedio;
+                float valor = Mathf.Abs(diferenca) / NEmedio;
+                prob = Mathf.Lerp(1, 0, valor);
+                //
+                prob = BufferData[x].EstagioEvolutivo < NEmedio ? prob * 2 : prob / 2;
+             
+                tempF += prob;
+                BufferDataProbabilidade.Add(new probabilidades(BufferData[x], prob));
+
+            }
+
+            somatoriaProb = tempF;
+
+        }
+        public void calcularProbabilidade()
+        {
+            
+            float NEmedio = 0;
+            
+            foreach (var a in BufferData)
+            {
+                NEmedio += a.EstagioEvolutivo;
+            }
+            NEmedio /= BufferData.Count;
+            float tempF = 0;
+            Debug.Log(BufferData.Count + NEmedio);
+            foreach (var a in BufferData)
+            {
+                float prob = a.EstagioEvolutivo / NEmedio;
+                //
+                float diferenca = a.EstagioEvolutivo - NEmedio;
+                float valor = Mathf.Abs(diferenca) / NEmedio;
+                prob = Mathf.Lerp(1, 0, valor);
+                //
+                prob = a.EstagioEvolutivo < NEmedio ? prob * 2 : prob / 2;
+                Debug.Log(prob);
+
+                tempF += prob;
+                BufferDataProbabilidade.Add(new probabilidades(a, prob));
+
+            }
+
+            somatoriaProb = tempF;
+            
+        }
 
     }
 
@@ -36,30 +98,10 @@ namespace Buffers
         {
             base.OnInspectorGUI();
             ScriptavelGrupoDeCriaturas meuScript = (ScriptavelGrupoDeCriaturas)target;
-            if (GUILayout.Button("CriarProbabilidade"))
+            if (GUILayout.Button("CriarProbabilidade") && meuScript.BufferDataProbabilidade.Count ==0)
             {
-
-                float NEmedio = 0;
-                foreach(var a in meuScript.BufferData)
-                {
-                    NEmedio += a.EstagioEvolutivo;
-                }
-                NEmedio /= meuScript.BufferData.Count;
-                float tempF = 0;
-                foreach(var a in meuScript.BufferData)
-                {
-                    float prob = a.EstagioEvolutivo / NEmedio;
-                    //
-                    float diferenca = a.EstagioEvolutivo - NEmedio ;
-                    float valor = Mathf.Abs(diferenca) / NEmedio;
-                    prob = Mathf.Lerp(1, 0, valor);
-                    //
-                    prob = a.EstagioEvolutivo < NEmedio ? prob *2: prob  / 2;
-                    tempF += prob;
-                    meuScript.BufferDataProbabilidade.Add(new ScriptavelGrupoDeCriaturas.probabilidades(a, prob));
-
-                }
-                meuScript.somatoriaProb = tempF;
+                meuScript.teste();
+             //   meuScript.calcularProbabilidade();
             }
         }
     }
