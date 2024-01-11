@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1211089870440988864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4232474314626173115}
+  - component: {fileID: 709267283633434796}
+  - component: {fileID: -6983042912634872796}
+  - component: {fileID: 8945401690168300490}
+  m_Layer: 0
+  m_Name: CriarAreaDeSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4232474314626173115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.42997, y: 43.68644, z: 41.7449}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &709267283633434796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c576aeddc0f5154999beccc71d0181d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _criradorDeAreas: {fileID: -6983042912634872796}
+  terreno: {fileID: 0}
+  _grupoDeCriats: {fileID: 11400000, guid: 9559d18600a43cc45891af741c13c654, type: 2}
+  spawns: []
+  quantidadeMaximaDeCriaturas: 0
+  ExemploModelo3D: {fileID: 1394206054380549340, guid: 15404fa02a1d42b468dcd18b2e0687a6, type: 3}
+  MostrarCirculoDeDistanciaParaSpawnar: 0
+  DistanciaParaSpawnar: 0
+  tempoEntreCadaSpawn: 0
+  jogador: {fileID: 0}
+  qauntidadeMaximaDeCriaturas: 5
+  salvar: 0
+--- !u!114 &-6983042912634872796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240175ab0987b7242ab6d0c3a16dcd09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PontosFloresta: []
+  ListaVertices: []
+  trl: {fileID: 8945401690168300490}
+  mesh: {fileID: 0}
+  renderMalha: 0
+  concavo: 0
+  ativar_desativar: 0
+--- !u!114 &8945401690168300490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211089870440988864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2fe583996eeed46bee1843848e2c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pontos_inicial: []
+  triangulos_: []
+  guizmos: 0

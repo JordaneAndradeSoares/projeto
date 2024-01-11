@@ -10,6 +10,7 @@ namespace Buffers
     {
         public string Nome;
         public int Numero;
+        public int EstagioEvolutivo;
 
         public float VidaMaxima;
         public float Velocidade;

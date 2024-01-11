@@ -1,34 +1,30 @@
+using PlasticGui.WorkspaceWindow.Home;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using teste;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Ageral
 {
     public class CriadorDeAreas1 : MonoBehaviour
     {
 
-        public List<Vector3> PontosFloresta = new List<Vector3>();
+        public List<Vector3> PontosFloresta;
         [HideInInspector]
         public List<Vector3> ListaVertices = new List<Vector3>();
+      
 
-     
+
+
+
         public triangulador trl;
         public Mesh mesh;
         [HideInInspector]
         public bool renderMalha,concavo;
-        public void AdicionarVertice()
-        {
-            Vector2 aux = new Vector3();
-            aux = transform.position;
-            PontosFloresta.Add(aux);
 
-        }
-        public void removerVertice()
-        {
-            PontosFloresta.RemoveAt(PontosFloresta.Count - 1);
-        }
 
 
 
@@ -81,30 +77,30 @@ namespace Ageral
             }
 
 
+
+
+
         }
         public void triangular()
         {
             ListaVertices = trl.triangular(PontosFloresta);
+
+         
         }
 
 
-        public void percorrerMalha(Mesh mesh_)
+        public Vector3 PontoAleatorio()
         {
            
-            float valorMax = CalcularAreaDaMesh(mesh) ;
-            for (int x = 0; x < mesh.triangles.Length / 3; x++)
-            {
-
-
-                int randomTriangleIndex = mesh.triangles[x];
+           
+                int randomTriangleIndex = mesh.triangles[Random.Range(0, mesh.triangles.Length/3)];
                 int startIndex = randomTriangleIndex * 3;
 
                 Vector3 vertexA = mesh.vertices[mesh.triangles[startIndex]];
                 Vector3 vertexB = mesh.vertices[mesh.triangles[startIndex + 1]];
                 Vector3 vertexC = mesh.vertices[mesh.triangles[startIndex + 2]];
 
-                for (float z = 0; z < (int)valorMax; z++)
-                {
+               
 
 
                     float u = Random.Range(0f, 1f);
@@ -116,10 +112,11 @@ namespace Ageral
                         v = 1f - v;
                     }
 
-                    Vector3 randomPosition = vertexA + u * (vertexB - vertexA) + v * (vertexC - vertexA);
-                     }
+                  return (vertexA + u * (vertexB - vertexA) + v * (vertexC - vertexA))+transform.position;
+                   
+              
                
-            }
+            
         }
    
 
@@ -133,6 +130,8 @@ namespace Ageral
             {
                 trl = gameObject.AddComponent<triangulador>();
             }
+       
+
         }
         float CalcularAreaDaMesh(Mesh mesh)
         {
@@ -174,9 +173,9 @@ namespace Ageral
                 int v2 = (x) + 1;
                 int v3 = (x) + 2;
 
-                ListaVertices.Add(PontosFloresta[v1] );
-                ListaVertices.Add(PontosFloresta[v2] );
-                ListaVertices.Add(PontosFloresta[v3] );
+                ListaVertices.Add(PontosFloresta[v1] - transform.position);
+                ListaVertices.Add(PontosFloresta[v2] - transform.position);
+                ListaVertices.Add(PontosFloresta[v3] - transform.position);
             }
         }
 
@@ -185,33 +184,31 @@ namespace Ageral
     [CustomEditor(typeof(CriadorDeAreas1))]
     public class EditorCriadorDeAreas1 : Editor
     {
-
-        SerializedProperty frequencia, amplitude, escalaDensidade, ResistenciaDasArvores, ListaDeArvores_data;
-        void OnEnable()
+        public SerializedProperty PontosFloresta, ListaVertices,PontosFloresta_vizu;
+          void OnEnable()
         {
-            frequencia = serializedObject.FindProperty("frequencia");
-            amplitude = serializedObject.FindProperty("amplitude");
-            escalaDensidade = serializedObject.FindProperty("escalaDensidade");
-            ResistenciaDasArvores = serializedObject.FindProperty("ResistenciaDasArvores");
-            ListaDeArvores_data = serializedObject.FindProperty("ListaDeArvores_data");
 
-
+            PontosFloresta = serializedObject.FindProperty("PontosFloresta");
+            ListaVertices = serializedObject.FindProperty("ListaVertices");
 
             CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
             if (meuScript.trl == null)
             {
-                meuScript.trl = meuScript.gameObject.AddComponent<triangulador>();
+             meuScript.trl = meuScript.gameObject.AddComponent<triangulador>();
             }
+         
         }
+     
         public override void OnInspectorGUI()
         {
-
-
-
+         //   base.OnInspectorGUI();
+       
             serializedObject.Update();
-          
+            EditorGUILayout.PropertyField(PontosFloresta, new GUIContent("Pontos adicionados"));
+            EditorGUILayout.PropertyField(ListaVertices, new GUIContent("ListaVertices"));
 
-                CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
+            CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
+            EditorGUI.BeginChangeCheck();
             if (GUILayout.Button(" ativar / desativa   guizmo"))
             {
                 meuScript.ativar_desativar = !meuScript.ativar_desativar;
@@ -224,46 +221,37 @@ namespace Ageral
             }
 
 
-            if (GUILayout.Button("Adicionar Vertice"))
+
+
+
+            if (GUILayout.Button("Calcular area ?"))
             {
 
-                meuScript.AdicionarVertice();
-            }
-            if (GUILayout.Button("remover Vertice"))
-            {
-
-                meuScript.removerVertice();
+                calcularArea_();
             }
 
-           
-               
-
-
-                if (GUILayout.Button("Calcular area ?"))
-                {
-
-                    calcularArea_();
-                }
-          
 
 
 
-           
+
             serializedObject.ApplyModifiedProperties();
 
-        }
-        private void OnSceneGUI()
+
+    }
+
+    private void OnSceneGUI()
         {
             CriadorDeAreas1 meuScript = (CriadorDeAreas1)target;
 
+          
             if (meuScript.ativar_desativar)
             {
                 for (int x = 0; x < meuScript.PontosFloresta.Count; x++)
                 {
-                    meuScript.PontosFloresta[x] = Handles.PositionHandle(meuScript.PontosFloresta[x] + meuScript.transform.position, Quaternion.identity) - meuScript.transform.position;
+                    meuScript.PontosFloresta[x] = Handles.PositionHandle(meuScript.PontosFloresta[x], Quaternion.identity) ;
                 }
                 if (meuScript.PontosFloresta.Count > 3)
-                {
+                {   
                     try
                     {
                         Handles.color = Color.red;
@@ -293,12 +281,8 @@ namespace Ageral
                 meuScript.calcularMalha();
             
             }
-            meuScript.criarMalha(meuScript.ListaVertices);
+         meuScript.criarMalha(meuScript.ListaVertices);
         }
-
-
-
-
 
     }
 }
