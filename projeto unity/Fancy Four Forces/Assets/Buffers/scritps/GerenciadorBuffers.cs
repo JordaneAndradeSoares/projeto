@@ -14,6 +14,13 @@ namespace Buffers
         public DetectorDeColisor dtC;
         public  ScriptavelGrupoDeCriaturas b;
         public float scalaRD;
+        public float DistanciaParaSpawnar;
+       
+        public void iniciar()
+        {
+          GameObject temp =  Instantiate(bufferData.modelo_3D, transform);
+            temp.transform.position = transform.parent.transform.position;
+        }
         public bool olhando()
         {
             

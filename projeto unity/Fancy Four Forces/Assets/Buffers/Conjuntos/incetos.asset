@@ -20,4 +20,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3ef09fee2a5cd334d9f2bdd22ea0d2ff, type: 2}
   - {fileID: 11400000, guid: cb98ce34a69179545af8c083a51b7a1c, type: 2}
   - {fileID: 11400000, guid: cf70ea9a994ca5340adea9edec90376d, type: 2}
-  BufferDataProbabilidade: []
+  BufferDataProbabilidade:
+  - data: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    probabilidade: 0.39999998
+  - data: {fileID: 11400000, guid: 32e5a6da628ab104489102b0b67720da, type: 2}
+    probabilidade: 1.6
+  - data: {fileID: 11400000, guid: 640b14e4e308ef34580f7943f6146477, type: 2}
+    probabilidade: 0.3
+  - data: {fileID: 11400000, guid: 19d312a7aa0349744849dfe97b8a695c, type: 2}
+    probabilidade: 0.5
+  - data: {fileID: 11400000, guid: 3ef09fee2a5cd334d9f2bdd22ea0d2ff, type: 2}
+    probabilidade: 0.4
+  - data: {fileID: 11400000, guid: cb98ce34a69179545af8c083a51b7a1c, type: 2}
+    probabilidade: 0.5
+  - data: {fileID: 11400000, guid: cf70ea9a994ca5340adea9edec90376d, type: 2}
+    probabilidade: 0.3
+  somatoriaProb: 4

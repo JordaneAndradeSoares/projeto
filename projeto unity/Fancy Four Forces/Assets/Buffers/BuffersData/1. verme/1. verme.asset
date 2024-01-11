@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nome: verme
   Numero: 1
+  EstagioEvolutivo: 1
   VidaMaxima: 24
   Velocidade: 24
   AtaqueFisico: 12
