@@ -4,12 +4,13 @@ using UnityEngine;
 using System.Linq;
 
 [System.Serializable]
-public class Neural_2_0 
+public class Neural_2_0  
 {
     public List<float> saida,memoria;
 
     public List<List<float>> multiplicador;
     public minhaconfig config;
+    [System.Serializable]
     public struct minhaconfig {
 
         public bool recorrencia;
@@ -28,7 +29,7 @@ public class Neural_2_0
         multiplicador = new List<List<float>>();
         saida = new List<float>();
         memoria = new List<float>();
-       ;
+     
         for(int x= 0; x < tamanhoDoNeuronio; x++)
         {
             saida.Add(0);

@@ -28,7 +28,6 @@ namespace modoBatalha
                 }
             }
             catch { }
-            Debug.Log("aaaaaaa");
           
         }
         private void OnDestroy()

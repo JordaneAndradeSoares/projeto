@@ -10,7 +10,7 @@ namespace Buffers
         public ScriptavelBuffer bufferData;
         public int level;
         public float vida,vida_maxima;
-
+        public float velocidade;
         public List<escudo> escudos = new List<escudo>();
        
         public class escudo

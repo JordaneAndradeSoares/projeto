@@ -227,9 +227,12 @@ namespace modoBatalha
             }
           
         }
+
+  
         private void Start()
         {
             
+          
             aliadosL.Clear();
             inimigosL.Clear();
             setaAliada = 0; setaInimiga = 0;
@@ -245,7 +248,8 @@ namespace modoBatalha
                     aliadosL[x].data = new Kernel(dataBatalha.aliados[x]);
 
                     aliadosL[x].obj = Instantiate(dataBatalha.aliados[x].bufferData.modelo_3D, aliados);
-
+                    aliadosL[x].obj.transform.LookAt(inimigos);
+                    aliadosL[x].obj.transform.localScale = aliadosL[x].obj.transform.localScale + ((Vector3.one * dataBatalha.aliados[x].level)/100);
 
                     GameObject gvd_ = Instantiate(prefabVida, aliadosL[x].obj.transform);
                     gvd_.transform.position = aliadosL[x].obj.transform.position + Vector3.up;
@@ -274,8 +278,8 @@ namespace modoBatalha
                     inimigosL.Add(new buffer_s(x, UnityEngine.Random.Range(-3f, 3f)));
                     inimigosL[x].data = new Kernel(dataBatalha.inimigos[x]);
                     inimigosL[x].obj = Instantiate(dataBatalha.inimigos[x].bufferData.modelo_3D, inimigos);
-
-
+                    inimigosL[x].obj.transform.LookAt(aliados);
+                    inimigosL[x].obj.transform.localScale = inimigosL[x].obj.transform.localScale + ((Vector3.one * dataBatalha.inimigos[x].level)/100);
 
                     GameObject gvd_ = Instantiate(prefabVida, inimigosL[x].obj.transform);
                     gvd_.transform.position = inimigosL[x].obj.transform.position + Vector3.up;
@@ -302,27 +306,6 @@ namespace modoBatalha
                     tempList.Add(inimigosL[x]);
                 }
 
-                /*
-                   for (int i = tempList.Count - 1; i >= 1; i--)
-                   {
-                       // Encontra o maior elemento entre i e o início da lista.
-                       int largestIndex = i;
-                       for (int j = 0; j < i; j++)
-                       {
-                           if (tempList[largestIndex].data.bufferData.Velocidade * (1 + (tempList[largestIndex].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[largestIndex].data.level))
-                               <
-                               tempList[j].data.bufferData.Velocidade * (1 + (tempList[j].data.bufferData.TaxaDeCrescimentoDaVelocidade * tempList[j].data.level)))
-                           {
-                               largestIndex = j;
-                           }
-                       }
-
-                       // Troca o elemento em i com o maior elemento encontrado.
-                       buffer_s temp = tempList[i];
-                       tempList[i] = tempList[largestIndex];
-                       tempList[largestIndex] = temp;
-                   }
-                */
 
                 foreach (var a in tempList)
                 {

@@ -2,7 +2,8 @@
     "name": "Buffers",
     "rootNamespace": "Buffers",
     "references": [
-        "GUID:ab99c17530da8154db9b462b82d08ed4"
+        "GUID:ab99c17530da8154db9b462b82d08ed4",
+        "GUID:afc36e152d767c14e96aea50f1deca3f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

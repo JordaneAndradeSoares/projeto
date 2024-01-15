@@ -8,12 +8,21 @@ using Buffers;
 using Unity.VisualScripting.YamlDotNet.Core;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Codice.CM.Common;
+using System.Linq;
+using log4net;
 
 namespace modoBatalha
 {
+    public enum dificuldade
+    {
+        aleatoria,tatica,Neural
+    }
     public class GerenciadorDeBatalha : MonoBehaviour
     {
         public Configuracao confg;
+
+        public dificuldade _dificuldade;
 
         public List<buffer_s> ordemBatalha = new List<buffer_s>();
         public TextMeshProUGUI tBug;
@@ -180,7 +189,7 @@ namespace modoBatalha
                         a.receberEscudo(habilidadeUsada.SH, ultimobuffer.data);
                       //  a.darEscudo(habilidadeUsada.SH, ultimobuffer);
                         break;
-
+                         
 
                 }
             }
@@ -199,7 +208,7 @@ namespace modoBatalha
                     {
 
                         case (Efeito.Dano):
-                            dir = 1;
+                            dir = 2;
 
                             break;
 
@@ -374,24 +383,15 @@ namespace modoBatalha
         public float tempoQueOInimigoPensa=2;
         float auxT=0;
 
-        public void inimigoEscolherHabilidade()
+        public void inimigoEscolherHabilidade(int h)
         {
 
-            int indc = 0;
-            int maxh = 0;
-            float prob = 0;
 
-            foreach(var a in ultimobuffer.data.habilidades)
-            {
-                if(a.GastoDeHabilidade < EnergiaAtualInimiga)
-                {
-                    maxh++;
-                }
-            }
+         
             habilidadeUsada = new AuxUiHabilidade();
             habilidadeUsada.GB = this;
 
-            if(Random.Range(0,maxh+2) > maxh || maxh == 0)
+            if (h == 2)
             {
                 //atk basico
 
@@ -400,105 +400,59 @@ namespace modoBatalha
             else
             {
                 //habilidade
-                
-                prob = 1/ maxh ;
+                habilidadeUsada.SH = ultimobuffer.data.habilidades[h];
 
-
-                foreach (var a in ultimobuffer.data.habilidades)
+                if (habilidadeUsada.SH.GastoDeHabilidade > EnergiaAtualInimiga)
                 {
-                    if (a.GastoDeHabilidade < EnergiaAtualInimiga)
-                    {
-                        if (Random.Range(0f, 1f) > prob)
-                        {
-                            habilidadeUsada.SH = a;
-                            break;
-                        }
-                        
-                    }
-                }
-                if(habilidadeUsada.SH == null)
-                {
-                    foreach (var a in ultimobuffer.data.habilidades)
-                    {
-                        if (a.GastoDeHabilidade < EnergiaAtualInimiga)
-                        {
-                           
-                                habilidadeUsada.SH = a;
-                                break;
-                           
+                    habilidadeUsada.SH = null;
+                    habilidadeUsada.SAB = ultimobuffer.data.bufferData.AtaqueBasico;
 
-                        }
-                    }
                 }
-
             }
-
 
           
         }
-        public void inimigoEscolherAlvo()
+        public void inimigoEscolherAlvo(int h)
         {
-           if(habilidadeUsada.SH != null)
+            if(habilidadeUsada.SAB != null)
             {
-                switch (habilidadeUsada.SH._Efeito) {
-                    case Efeito.Dano:
-                        switch (habilidadeUsada.SH._Alvo)
-                        {
-                            case Alvo.Unico:
-                                int indc = Random.Range(0, confg.aliadosL.Count);
 
-                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == false)[indc]);
-                                break;
-                            case Alvo.Global:
-
-                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == false));
-                                
-                                break;
-                        }
-                        break;
-                    case Efeito.MudarStatus:
-                        switch (habilidadeUsada.SH._Alvo)
-                        {
-                            case Alvo.Unico:
-
-                                int indc = Random.Range(0, confg.inimigosL.Count);
-
-                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == true)[indc]);
-
-                                break;
-                            case Alvo.Global:
-                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == true));
-                                break;
-                        }
-                        break;
-                    case Efeito.Escudo:
-                        switch (habilidadeUsada.SH._Alvo)
-                        {
-                            case Alvo.Unico:
-                                int indc = Random.Range(0, confg.inimigosL.Count);
-
-                                alvos_.Add(ordemBatalha.FindAll(x => x.npc == true)[indc]);
-                                break;
-                            case Alvo.Global:
-                                alvos_.AddRange(ordemBatalha.FindAll(x => x.npc == true));
-                                break;
-                        }
-                        break;
-                }
-               
-             
             }
             else
             {
-                
-               
-                        int indc = Random.Range(0, confg.aliadosL.Count);
+                if (habilidadeUsada.SH._Efeito == Efeito.Dano)
+                {
+                    if (habilidadeUsada.SH._Alvo == Alvo.Global)
+                    {
 
-                        alvos_.Add(ordemBatalha.FindAll(x => x.npc == false)[indc]);
-               
+                        alvos_.AddRange(confg.aliadosL);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            alvos_.Add(confg.aliadosL[h]);
+                        }
+                        catch { alvos_.Add(confg.aliadosL[0]); }
+                    }
+                }
+                else
+                {
+                    if (habilidadeUsada.SH._Alvo == Alvo.Global)
+                    {
+                        alvos_.AddRange(confg.inimigosL);
+
+                    }
+                    else
+                    {
+                        try
+                        {
+                            alvos_.Add(confg.inimigosL[h]);
+                        }
+                        catch { alvos_.Add(confg.inimigosL[0]); }
+                    }
+                }
             }
-            if (alvos_.Count <= 0)
-                Debug.Log("nenhum alvo foi escolido");
         }
         public void InimigousarHabilidadeNoAlvo()
         {
@@ -564,17 +518,233 @@ namespace modoBatalha
             }
 
         }
+        public GerenciadorDeRedeNeural NeuralA;
         public void inimigoAgir()
         {
             if (auxT > tempoQueOInimigoPensa)
             {
-               
+                if (dificuldade.aleatoria == _dificuldade)
+                {
+
                     ultimobuffer = ordemBatalha[0];
                     auxT = 0;
+                    // inicio
 
-                    inimigoEscolherHabilidade();
-                    inimigoEscolherAlvo();
-                InimigousarHabilidadeNoAlvo();
+                    for (int x = 0; x < 4; x++)
+                    {
+                        try
+                        {
+                      
+                            NeuralA.entrada[x] = confg.aliadosL[x].data.vida / confg.aliadosL[x].data.vida_maxima;
+
+                        }
+                        catch
+                        {
+                            NeuralA.entrada[x] = 0;
+
+                        }
+                    }
+                    int offset = 0;
+                    for (int x = 0; x < 4; x++)
+                    {
+                        try
+                        {
+
+
+                            if (offset + x >= 4)
+                            {
+                                break;
+                            }
+                            if (confg.inimigosL[x] == ordemBatalha[0])
+                            {
+                                offset++;
+
+                            }
+
+                            NeuralA.entrada[4 + x] = confg.inimigosL[x + offset].data.vida / confg.inimigosL[x + offset].data.vida_maxima;
+
+                        }
+                        catch { NeuralA.entrada[4 + x] = 0; }
+                    }
+
+                    // ataque basico
+
+                    NeuralA.entrada[8] = (confg.totalDeEnergiaInimiga / EnergiaAtualInimiga) * 2;
+
+                    //habilidades
+
+                    // habilidade 1                
+                    if (ordemBatalha[0].data.habilidades[0]._Efeito == Efeito.Dano)
+                    {
+
+                        for (int x = 0; x < 4; x++)
+                        {
+                            try
+                            {
+                                float tempf = (ordemBatalha[0].data.habilidades[0].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
+                                    (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
+                                     / confg.aliadosL[x].data.vida;
+
+
+                                NeuralA.entrada[9 + x] = tempf;
+
+                            }
+                            catch { NeuralA.entrada[9 + x] = 0; ; }
+                        }
+                    }
+                    else
+                    {
+                        float mediaLvl = 0;
+
+                        foreach (var c in confg.aliadosL)
+                        {
+                            mediaLvl += c.data.level;
+                        }
+                        mediaLvl /= confg.aliadosL.Count;
+
+                        int offset_ = 0;
+                        for (int x = 0; x < 4; x++)
+                        {
+                            if (offset_ + x >= 4)
+                            {
+                                NeuralA.entrada[9 + x] = 0;
+                                break;
+                            }
+                          
+                            try
+                            {
+                                if (confg.inimigosL[x] == ordemBatalha[0])
+                                {
+                                    offset_++;
+
+                                }
+
+                                NeuralA.entrada[9 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
+
+                            }
+                            catch
+                            {
+                                ;
+                                NeuralA.entrada[9 + x] = 0;
+                            }
+
+
+                        }
+
+                    }
+                    // lado a = inimigos
+                    // habilidade 2
+                    if (ordemBatalha[0].data.habilidades[1]._Efeito == Efeito.Dano)
+                    {
+
+                        for (int x = 0; x < 4; x++)
+                        {
+                            float tempf = 0;
+                            try
+                            {
+                                tempf = (ordemBatalha[0].data.habilidades[1].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
+                                    (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
+                                     / confg.aliadosL[x].data.vida;
+
+                            }
+                            catch { }
+
+                            NeuralA.entrada[13 + x] = tempf;
+                        }
+                    }
+                    else
+                    {
+                        float mediaLvl = 0;
+
+                        foreach (var c in confg.aliadosL)
+                        {
+                            mediaLvl += c.data.level;
+                        }
+                        mediaLvl /= confg.aliadosL.Count;
+
+                        int offset_ = 0;
+                        for (int x = 0; x < 4; x++)
+                        {
+                            if (offset_ + x >= 4)
+                            {
+                                NeuralA.entrada[13 + x] = 0;
+                                break;
+                            }
+                            try
+                            {
+                                if (confg.inimigosL[x].data == ordemBatalha[0].data)
+                                {
+                                    offset_++;
+
+                                }
+
+                                NeuralA.entrada[13 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
+
+                            }
+                            catch
+                            {
+                                NeuralA.entrada[13 + x] = 0;
+
+                            }
+
+                        }
+
+                    }
+
+                    NeuralA.processarEntrada(NeuralA.entrada, NeuralA.saida);
+                    List<float> saida= Activation(NeuralA.saida);
+                    bool tempEscolheu = false;
+                    int habilidade_ = 0;
+                    int alvo = 0;
+                    for (int x = 0; x < 4; x++)
+                    {
+                        if (tempEscolheu)
+                            break;
+                        int tempI = x;
+                        if (saida[tempI] > 0)
+                        {
+                            tempEscolheu = true;
+                            habilidade_ = 0;
+                            alvo = x;
+                            break;
+                        }
+
+                    }
+                    for (int x = 0; x < 4; x++)
+                    {
+                        if (tempEscolheu)
+                            break;
+                        int tempI = 4 + x;
+                        if (saida[tempI] > 0)
+                        {
+                            tempEscolheu = true;
+                            habilidade_ = 1;
+                            alvo = x;
+                            break;
+                        }
+                    }
+                    for (int x = 0; x < 4; x++)
+                    {
+                        if (tempEscolheu)
+                            break;
+                        int tempI = 8 + x;
+                        if (saida[tempI] > 0)
+                        {
+
+                            habilidade_ = 2;
+                            alvo = x;
+                            break;
+                        }
+
+                    }
+
+                    // fim
+                    Debug.Log("Inimigo usou a habilidade " + habilidade_ + "   no alvo " + alvo);   
+                    inimigoEscolherHabilidade(habilidade_);
+                    inimigoEscolherAlvo(alvo);
+                    InimigousarHabilidadeNoAlvo();
+                }
+                
                     proximo();
                     Debug.Log("foi ?");
               
@@ -582,7 +752,30 @@ namespace modoBatalha
             else { auxT += Time.deltaTime; }
 
         }
+        public List<float> Activation(List<float> input)
+        {
+            // Encontra o maior valor da lista
+            float max = input.Max();
 
+            // Cria uma nova lista com o mesmo tamanho da lista de entrada
+            List<float> output = new List<float>();
+            foreach (var a in input)
+            {
+                output.Add(0);
+            }
+
+            // Preenche a nova lista com 0 ou 1
+            for (int i = 0; i < input.Count; i++)
+            {
+                if (input[i] == max)
+                {
+                    output[i] = 1;
+                    break;
+                }
+            }
+
+            return output;
+        }
         private void Update()
         {
             if (confg.aliadosL.Count > 0 && confg.inimigosL.Count >0)

@@ -87,6 +87,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExemploModelo3D
       objectReference: {fileID: 0}
+    - target: {fileID: 8096005865316484530, guid: 15404fa02a1d42b468dcd18b2e0687a6, type: 3}
+      propertyPath: m_Size.x
+      value: 12.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096005865316484530, guid: 15404fa02a1d42b468dcd18b2e0687a6, type: 3}
+      propertyPath: m_Size.z
+      value: 22.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096005865316484530, guid: 15404fa02a1d42b468dcd18b2e0687a6, type: 3}
+      propertyPath: m_Center.z
+      value: 10.47
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15404fa02a1d42b468dcd18b2e0687a6, type: 3}
 --- !u!4 &6829800359027006893 stripped

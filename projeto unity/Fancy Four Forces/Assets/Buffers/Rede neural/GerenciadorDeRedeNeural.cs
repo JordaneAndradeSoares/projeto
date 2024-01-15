@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+
 public class GerenciadorDeRedeNeural : MonoBehaviour
 {
     public List<float> entrada, saida;
@@ -15,7 +18,7 @@ public class GerenciadorDeRedeNeural : MonoBehaviour
         [SerializeField]
         public Neural_2_0 rede;
         public int tamanho;
-        
+         
 
     
     }
@@ -26,6 +29,7 @@ public class GerenciadorDeRedeNeural : MonoBehaviour
             if (x == 0)
             {
                 instanciaMatriz temp = matriz[x];
+               
                 temp.rede = new Neural_2_0( entrada.Count, temp.tamanho, configuracoes);
                 matriz[x] = temp;
             }
@@ -50,33 +54,22 @@ public class GerenciadorDeRedeNeural : MonoBehaviour
     }
     private void Start()
     {
-        instanciarRede();
-     
+     instanciarRede();
+
+        if (carregar)
+        {
+            carregar = false;
+
+            carregar_();
+        }
     }
     float tt,tt_;
 
-    private void serializando()
-    {
-        serializarRede srr = new serializarRede();
-      
-        foreach (instanciaMatriz aux in matriz) {
-            srr.neuroniosSalvos.Add(aux.rede.multiplicador); 
-        }
-
-        serializar(nomeSerial+".xml", srr);
-    }
-    public void carregarSRL()
-    {
-        serializarRede srr = new serializarRede();
-        srr = desSerializar(nomeSerial + ".xml");
-      for(int x = 0; x < srr.neuroniosSalvos.Count; x++)
-        {
-            matriz[x].rede.multiplicador = srr.neuroniosSalvos[x];
-        }
-        Debug.Log(matriz[0].rede.multiplicador[0][0]);
-    }
+   
+   /*
     private void Update()
     {
+        // testar rede
         if (false == true)
         {
             if (tt_ + 1 < Time.time)
@@ -99,41 +92,53 @@ public class GerenciadorDeRedeNeural : MonoBehaviour
         }
 
 
-        if (serialize == true)
-        {
-            serialize = false;
-            Debug.Log(matriz[0].rede.multiplicador[0][0]);
-            serializando();
-        }
-        if (carregar == true)
-        {
-            carregar = false;
-
-            carregarSRL();
-        }
-    }
+      
+    }*/
     public string nomeSerial;
     public bool serialize,carregar;
-    private void serializar(string nomeArquivo,serializarRede ser)
+
+    public void savlar()
     {
-        using (StreamWriter stream = new StreamWriter(Path.Combine(@"C:\Users\filip\OneDrive\Área de Trabalho\Hunters of the Wild\Assets\prefabs\mobs\rede neural save", nomeArquivo)))
-        {
-            XmlSerializer serializador = new XmlSerializer(typeof(serializarRede));
-            serializador.Serialize(stream, ser);
-        }
+        BinaryFormatter bf = new BinaryFormatter();
+        string path = Application.persistentDataPath;
+        //FileStream file = File.Create(path + "/SalvarDados/redeNeuralModoBatalha"+gameObject.name + ".save");
+    
+        FileStream file = File.Create(Application.dataPath + @"/Buffers/Rede neural/Cerebro/RedeNeural.save");
+        bf.Serialize(file, matriz);
+        file.Close();
+
     }
-    private serializarRede desSerializar(string nomeArquivo)
+    public List<instanciaMatriz> carregar_()
     {
-        serializarRede aux = null;
-        using (StreamReader stream = new StreamReader(Path.Combine(@"C:\Users\filip\OneDrive\Área de Trabalho\Hunters of the Wild\Assets\prefabs\mobs\rede neural save", nomeArquivo)))
+        BinaryFormatter bf = new BinaryFormatter();
+        string path = Application.persistentDataPath;
+        FileStream file;
+
+        if (File.Exists(Application.dataPath + @"/Buffers/Rede neural/Cerebro/RedeNeural.save"))
         {
-            XmlSerializer serializador = new XmlSerializer(typeof(serializarRede));
-            aux = (serializarRede)serializador.Deserialize(stream);
+            file = File.Open(Application.dataPath + @"/Buffers/Rede neural/Cerebro/RedeNeural.save", FileMode.Open);
+            List<instanciaMatriz> l = (List<instanciaMatriz>)bf.Deserialize(file);
+            file.Close();
+            return l;
         }
-        return aux;
+        Debug.Log("erro não uma rede neural");
+        return new List<instanciaMatriz>();
     }
 
 
+    public void mutar(int c)
+    {
+        foreach(var a in matriz)
+        {
+            foreach(var b in a.rede.multiplicador)
+            {
+              for(int x = 0; x < b.Count; x++)
+                {
+                    b[x] += Random.Range(-c,c);
+                }
+            }
+        }
+    }
 }
 
 [System.Serializable()]

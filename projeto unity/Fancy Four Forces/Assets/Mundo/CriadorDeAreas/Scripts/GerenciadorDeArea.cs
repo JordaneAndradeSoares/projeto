@@ -25,6 +25,7 @@ namespace Areas
         public GameObject jogador;
 
         float tempF;
+        
         private void Update()
         {
             if (TestarDistancia())
@@ -140,12 +141,13 @@ namespace Areas
             ScriptavelBuffer tempbuf = EscolherBuffer();
 
             GameObject tempG = Instantiate(ExemploModelo3D, transform);
-          //  tempG.transform.position = tempV ;
+         tempG.transform.position = tempV ;
 
             GerenciadorBuffers tempGB = tempG.GetComponentInChildren<GerenciadorBuffers>();
             tempGB.bufferData = tempbuf;
             tempGB.b = _grupoDeCriats;
             tempGB.iniciar();
+            tempGB.cra = _criradorDeAreas;
             CriaturasSpawnadas tempCS = new CriaturasSpawnadas();
             tempCS.obj = tempG;
             spawns.Add(tempCS);

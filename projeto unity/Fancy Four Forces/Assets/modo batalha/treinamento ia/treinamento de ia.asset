@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2552a62f5c352bd459ca74925c13c47a, type: 3}
+  m_Name: treinamento de ia
+  m_EditorClassIdentifier: 
+  aliados:
+  - {fileID: 11400000, guid: 97a204dd8ab2ec94fb2ef5e9a5feb572, type: 2}
+  - {fileID: 11400000, guid: 384ebd2e45acd6d48bb1a6b002878414, type: 2}
+  - {fileID: 11400000, guid: 15643f45232a4c8428d0294450fd31e1, type: 2}
+  - {fileID: 11400000, guid: 67fbb136010de7d49ab8a11bc6a42dac, type: 2}
+  inimigos:
+  - {fileID: 11400000, guid: df04663d7ba00314cb256e1ca2cd0b69, type: 2}
+  - {fileID: 11400000, guid: 3e7bccad3a2770640818e2b7e6b16ca2, type: 2}
+  - {fileID: 11400000, guid: 2fc62454fb6d3624d9144f15670304f2, type: 2}
+  - {fileID: 11400000, guid: 99a34b592d464bc4d9b96c52b01774e1, type: 2}
