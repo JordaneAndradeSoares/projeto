@@ -51,8 +51,7 @@ namespace modoBatalha
 
         public float totalDeEnergiaInimiga;
 
-
-
+ 
         [System.Serializable]
         public class buffer_s
         {
@@ -128,15 +127,20 @@ namespace modoBatalha
              
                 return temp+ruido;
             }
- 
- 
-            public void diminuirVida(float danoBruto)
+
+            public class retornoDeDano {
+                public float danoNoEscudo, DanoNaVida;
+                public int escudosDestruidos;
+                public bool sobroudano;
+            }
+
+            public retornoDeDano diminuirVida(float danoBruto)
             {
 
-
+                
 
                 float temp = danoBruto - defesaFinal();
-
+                retornoDeDano RD = new retornoDeDano();
 
 
                 if (temp > 0)
@@ -149,13 +153,16 @@ namespace modoBatalha
                         {
                             if (a.escudo_ > temp)
                             {
+
+                                RD.danoNoEscudo = a.escudo_ - temp;
+
                                 a.escudo_ -= temp;
                                 temp = 0;
                                 break;
                             }
                             else
                             {
-
+                                RD.danoNoEscudo += a.escudo_;
                                 temp -= a.escudo_;
                                 a.escudo_ = 0;
                             }
@@ -172,20 +179,28 @@ namespace modoBatalha
                     {
                         if(a.escudo_ <= 0)
                         {
+                            RD.escudosDestruidos++;
                             Destroy(a.Ges);
                         }
                     }
                     data.escudos.RemoveAll(x => x.escudo_ <= 0);
 
                     data.vida -= temp;
+                    RD.DanoNaVida = temp;
+                    temp = 0;
                     if (data.vida < 0)
+                    {
                         data.vida = 0;
+                        RD.sobroudano = true;
+                    }
                 }
                 else
                 {
-                    Debug.Log("não foi aplicado dano, o FINAL foi de " + temp);
+                    Debug.Log("não foi aplicado dano, o FINAL foi de " + temp); 
+                    return null;
                 }
-
+                // ????
+                // acho que da pra remover isso
                 if (temp > 0)
                 {
                     if (data.escudos.Count == 0)
@@ -213,7 +228,8 @@ namespace modoBatalha
                         data.escudos.RemoveAll(x=>x.escudo_ == 0);
 
                     }
-                } 
+                }
+                return RD;
 
             }
 
@@ -365,6 +381,7 @@ namespace modoBatalha
 
         public int setaAliada = 0, setaInimiga = 0, aliador_inimigo = -10;
 
+    
         public void moverseta()
         {
            // ModeloSeta.SetActive( true);

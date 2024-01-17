@@ -9,6 +9,7 @@ namespace modoBatalha
     public class AuxMostrarResumo : MonoBehaviour
     {
         public TextMeshProUGUI txtA, txtB;
+        public Color vida, escudo,VidaExcedente;
         public void mostrar(AuxUiHabilidade a)
         {
             string tA = " ";
@@ -99,12 +100,40 @@ namespace modoBatalha
 
 
         }
-        public void PopupDano(int V)
+        public void PopupDano(float V, configPopUPDano C)
         {
+            transform.position += Vector3.up * 4;
+            transform.LookAt(Camera.main.transform.position);
+            Rigidbody temp_ = gameObject.AddComponent<Rigidbody>();
+            temp_.mass = 10;
             txtA.text =""+ V;
-            Color temp = txtA.color;
-            temp.g = Mathf.Abs((V / 1000) - 1) * 250f;
-            txtA.color = temp;
+            Color temp;
+            switch (C) {
+
+                case configPopUPDano.Vida:
+                     temp = vida;
+                    temp.g = Mathf.Abs((V / 1000) - 1) * 250f;
+                    txtA.color = temp;
+                    break;
+
+                case configPopUPDano.VidaExcedente:
+                    txtA.color = VidaExcedente;
+
+                    break;
+                case configPopUPDano.Escudo:
+                     temp = escudo;
+                    float f = Mathf.Abs((V / 1000) - 1) * 100;
+                    f += temp.g;
+                    temp.r = f;
+                    temp.g = f;
+                    temp.b = f;
+                    txtA.color = temp;
+                    break;
+            }
+
+           
         }
     }
+    public enum configPopUPDano { Vida,VidaExcedente,Escudo}
+
 }

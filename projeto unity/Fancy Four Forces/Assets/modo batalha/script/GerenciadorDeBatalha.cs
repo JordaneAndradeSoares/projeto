@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 using Codice.CM.Common;
 using System.Linq;
 using log4net;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 namespace modoBatalha
 {
@@ -118,6 +119,53 @@ namespace modoBatalha
 
             confg.Gseta.definirOrigem(ultimobuffer.obj.transform.position );
         }
+        public void usarsetaIa()
+        {
+            if (habilidadeUsada.SH != null)
+            {
+                if (habilidadeUsada.SH._Alvo == Alvo.Global)
+                {
+                    Debug.Log("habilidade globa " + habilidadeUsada.SH.NomeHabilidade);
+                }
+                else
+                {
+                    Debug.Log(" mostrar seta");
+
+                    if (confg.ModeloSeta == null)
+                    {
+                        confg.ModeloSeta = Instantiate(confg.prefabSeta, transform);
+                        confg.Gseta = confg.ModeloSeta.GetComponent<MoverSeta>();
+                    }
+                    confg.seta.SetActive(true);
+
+                    confg.Gseta.definirOrigem(ultimobuffer.obj.transform.position);
+                    confg.seta.transform.position = alvos_[0].obj.transform.position + (Vector3.up * 2);
+
+                    confg.Gseta.definirDestino(confg.seta.transform.position);
+
+
+                }
+            }
+            else
+            {
+                if (confg.ModeloSeta == null)
+                {
+                    confg.ModeloSeta = Instantiate(confg.prefabSeta, transform);
+                    confg.Gseta = confg.ModeloSeta.GetComponent<MoverSeta>();
+                }
+                confg.seta.SetActive(true);
+
+                confg.Gseta.definirOrigem(ultimobuffer.obj.transform.position);
+                confg.seta.transform.position = alvos_[0].obj.transform.position + (Vector3.up * 2);
+
+                confg.Gseta.definirDestino(confg.seta.transform.position);
+            }
+        }
+        public void esconderSetaIA()
+        {
+            Destroy(confg.ModeloSeta);
+            confg.seta.SetActive(false);
+        }
   
         public void escolidoAlvo(buffer_s a)
         {
@@ -171,8 +219,9 @@ namespace modoBatalha
                                 }
                                 break;
                         }
-                        
-                        a.diminuirVida(danofinal);
+
+                        mostrarDanoLevado( a.diminuirVida(danofinal), a);
+
                         break;
                     case (Efeito.MudarStatus):
                         Debug.Log("a habilidade alterou algum status");
@@ -199,6 +248,40 @@ namespace modoBatalha
                
             }
           
+        }
+        public GameObject PopUpDanoLevado_;
+        public void mostrarDanoLevado(buffer_s.retornoDeDano a, buffer_s alvo)
+        {if (a != null)
+            {
+                if (a.DanoNaVida > 0)
+                {
+
+                    AuxMostrarResumo tempAMR = Instantiate(PopUpDanoLevado_, transform).GetComponent<AuxMostrarResumo>();
+                    tempAMR.transform.position = alvo.obj.transform.position;
+                    if (a.sobroudano)
+                    {
+                        tempAMR.PopupDano(a.DanoNaVida, configPopUPDano.VidaExcedente);
+                    }
+                    else
+                    {
+                        tempAMR.PopupDano(a.DanoNaVida, configPopUPDano.Vida);
+                    }
+                    Destroy(tempAMR.gameObject, 5f);
+
+
+                }
+                if (a.danoNoEscudo > 0)
+                {
+                    AuxMostrarResumo tempAMR = Instantiate(PopUpDanoLevado_, transform).GetComponent<AuxMostrarResumo>();
+                    tempAMR.transform.position = alvo.obj.transform.position + Vector3.up * 2f;
+                    tempAMR.PopupDano(a.danoNoEscudo, configPopUPDano.Escudo);
+                    Destroy(tempAMR.gameObject, 5f);
+                }
+            }
+            else
+            {
+                Debug.Log("deu popup nulo");
+            }
         }
         public void usandoHabilidade()
         {
@@ -321,7 +404,7 @@ namespace modoBatalha
                                         break;
                                 }
 
-                                a.diminuirVida(danofinal);
+                              mostrarDanoLevado(  a.diminuirVida(danofinal),a);
                             }
                         }
                         EnergiaAtualAliada += habilidadeUsada.SAB.ValorDeRecarga;
@@ -344,7 +427,8 @@ namespace modoBatalha
             ordemBatalha.Add(temp);
             definirQuemJoga();
             attMOlduraFIla();
-
+            
+            auxT = 0;
             alvos_.Clear();
             habilidadeUsada = null;
             flag1 = false;
@@ -420,7 +504,7 @@ namespace modoBatalha
         {
             if(habilidadeUsada.SAB != null)
             {
-
+                alvos_.Add(confg.aliadosL[h]);
             }
             else
             {
@@ -519,7 +603,7 @@ namespace modoBatalha
                                 break;
                         }
 
-                        a.diminuirVida(danofinal);
+                       mostrarDanoLevado( a.diminuirVida(danofinal),a);
                     }
                 }
                 Debug.Log("a energia inimiga foi aumentada  !!");
@@ -532,234 +616,251 @@ namespace modoBatalha
 
         }
         public GerenciadorDeRedeNeural NeuralA;
+        bool decidido;
+        float ff_;
         public void inimigoAgir()
         {
             if (auxT > tempoQueOInimigoPensa)
             {
-                if (dificuldade.aleatoria == _dificuldade)
+                if (decidido == false)
                 {
-
-                    ultimobuffer = ordemBatalha[0];
-                    auxT = 0;
-                    // inicio
-
-                    for (int x = 0; x < 4; x++)
+                    if (dificuldade.aleatoria == _dificuldade)
                     {
-                        try
-                        {
-                      
-                            NeuralA.entrada[x] = confg.aliadosL[x].data.vida / confg.aliadosL[x].data.vida_maxima;
 
-                        }
-                        catch
-                        {
-                            NeuralA.entrada[x] = 0;
+                        ultimobuffer = ordemBatalha[0];
 
-                        }
-                    }
-                    int offset = 0;
-                    for (int x = 0; x < 4; x++)
-                    {
-                        try
-                        {
-
-
-                            if (offset + x >= 4)
-                            {
-                                break;
-                            }
-                            if (confg.inimigosL[x] == ordemBatalha[0])
-                            {
-                                offset++;
-
-                            }
-
-                            NeuralA.entrada[4 + x] = confg.inimigosL[x + offset].data.vida / confg.inimigosL[x + offset].data.vida_maxima;
-
-                        }
-                        catch { NeuralA.entrada[4 + x] = 0; }
-                    }
-
-                    // ataque basico
-
-                    NeuralA.entrada[8] = (confg.totalDeEnergiaInimiga / EnergiaAtualInimiga) * 2;
-
-                    //habilidades
-
-                    // habilidade 1                
-                    if (ordemBatalha[0].data.habilidades[0]._Efeito == Efeito.Dano)
-                    {
+                        // inicio
 
                         for (int x = 0; x < 4; x++)
                         {
                             try
                             {
-                                float tempf = (ordemBatalha[0].data.habilidades[0].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
-                                    (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
-                                     / confg.aliadosL[x].data.vida;
 
-
-                                NeuralA.entrada[9 + x] = tempf;
+                                NeuralA.entrada[x] = confg.aliadosL[x].data.vida / confg.aliadosL[x].data.vida_maxima;
 
                             }
-                            catch { NeuralA.entrada[9 + x] = 0; ; }
-                        }
-                    }
-                    else
-                    {
-                        float mediaLvl = 0;
+                            catch
+                            {
+                                NeuralA.entrada[x] = 0;
 
-                        foreach (var c in confg.aliadosL)
-                        {
-                            mediaLvl += c.data.level;
+                            }
                         }
-                        mediaLvl /= confg.aliadosL.Count;
-
-                        int offset_ = 0;
+                        int offset = 0;
                         for (int x = 0; x < 4; x++)
                         {
-                            if (offset_ + x >= 4)
-                            {
-                                NeuralA.entrada[9 + x] = 0;
-                                break;
-                            }
-                          
                             try
                             {
+
+
+                                if (offset + x >= 4)
+                                {
+                                    break;
+                                }
                                 if (confg.inimigosL[x] == ordemBatalha[0])
                                 {
-                                    offset_++;
+                                    offset++;
 
                                 }
 
-                                NeuralA.entrada[9 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
+                                NeuralA.entrada[4 + x] = confg.inimigosL[x + offset].data.vida / confg.inimigosL[x + offset].data.vida_maxima;
 
                             }
-                            catch
+                            catch { NeuralA.entrada[4 + x] = 0; }
+                        }
+
+                        // ataque basico
+
+                        NeuralA.entrada[8] = (confg.totalDeEnergiaInimiga / EnergiaAtualInimiga) * 2;
+
+                        //habilidades
+
+                        // habilidade 1                
+                        if (ordemBatalha[0].data.habilidades[0]._Efeito == Efeito.Dano)
+                        {
+
+                            for (int x = 0; x < 4; x++)
                             {
-                                ;
-                                NeuralA.entrada[9 + x] = 0;
+                                try
+                                {
+                                    float tempf = (ordemBatalha[0].data.habilidades[0].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
+                                        (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
+                                         / confg.aliadosL[x].data.vida;
+
+
+                                    NeuralA.entrada[9 + x] = tempf;
+
+                                }
+                                catch { NeuralA.entrada[9 + x] = 0; ; }
+                            }
+                        }
+                        else
+                        {
+                            float mediaLvl = 0;
+
+                            foreach (var c in confg.aliadosL)
+                            {
+                                mediaLvl += c.data.level;
+                            }
+                            mediaLvl /= confg.aliadosL.Count;
+
+                            int offset_ = 0;
+                            for (int x = 0; x < 4; x++)
+                            {
+                                if (offset_ + x >= 4)
+                                {
+                                    NeuralA.entrada[9 + x] = 0;
+                                    break;
+                                }
+
+                                try
+                                {
+                                    if (confg.inimigosL[x] == ordemBatalha[0])
+                                    {
+                                        offset_++;
+
+                                    }
+
+                                    NeuralA.entrada[9 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
+
+                                }
+                                catch
+                                {
+                                    ;
+                                    NeuralA.entrada[9 + x] = 0;
+                                }
+
+
                             }
 
+                        }
+                        // lado a = inimigos
+                        // habilidade 2
+                        if (ordemBatalha[0].data.habilidades[1]._Efeito == Efeito.Dano)
+                        {
+
+                            for (int x = 0; x < 4; x++)
+                            {
+                                float tempf = 0;
+                                try
+                                {
+                                    tempf = (ordemBatalha[0].data.habilidades[1].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
+                                        (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
+                                         / confg.aliadosL[x].data.vida;
+
+                                }
+                                catch { }
+
+                                NeuralA.entrada[13 + x] = tempf;
+                            }
+                        }
+                        else
+                        {
+                            float mediaLvl = 0;
+
+                            foreach (var c in confg.aliadosL)
+                            {
+                                mediaLvl += c.data.level;
+                            }
+                            mediaLvl /= confg.aliadosL.Count;
+
+                            int offset_ = 0;
+                            for (int x = 0; x < 4; x++)
+                            {
+                                if (offset_ + x >= 4)
+                                {
+                                    NeuralA.entrada[13 + x] = 0;
+                                    break;
+                                }
+                                try
+                                {
+                                    if (confg.inimigosL[x].data == ordemBatalha[0].data)
+                                    {
+                                        offset_++;
+
+                                    }
+
+                                    NeuralA.entrada[13 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
+
+                                }
+                                catch
+                                {
+                                    NeuralA.entrada[13 + x] = 0;
+
+                                }
+
+                            }
 
                         }
 
-                    }
-                    // lado a = inimigos
-                    // habilidade 2
-                    if (ordemBatalha[0].data.habilidades[1]._Efeito == Efeito.Dano)
-                    {
-
+                        NeuralA.processarEntrada(NeuralA.entrada, NeuralA.saida);
+                        List<float> saida = Activation(NeuralA.saida);
+                        bool tempEscolheu = false;
+                        int habilidade_ = 0;
+                        int alvo = 0;
                         for (int x = 0; x < 4; x++)
                         {
-                            float tempf = 0;
-                            try
+                            if (tempEscolheu)
+                                break;
+                            int tempI = x;
+                            if (saida[tempI] > 0)
                             {
-                                tempf = (ordemBatalha[0].data.habilidades[1].porcentagemDoEfeito * (ordemBatalha[0].data.bufferData.AtaqueFisico +
-                                    (ordemBatalha[0].data.level * ordemBatalha[0].data.bufferData.TaxaDeCrescimentoDoAtaqueBasico)))
-                                     / confg.aliadosL[x].data.vida;
-
-                            }
-                            catch { }
-
-                            NeuralA.entrada[13 + x] = tempf;
-                        }
-                    }
-                    else
-                    {
-                        float mediaLvl = 0;
-
-                        foreach (var c in confg.aliadosL)
-                        {
-                            mediaLvl += c.data.level;
-                        }
-                        mediaLvl /= confg.aliadosL.Count;
-
-                        int offset_ = 0;
-                        for (int x = 0; x < 4; x++)
-                        {
-                            if (offset_ + x >= 4)
-                            {
-                                NeuralA.entrada[13 + x] = 0;
+                                tempEscolheu = true;
+                                habilidade_ = 0;
+                                alvo = x;
                                 break;
                             }
-                            try
+
+                        }
+                        for (int x = 0; x < 4; x++)
+                        {
+                            if (tempEscolheu)
+                                break;
+                            int tempI = 4 + x;
+                            if (saida[tempI] > 0)
                             {
-                                if (confg.inimigosL[x].data == ordemBatalha[0].data)
-                                {
-                                    offset_++;
-
-                                }
-
-                                NeuralA.entrada[13 + x] = confg.inimigosL[x + offset_].data.level / mediaLvl / ordemBatalha[0].data.level;
-
+                                tempEscolheu = true;
+                                habilidade_ = 1;
+                                alvo = x;
+                                break;
                             }
-                            catch
+                        }
+                        for (int x = 0; x < 4; x++)
+                        {
+                            if (tempEscolheu)
+                                break;
+                            int tempI = 8 + x;
+                            if (saida[tempI] > 0)
                             {
-                                NeuralA.entrada[13 + x] = 0;
 
+                                habilidade_ = 2;
+                                alvo = x;
+                                break;
                             }
 
                         }
 
+                        // fim
+                        Debug.Log("Inimigo usou a habilidade " + habilidade_ + "   no alvo " + alvo);
+                        inimigoEscolherHabilidade(habilidade_);
+                        inimigoEscolherAlvo(alvo);
+                        decidido = true;
                     }
-
-                    NeuralA.processarEntrada(NeuralA.entrada, NeuralA.saida);
-                    List<float> saida= Activation(NeuralA.saida);
-                    bool tempEscolheu = false;
-                    int habilidade_ = 0;
-                    int alvo = 0;
-                    for (int x = 0; x < 4; x++)
-                    {
-                        if (tempEscolheu)
-                            break;
-                        int tempI = x;
-                        if (saida[tempI] > 0)
-                        {
-                            tempEscolheu = true;
-                            habilidade_ = 0;
-                            alvo = x;
-                            break;
-                        }
-
-                    }
-                    for (int x = 0; x < 4; x++)
-                    {
-                        if (tempEscolheu)
-                            break;
-                        int tempI = 4 + x;
-                        if (saida[tempI] > 0)
-                        {
-                            tempEscolheu = true;
-                            habilidade_ = 1;
-                            alvo = x;
-                            break;
-                        }
-                    }
-                    for (int x = 0; x < 4; x++)
-                    {
-                        if (tempEscolheu)
-                            break;
-                        int tempI = 8 + x;
-                        if (saida[tempI] > 0)
-                        {
-
-                            habilidade_ = 2;
-                            alvo = x;
-                            break;
-                        }
-
-                    }
-
-                    // fim
-                    Debug.Log("Inimigo usou a habilidade " + habilidade_ + "   no alvo " + alvo);   
-                    inimigoEscolherHabilidade(habilidade_);
-                    inimigoEscolherAlvo(alvo);
-                    InimigousarHabilidadeNoAlvo();
                 }
-                
-                    proximo();
-                    Debug.Log("foi ?");
+                else
+                {
+                    usarsetaIa();
+                    if (ff_ > 1)
+                    {
+                        esconderSetaIA();
+                        InimigousarHabilidadeNoAlvo();
+                        proximo();
+                        decidido = false;
+                        ff_ = 0;
+                    
+                    }
+                    ff_ += Time.deltaTime;
+
+                }
               
             }
             else { auxT += Time.deltaTime; }

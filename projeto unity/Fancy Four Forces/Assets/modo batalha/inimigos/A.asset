@@ -20,9 +20,9 @@ MonoBehaviour:
     velocidade: 0
     habilidades: []
   bufferData: {fileID: 11400000, guid: 9316497f9ee972749af66af2f40990df, type: 2}
-  level: 4
+  level: 30
   vida: 0
   vida_maxima: 0
   habilidades:
-  - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
-  - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
+  - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+  - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
