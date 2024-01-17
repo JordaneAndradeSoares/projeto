@@ -24,6 +24,8 @@ namespace Areas
         public float tempoEntreCadaSpawn;
         public GameObject jogador;
 
+        public bool noite;
+
         float tempF;
         
         private void Update()
@@ -50,6 +52,7 @@ namespace Areas
                 spawns.Clear();
             }
         }
+   
         public bool TestarDistancia()
         {
             if (!jogador)
@@ -108,13 +111,19 @@ namespace Areas
         }
         public ScriptavelBuffer EscolherBuffer()
         {
+
             if (_grupoDeCriats.BufferDataProbabilidade.Count > 0)
             {
-                float tempB = Random.Range(0f, _grupoDeCriats.somatoriaProb);
-                float tempC = 0;
-                ScriptavelBuffer tempBuffer = _grupoDeCriats.BufferData[0];
 
-                foreach (var a in _grupoDeCriats.BufferDataProbabilidade)
+                List<ScriptavelGrupoDeCriaturas.probabilidades> temp_ = _grupoDeCriats.BufferDataProbabilidade.FindAll(x => x.data == noite);
+                if (temp_.Count == 0)
+                    return null;
+             
+                float tempB = Random.Range(0f,noite? _grupoDeCriats.somatoriaProb_noite : _grupoDeCriats.somatoriaProb_dia);
+                float tempC = 0;
+                ScriptavelBuffer tempBuffer = temp_[0].data;
+
+                foreach (var a in temp_)
                 {
                     tempC += a.probabilidade;
 
@@ -140,7 +149,7 @@ namespace Areas
 
             ScriptavelBuffer tempbuf = EscolherBuffer();
 
-            GameObject tempG = Instantiate(ExemploModelo3D, transform);
+            GameObject tempG = Instantiate(ExemploModelo3D, transform); 
          tempG.transform.position = tempV ;
 
             GerenciadorBuffers tempGB = tempG.GetComponentInChildren<GerenciadorBuffers>();
@@ -182,6 +191,7 @@ namespace Areas
         {
             if(salvar)
                 carregar();
+            _criradorDeAreas = GetComponent<CriadorDeAreas1>();
         }
         public void savlar(List<CriaturasSpawnadas> s ) {
             BinaryFormatter bf = new BinaryFormatter();

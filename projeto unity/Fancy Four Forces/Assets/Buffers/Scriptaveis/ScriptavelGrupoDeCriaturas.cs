@@ -12,15 +12,16 @@ namespace Buffers
         public List<ScriptavelBuffer> BufferData;
 
         public List<probabilidades> BufferDataProbabilidade;
-        public float somatoriaProb;
+        public float somatoriaProb_dia, somatoriaProb_noite;
 
         [System.Serializable]
-        public class probabilidades {
+        public class probabilidades
+        {
             public ScriptavelBuffer data;
-            [Range(0f,1f)]
+            [Range(0f, 1f)]
             public float probabilidade;
 
-            public probabilidades(ScriptavelBuffer a,float b)
+            public probabilidades(ScriptavelBuffer a, float b)
             {
                 data = a;
                 probabilidade = b;
@@ -31,65 +32,42 @@ namespace Buffers
             Debug.Log("a");
             float NEmedio = 0;
 
-            for(int x = 0; x < BufferData.Count; x++)
+            for (int x = 0; x < BufferData.Count; x++)
             {
                 NEmedio += BufferData[x].EstagioEvolutivo;
             }
             NEmedio /= BufferData.Count;
-            float tempF = 0;
+            float tempF_D = 0;
+            float tempF_N = 0;
             for (int x = 0; x < BufferData.Count; x++)
             {
                 float prob = BufferData[x].EstagioEvolutivo / NEmedio;
 
-               
+
                 //
                 float diferenca = BufferData[x].EstagioEvolutivo - NEmedio;
                 float valor = Mathf.Abs(diferenca) / NEmedio;
                 prob = Mathf.Lerp(1, 0, valor);
+                BufferDataProbabilidade.Add(new probabilidades(BufferData[x], prob));
                 //
                 prob = BufferData[x].EstagioEvolutivo < NEmedio ? prob * 2 : prob / 2;
-             
-                tempF += prob;
-                BufferDataProbabilidade.Add(new probabilidades(BufferData[x], prob));
+                if (BufferData[x].criaturaNoturna)
+                {
+                    tempF_D += prob;
+                }
+                else
+                {
+                    tempF_N += prob;
+                }
 
             }
 
-            somatoriaProb = tempF;
+            somatoriaProb_dia = tempF_D;
+            somatoriaProb_noite = tempF_N;
 
         }
-        public void calcularProbabilidade()
-        {
-            
-            float NEmedio = 0;
-            
-            foreach (var a in BufferData)
-            {
-                NEmedio += a.EstagioEvolutivo;
-            }
-            NEmedio /= BufferData.Count;
-            float tempF = 0;
-            Debug.Log(BufferData.Count + NEmedio);
-            foreach (var a in BufferData)
-            {
-                float prob = a.EstagioEvolutivo / NEmedio;
-                //
-                float diferenca = a.EstagioEvolutivo - NEmedio;
-                float valor = Mathf.Abs(diferenca) / NEmedio;
-                prob = Mathf.Lerp(1, 0, valor);
-                //
-                prob = a.EstagioEvolutivo < NEmedio ? prob * 2 : prob / 2;
-                Debug.Log(prob);
-
-                tempF += prob;
-                BufferDataProbabilidade.Add(new probabilidades(a, prob));
-
-            }
-
-            somatoriaProb = tempF;
-            
-        }
-
     }
+      
 
     [CustomEditor(typeof(ScriptavelGrupoDeCriaturas))]
     public class EditorScriptavelGrupoDeCriaturas : Editor {

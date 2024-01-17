@@ -1419,6 +1419,10 @@ PrefabInstance:
       value: 541.8786
       objectReference: {fileID: 0}
     - target: {fileID: 709267283633434796, guid: 1d0c63acf292db144b3fa7b6882e5523, type: 3}
+      propertyPath: noite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 709267283633434796, guid: 1d0c63acf292db144b3fa7b6882e5523, type: 3}
       propertyPath: jogador
       value: 
       objectReference: {fileID: 1798633597}
@@ -1713,58 +1717,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 267014018, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_IsContraintActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_RotationAtRest.x
-      value: 20.840677
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_RotationAtRest.y
-      value: -0.24388781
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_IsContraintActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationAtRest.x
-      value: -3.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationAtRest.y
-      value: 1.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationAtRest.z
-      value: 5.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_RotationOffsets.Array.data[0].x
-      value: 20.840681
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_RotationOffsets.Array.data[0].y
-      value: -0.24388781
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationOffsets.Array.data[0].x
-      value: 0.029968262
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 2.6799927
-      objectReference: {fileID: 0}
-    - target: {fileID: 634195887, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_TranslationOffsets.Array.data[0].z
-      value: -7.0400085
-      objectReference: {fileID: 0}
-    - target: {fileID: 1592831249, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1940.79
-      objectReference: {fileID: 0}
     - target: {fileID: 282290446655621430, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
       propertyPath: m_Name
       value: mundo aberto
@@ -1814,68 +1766,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.0200348
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.539978
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.1699905
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.98350513
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.18086788
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0020932204
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947211311603, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.00038494595
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494947514382217, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -941.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.gravidade
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.PuloMaximo
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.alturaSalto
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.saltoMaximo
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.massaJogador
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.forcaDeAtracao
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.velocidadeJogador
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6650494948514853661, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}
-      propertyPath: configui.MultiplicadorDePulo
-      value: 1
+      value: -0.0020932201
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20b4c2fdc93f774094e1dc7085958ed, type: 3}

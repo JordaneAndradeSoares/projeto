@@ -99,6 +99,12 @@ namespace modoBatalha
 
 
         }
-        
+        public void PopupDano(int V)
+        {
+            txtA.text =""+ V;
+            Color temp = txtA.color;
+            temp.g = Mathf.Abs((V / 1000) - 1) * 250f;
+            txtA.color = temp;
+        }
     }
 }

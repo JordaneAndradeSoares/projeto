@@ -12,7 +12,8 @@ using UnityEngine.UI;
 using TMPro;
 using Codice.Client.BaseCommands;
 using PlasticGui.WorkspaceWindow.Items.LockRules;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; 
+using DG.Tweening;
 
 namespace modoBatalha
 {
@@ -20,11 +21,11 @@ namespace modoBatalha
     {
  
    
-        public Transform aliados, inimigos, seta;
+        public Transform aliados, inimigos ;
 
         public float espasamentoentreSi,AlturaNomes;
         public GameObject prefabVida, prefabNome,prefabEscudoBarra,prefabBolaDeEscudo,
-            ModeloSeta;
+            ModeloSeta,prefabSeta, seta;
 
         public MoverSeta Gseta;
 
@@ -366,7 +367,15 @@ namespace modoBatalha
 
         public void moverseta()
         {
-            ModeloSeta.SetActive( true);
+           // ModeloSeta.SetActive( true);
+           if(ModeloSeta == null)
+            {
+                ModeloSeta = Instantiate(prefabSeta,transform);
+                Gseta = ModeloSeta.GetComponent<MoverSeta>();
+            }
+            seta.SetActive(true);
+           
+           
             if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.paraFrente))
             {
                 horizontal(-1);
@@ -382,26 +391,32 @@ namespace modoBatalha
             {
                 if (setaAliada > aliadosL.Count - 1)
                     setaAliada = 0;
-                seta.position = aliadosL[setaAliada].obj.transform.position + (Vector3.up * 2);
+                seta.transform.position = aliadosL[setaAliada].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
                     gbatalha.escolidoAlvo(aliadosL[setaAliada]);
-                    ModeloSeta.SetActive (false);
+                    //   ModeloSeta.SetActive (false);
+                Destroy(ModeloSeta);
+                    seta.SetActive(false);
                 }
             }
             else
             {
                 if (setaInimiga > inimigosL.Count - 1)
                     setaInimiga = 0;
-                seta.position = inimigosL[setaInimiga].obj.transform.position + (Vector3.up * 2);
+                seta.transform.position = inimigosL[setaInimiga].obj.transform.position + (Vector3.up * 2);
                 if (Input.GetKeyDown(GerenciadorDeTeclado.instanc.confirmar))
                 {
                     gbatalha.escolidoAlvo(inimigosL[setaInimiga]);
-                    ModeloSeta.SetActive( false);
+                    //     ModeloSeta.SetActive( false);
+                   Destroy(ModeloSeta);
+                    seta.SetActive(false);
                 }
             }
-            Gseta.definirDestino(seta.position);
-
+            if (Gseta)
+            {
+                Gseta.definirDestino(seta.transform.position);
+            }
 
 
         }
@@ -459,6 +474,7 @@ namespace modoBatalha
         }
         public void vertical(int x)
         {
+          
            
             if (x > 0 && aliador_inimigo < 0)
                 aliador_inimigo = 1;
@@ -468,19 +484,14 @@ namespace modoBatalha
         private void attvida()
         {
  
- 
-          
- 
             foreach (var a in gbatalha.ordemBatalha)
             {
                 if (a.obj == null)
                     continue;
- 
-                a.gvd.vidaPerdida.transform.localPosition = new Vector3((a.data.vida / a.data.vida_maxima
-                    ),
-                    a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z);
 
-                if(a.data.escudos.Count > 0)
+                 a.gvd.vidaPerdida.transform.localPosition =Vector3.Lerp(a.gvd.vidaPerdida.transform.localPosition,new Vector3(((a.data.vida >=0 ? a.data.vida  : 0) / a.data.vida_maxima),a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z),Time.deltaTime);
+                //   a.gvd.vidaPerdida.transform.DOMove(a.gvd.vidaPerdida.transform.TransformPoint( new Vector3((a.data.vida / a.data.vida_maxima), a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z)), 1);
+                if (a.data.escudos.Count > 0)
                 {
                    foreach(var b in a.data.escudos)
                     {
@@ -493,7 +504,7 @@ namespace modoBatalha
                 }
             }
 
-        }
+        }   
         private void attEnergia()
         {
             float total_A = 0;
@@ -506,6 +517,8 @@ namespace modoBatalha
                 total_A += a.data.bufferData.Estamina * (1 + (a.data.bufferData.TaxaDeCrescimentoDaEstamina * a.data.level));
             }
             totalDeEnergiaAliada = total_A;
+            if(gbatalha.EnergiaAtualAliada > totalDeEnergiaAliada)
+                gbatalha.EnergiaAtualAliada = totalDeEnergiaAliada;
 
             foreach (var a in inimigosL)
             {
@@ -513,14 +526,18 @@ namespace modoBatalha
                     continue;
                 total_I += a.data.bufferData.Estamina * (1 + (a.data.bufferData.TaxaDeCrescimentoDaEstamina * a.data.level));
             }
+
             totalDeEnergiaInimiga = total_I;
+            if (gbatalha.EnergiaAtualInimiga > totalDeEnergiaInimiga)
+                gbatalha.EnergiaAtualInimiga = totalDeEnergiaInimiga;
 
         }
         private void mostrarEnergia()
         {
             Vector3 aa = UI_valor_1.anchoredPosition;
             aa.x = (gbatalha.EnergiaAtualAliada / totalDeEnergiaAliada) * UI_tamanhoX_energiaMaxima;
-            UI_valor_1.anchoredPosition = aa;
+           
+            UI_valor_1.anchoredPosition = Vector3.Lerp(UI_valor_1.anchoredPosition, aa,Time.deltaTime);
         }
         private void attPosicao()
         {

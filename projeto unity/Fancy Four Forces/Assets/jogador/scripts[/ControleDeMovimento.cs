@@ -231,7 +231,7 @@ namespace jogador
         public void AbrirAttMatrizDeDados()
         {
             AbrirEFrecharAMD.SetActive(!AbrirEFrecharAMD.activeSelf);
-
+            MostrarModelo3DAmd.SetActive(AbrirEFrecharAMD.active);
             if (AbrirEFrecharAMD.activeSelf)
             {
                 foreach (var a in inventario.Inventario)

@@ -63,6 +63,7 @@ namespace modoBatalha
             buffer_s aux = ordemBatalha[0];
             if (aux != ultimobuffer)
             {
+                // caso seja uma sequencia de aliados isso vai limpar a tela 
                 foreach (var a in habilidadesInstanciadas)
                 {
                     Destroy(a);
@@ -70,6 +71,7 @@ namespace modoBatalha
                 habilidadesInstanciadas.Clear();
 
                 ultimobuffer = aux;
+                // mostrar as habilidades
                 foreach (var a in aux.data.habilidades)
                 {
                     if (EnergiaAtualAliada < a.GastoDeHabilidade)
@@ -130,13 +132,14 @@ namespace modoBatalha
          */
         public void aplicarHabilidadeEmAlvo(buffer_s a)
         {// habilidade
+            Debug.Log("inimigo esta usando uma habilidae");
             if(habilidadeUsada.SH != null) {
                 switch (habilidadeUsada.SH._Efeito)
                 {
                     case(Efeito.Dano):
-
+                      
                         float danofinal = ultimobuffer.danoBruto(habilidadeUsada.SH);
-
+                        Debug.Log("a habilidade deu dano de " + danofinal);
                         switch (a.data.bufferData.TipoDeEfetividade)
                         {
                             case Efetividade.blindado:
@@ -172,7 +175,7 @@ namespace modoBatalha
                         a.diminuirVida(danofinal);
                         break;
                     case (Efeito.MudarStatus):
-
+                        Debug.Log("a habilidade alterou algum status");
                         switch (habilidadeUsada.SH.___StatusAAlterar)
                         {
                             case StatusAAlterar.Velocidade:
@@ -186,12 +189,14 @@ namespace modoBatalha
 
                         break;
                     case (Efeito.Escudo):
+                        Debug.Log("a habilidade gera um escudo");
                         a.receberEscudo(habilidadeUsada.SH, ultimobuffer.data);
                       //  a.darEscudo(habilidadeUsada.SH, ultimobuffer);
                         break;
                          
 
                 }
+               
             }
           
         }
@@ -245,8 +250,7 @@ namespace modoBatalha
                 else
                 {
                     usarSeta(1);
-                //    confg.vertical(1);
-               //     confg.moverseta();
+           
                 }               
                
              
@@ -456,15 +460,23 @@ namespace modoBatalha
         }
         public void InimigousarHabilidadeNoAlvo()
         {
+            // habilidade
             if (habilidadeUsada.SH != null)
             {
                 foreach (var a in alvos_)
                 {
                     aplicarHabilidadeEmAlvo(a);
                 }
+                EnergiaAtualInimiga -= habilidadeUsada.SH.GastoDeHabilidade;
+                if (EnergiaAtualInimiga < 0)
+                {
+                    EnergiaAtualInimiga = 0;
+                }
             }
+            // ataque basico
             else
             {
+                Debug.Log("inimigo usou um ataque basico, a habilidade posui " + habilidadeUsada.SAB._Hits + " hits");
                 foreach (var a in alvos_)
                 {
 
@@ -510,6 +522,7 @@ namespace modoBatalha
                         a.diminuirVida(danofinal);
                     }
                 }
+                Debug.Log("a energia inimiga foi aumentada  !!");
                 EnergiaAtualInimiga += habilidadeUsada.SAB.ValorDeRecarga;
                 if (EnergiaAtualInimiga > confg.totalDeEnergiaInimiga)
                 {
@@ -799,7 +812,7 @@ namespace modoBatalha
 
                         ocultarHabilidades();
 
-                        inimigoAgir();
+                       inimigoAgir();
 
 
                     }
@@ -843,24 +856,26 @@ namespace modoBatalha
             {
                 if (a.data.vida <= 0)
                 {
-                    Destroy(a.obj);
+                     Destroy(a.obj,1f);
                     if (a.npc)
                     {
-                        confg.inimigosL.RemoveAll(x => x.id_ == a.id_);
+                //   confg.inimigosL.RemoveAll(x => x.id_ == a.id_);
                     }
                     else
                     {
-                        confg.aliadosL.RemoveAll(x => x.id_ == a.id_);
+                  //  confg.aliadosL.RemoveAll(x => x.id_ == a.id_);
                     }
                 
                 }
             }
 
           
-           ordemBatalha.RemoveAll(x => x.obj == null);
-            confg.inimigosL.RemoveAll(x => x.obj == null);
-            confg.aliadosL.RemoveAll(x => x.obj == null);
-
+             ordemBatalha.RemoveAll(x => x.obj == null);
+             confg.inimigosL.RemoveAll(x => x.obj == null);
+             confg.aliadosL.RemoveAll(x => x.obj == null);
+          //  ordemBatalha.RemoveAll(x => x.data.vida <= 0);
+          //  confg.inimigosL.RemoveAll(x => x.data.vida <= 0);
+          //  confg.aliadosL.RemoveAll(x => x.data.vida <= 0);
         }
 
         public ScriptavelInventario inventario;
