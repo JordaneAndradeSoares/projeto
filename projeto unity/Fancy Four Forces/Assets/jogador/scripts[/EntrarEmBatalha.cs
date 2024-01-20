@@ -17,10 +17,10 @@ namespace jogador
         {
             if (aliado)
             {
-
-                equipes.aliados[slot_].bufferData = buffer_.bufferData;
-                equipes.aliados[slot_].level = buffer_.level;
-                equipes.aliados[slot_].origem = buffer_;
+                equipes.aliados[slot_] = buffer_;
+                //equipes.aliados[slot_].bufferData = buffer_.bufferData;
+               // equipes.aliados[slot_].level = buffer_.level;
+              
 
             }
             else
@@ -88,6 +88,7 @@ namespace jogador
 
             equipes.inimigos[0].bufferData = bd.bufferData;
             equipes.inimigos[0].level = Random.Range(1, 20);
+            equipes.inimigos[0].completarVida();
 
             for (int x = 1; x < 4; x++)
             {
@@ -101,6 +102,7 @@ namespace jogador
                 Debug.Log("rng  = " + rng + "    " + bd.b.BufferData[indc]);
                 equipes.inimigos[x].bufferData = bd.b.BufferData[indc];
                 equipes.inimigos[x].level = Random.Range(1, 20);
+                equipes.inimigos[x].completarVida();
 
             }
 

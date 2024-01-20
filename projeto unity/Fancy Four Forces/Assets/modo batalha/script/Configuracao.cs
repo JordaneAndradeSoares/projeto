@@ -137,8 +137,6 @@ namespace modoBatalha
             public retornoDeDano diminuirVida(float danoBruto)
             {
 
-                
-
                 float temp = danoBruto - defesaFinal();
                 retornoDeDano RD = new retornoDeDano();
 
@@ -175,6 +173,7 @@ namespace modoBatalha
                         }
                     }
                     catch { }
+                    Debug.Log(data.escudos);
                     foreach(var a in data.escudos)
                     {
                         if(a.escudo_ <= 0)
@@ -262,8 +261,8 @@ namespace modoBatalha
 
                     
                     aliadosL.Add(new buffer_s(x, UnityEngine.Random.Range(-3f, 3f)));
-                    aliadosL[x].data = new Kernel(dataBatalha.aliados[x]);
-
+                    aliadosL[x].data = dataBatalha.aliados[x];
+                    aliadosL[x].data.escudos = new List<Kernel.escudo>();
                     aliadosL[x].obj = Instantiate(dataBatalha.aliados[x].bufferData.modelo_3D, aliados);
                     aliadosL[x].obj.transform.LookAt(inimigos);
                     aliadosL[x].obj.transform.localScale = aliadosL[x].obj.transform.localScale + ((Vector3.one * dataBatalha.aliados[x].level)/100);
@@ -293,11 +292,11 @@ namespace modoBatalha
 
 
                     inimigosL.Add(new buffer_s(x, UnityEngine.Random.Range(-3f, 3f)));
-                    inimigosL[x].data = new Kernel(dataBatalha.inimigos[x]);
+                    inimigosL[x].data =dataBatalha.inimigos[x];
                     inimigosL[x].obj = Instantiate(dataBatalha.inimigos[x].bufferData.modelo_3D, inimigos);
                     inimigosL[x].obj.transform.LookAt(aliados);
                     inimigosL[x].obj.transform.localScale = inimigosL[x].obj.transform.localScale + ((Vector3.one * dataBatalha.inimigos[x].level)/100);
-
+                    inimigosL[x].data.escudos = new List<Kernel.escudo>();
                     GameObject gvd_ = Instantiate(prefabVida, inimigosL[x].obj.transform);
                     gvd_.transform.position = inimigosL[x].obj.transform.position + Vector3.up;
                     inimigosL[x].gvd = gvd_.GetComponent<GerenciadorAttVida>();
@@ -360,7 +359,7 @@ namespace modoBatalha
                     a.obj.transform.position = a.local;
                 }
 
-
+               
                 gbatalha.iniciar(ordemBatalha);
 
 
@@ -508,16 +507,23 @@ namespace modoBatalha
 
                  a.gvd.vidaPerdida.transform.localPosition =Vector3.Lerp(a.gvd.vidaPerdida.transform.localPosition,new Vector3(((a.data.vida >=0 ? a.data.vida  : 0) / a.data.vida_maxima),a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z),Time.deltaTime);
                 //   a.gvd.vidaPerdida.transform.DOMove(a.gvd.vidaPerdida.transform.TransformPoint( new Vector3((a.data.vida / a.data.vida_maxima), a.gvd.vidaPerdida.transform.localPosition.y, a.gvd.vidaPerdida.transform.localPosition.z)), 1);
-                if (a.data.escudos.Count > 0)
+                try
                 {
-                   foreach(var b in a.data.escudos)
+                    if (a.data.escudos.Count > 0)
                     {
-                        GerenciadorAttVida ges = b.Ges.GetComponent<GerenciadorAttVida>();
+                        foreach (var b in a.data.escudos)
+                        {
+                            GerenciadorAttVida ges = b.Ges.GetComponent<GerenciadorAttVida>();
 
-                        ges.vidaPerdida.transform.localPosition = new Vector3((b.escudo_ / b.escudo_maximo
-                  ),
-                  ges.vidaPerdida.transform.localPosition.y, ges.vidaPerdida.transform.localPosition.z);
+                            ges.vidaPerdida.transform.localPosition = new Vector3((b.escudo_ / b.escudo_maximo
+                      ),
+                      ges.vidaPerdida.transform.localPosition.y, ges.vidaPerdida.transform.localPosition.z);
+                        }
                     }
+                }
+                catch
+                {
+
                 }
             }
 

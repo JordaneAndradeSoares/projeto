@@ -15,13 +15,20 @@ namespace jogador
 
         public RawImage iconeTextura;
         public ScriptavelBatalhaBuffer SBB;
+      
         private void Start()
         {
 
-            if (Equipado)
+            if (SBB)
             {
-              
-                iniciar(new Kernel(SBB.aliados[slot]));
+                if (SBB.aliados[slot] != null)
+                {
+                 //   iniciar((SBB.aliados[slot]));
+                }
+                else
+                {
+                  //  SBB.aliados[slot] = new Kernel();
+                }
             }
         }
 

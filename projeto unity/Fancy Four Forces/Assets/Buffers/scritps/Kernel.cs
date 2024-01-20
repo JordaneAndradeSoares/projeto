@@ -36,13 +36,23 @@ namespace Buffers
         
 
         // falta as passivas
-
+        public void completarVida()
+        {
+            vida = bufferData.VidaMaxima * bufferData.TaxaDeCrescimentoDaVidaMaxima * level;
+            vida_maxima = vida;
+            Debug.Log
+                (vida);
+        }
+        public Kernel()
+        {
+         //   bufferData = new ScriptavelBuffer();
+        }
         public Kernel(ScriptavelKernel SK)
         {
-       bufferData = SK.bufferData;
+            bufferData = SK.bufferData;
             level = SK.level ;
-            vida = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
-            vida_maxima = bufferData.VidaMaxima * (1 + (bufferData.TaxaDeCrescimentoDaVidaMaxima * level));
+            vida = SK.vida;
+            vida_maxima = SK.vida_maxima;
             habilidades = SK.habilidades;
     }
        

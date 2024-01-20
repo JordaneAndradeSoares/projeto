@@ -255,7 +255,7 @@ namespace jogador
             foreach(var a in EntrarEmBatalha.instanc.equipes.aliados)
             {
                
-               Destroy( MoldurasGerenciamentoDeEquipe.Find(x => x.GetComponent<auxUIInventario>().dados == a.origem));
+               Destroy( MoldurasGerenciamentoDeEquipe.Find(x => x.GetComponent<auxUIInventario>().dados == a));
             }
             MoldurasGerenciamentoDeEquipe.RemoveAll(x => x == null);
         }

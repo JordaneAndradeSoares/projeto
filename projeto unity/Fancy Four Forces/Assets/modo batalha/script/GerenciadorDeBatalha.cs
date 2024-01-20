@@ -735,6 +735,7 @@ namespace modoBatalha
                         }
                         // lado a = inimigos
                         // habilidade 2
+
                         if (ordemBatalha[0].data.habilidades[1]._Efeito == Efeito.Dano)
                         {
 
@@ -930,7 +931,7 @@ namespace modoBatalha
           
                 if(confg.aliadosL.Count == 0)
                 {
-                    SceneManager.LoadScene("SampleScene");
+                    SceneManager.LoadScene("deserto");
                     // voltar para a tela anterior
                 }
                 else
@@ -938,16 +939,10 @@ namespace modoBatalha
                     foreach (var a in confg.dataBatalha.inimigos)
                     {
 
-                        inventario.Inventario.Add(new Kernel(a));
+                        inventario.receberBuffer((a));
                         Debug.Log("Buffer " + a.bufferData.Nome + "  foi adicionado no inventario");
                     }
-
-          
-
-                
-
-                    SceneManager.LoadScene("SampleScene");
-
+                    SceneManager.LoadScene("deserto");
 
                 }
              

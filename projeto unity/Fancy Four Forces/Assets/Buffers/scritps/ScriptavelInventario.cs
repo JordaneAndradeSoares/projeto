@@ -11,5 +11,12 @@ namespace Buffers
        
         public List<Kernel> Inventario;
         public float PoeiraEstelar;
+    
+       
+        public void receberBuffer(Kernel a )
+        {
+            Inventario.Add(a);
+        }
+       
     }
 }

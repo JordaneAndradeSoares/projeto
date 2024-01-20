@@ -7,7 +7,7 @@ namespace Buffers
 {
     [CreateAssetMenu(fileName = "KernelDeBuffer", menuName = "Buffers/NovaKernelDeBuffer", order = 2)]
 
-    public class ScriptavelKernel : ScriptableObject
+    public class ScriptavelKernel : ScriptableObject 
     {
         public Kernel origem;
         public ScriptavelBuffer bufferData;

@@ -13,12 +13,92 @@ MonoBehaviour:
   m_Name: BatalhaBuffer
   m_EditorClassIdentifier: 
   aliados:
-  - {fileID: 11400000, guid: e4ba11789f65cec46aedf86f30c93f80, type: 2}
-  - {fileID: 11400000, guid: 2a537e798d8f5d64192d8624834739e5, type: 2}
-  - {fileID: 11400000, guid: 14e8caffe8a89554e9d4cda2764f18f3, type: 2}
-  - {fileID: 11400000, guid: d9c670c7555a40e4caa4a324978c09b7, type: 2}
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 15
+    vida: 50
+    vida_maxima: 50
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+  - bufferData: {fileID: 11400000, guid: 00c8e512230c0e24880697ee5c35586d, type: 2}
+    level: 21
+    vida: 100
+    vida_maxima: 100
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+  - bufferData: {fileID: 11400000, guid: 62610a8a0d4bb1d4c838d03ffca4a300, type: 2}
+    level: 10
+    vida: 500
+    vida_maxima: 500
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+  - bufferData: {fileID: 11400000, guid: cb98ce34a69179545af8c083a51b7a1c, type: 2}
+    level: 10
+    vida: 500
+    vida_maxima: 500
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
   inimigos:
-  - {fileID: 11400000, guid: f51181ddd5e19f441b30dc63fdfc5faf, type: 2}
-  - {fileID: 11400000, guid: 9da9c6ad40ca7ff44b7d16b3f0d4a470, type: 2}
-  - {fileID: 11400000, guid: 5dd6411a4a6773d49b130fc2c95edc56, type: 2}
-  - {fileID: 11400000, guid: 9341378f2268e6e44941d16e23a722f4, type: 2}
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 9
+    vida: 26.7
+    vida_maxima: 26.7
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 11
+    vida: 27.3
+    vida_maxima: 27.3
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: 842d853ae4587a94faa40f87a955286c, type: 2}
+    - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 8294acfa6979b9041833bbc2622a1294, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
+    - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 15
+    vida: 0
+    vida_maxima: 28.5
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: 8294acfa6979b9041833bbc2622a1294, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
+    - {fileID: 11400000, guid: 8e443ff4227b5404ca7cb221d9441b0a, type: 2}
+    - {fileID: 11400000, guid: 001e3a8eeacca674f8eafc7c3d8a5004, type: 2}
+  - bufferData: {fileID: 11400000, guid: babb42c3d396315409b54f7427cff3d6, type: 2}
+    level: 12
+    vida: 0
+    vida_maxima: 27.6
+    velocidade: 0
+    habilidades:
+    - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
+    - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
+    - {fileID: 11400000, guid: fd0152605e8f349438ee8d937cb9d6a5, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: 098cb4cf5662b7244b40b916ea7c6bb1, type: 2}
+    - {fileID: 11400000, guid: 3577286463f1ee948892ac933f6faa4c, type: 2}
+    - {fileID: 11400000, guid: 842d853ae4587a94faa40f87a955286c, type: 2}
+    - {fileID: 11400000, guid: a406973976651184f843563c5cb15476, type: 2}

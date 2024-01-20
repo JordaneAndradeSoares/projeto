@@ -60,15 +60,15 @@ namespace Buffers
 
             foreach (var a in DataBatalha.aliados)
             {
-                LadoA.Add(new Kernel(a));
-                temp.Add(new Kernel(a));
+                LadoA.Add((a));
+                temp.Add(a);
                 energiaMaximaLadoA += a.bufferData.Estamina + (a.bufferData.TaxaDeCrescimentoDaEstamina * a.level);
                 energiaAtualLadoA = energiaMaximaLadoA;
             }
             foreach (var a in DataBatalha.inimigos)
             {
-                LadoB.Add(new Kernel(a));
-                temp.Add(new Kernel(a));
+                LadoB.Add(a);
+                temp.Add((a));
 
                 energiaMaximaLadoB += a.bufferData.Estamina + (a.bufferData.TaxaDeCrescimentoDaEstamina * a.level);
                 energiaAtualLadoB = energiaMaximaLadoB;
