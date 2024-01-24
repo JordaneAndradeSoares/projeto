@@ -10,13 +10,14 @@ namespace Buffers
 
         public bool detectando;
         public Vector3 alvo;
-       
+       public Gameobject gm;
         private void OnTriggerEnter(Collider other)
         {
 
             if (other.gameObject.CompareTag(tag))
             {
-                alvo = other.transform.position;
+            gm = other.gameObject;
+            alvo = other.transform.position;
                 detectando = true;
             }
         }
