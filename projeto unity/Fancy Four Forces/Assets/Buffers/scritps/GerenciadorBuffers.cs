@@ -39,7 +39,7 @@ namespace Buffers
         {
             agente.destination = dtC.alvo;
 
-            return agente.remainingDistance <= agente.stoppingDistance;
+            return agente.remainingDistance <= 1.5f;// agente.stoppingDistance;
         }
         public void iniciabatalha()
         {
@@ -58,6 +58,10 @@ namespace Buffers
                 {
                     iniciabatalha();
                 }
+            }
+            if(dtC.gm != null){
+            if(Vector3.Distance(dtC.gm.transform.position,transform.position) <1.5f(
+ GeralInimigos.instact.iniciarBatalhaComDesvantagem(bufferData,b);            }
             }
         }
     }
